@@ -1,0 +1,446 @@
+\documentclass[%
+ reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose, 
+%preprint,
+%preprintnumbers,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+ amsmath,amssymb,
+ aps,
+%pra,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+]{revtex4-2}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{cancel}
+\usepackage{nicefrac}
+\usepackage{multirow}
+\usepackage[dvipsnames]{xcolor} % for colors 
+\usepackage{xspace}
+\usepackage[hidelinks]{hyperref}
+
+%\newcommand{\oren}[1]{{\color{red} [Oren:]\xspace}}%\usepackage{hyperref}% add hypertext capabilities
+\newcommand{\oren}[1]{{\color{red} [Oren: #1]\xspace}}
+\newcommand{\omer}[1]{{\color{ForestGreen} [Omer: #1]\xspace}}
+\newcommand{\arctanh}[0]{\text{arctanh}}
+\newcommand{\red}[1]{{\color{red}{#1}}}
+\newcommand{\done}[0]{{\color{ForestGreen} \checkmark \quad}}
+
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+%\usepackage[showframe,%Uncomment any one of the following lines to test 
+%%scale=0.7, marginratio={1:1, 2:3}, ignoreall,% default settings
+%%text={7in,10in},centering,
+%%margin=1.5in,
+%%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
+%%height=10in,a5paper,hmargin={3cm,0.8in},
+%]{geometry}
+
+\begin{document}
+
+\preprint{APS/123-QED}
+
+\title{Thermodynamic Geometry Through Second Order Phase Transitions}
+
+\author{Omer Basri}
+ \email{omer.basri@weizmann.ac.il}
+\author{Oren Raz}
+ \email{oren.raz@weizmann.ac.il}
+\affiliation{%
+ Department of Physics of Complex Systems,\\Weizmann Institute of Science, Rehovot 76100, Israel. 
+}%
+
+\date{\today}
+
+\begin{abstract}
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Attempts to geometrize thermodynamic phase space have existed since the theory's early days \cite{gibbs1873method}. While we have a geometric interpretation for entropy/heat generation in equilibrium thermodynamics - the first law, there doesn't exist an analogous relation for excess, non-equilibrium dissipation. % \oren{I am not sure that all the readers will understand what the last sentence means}
+One similar relation for excess dissipation in non-equilibrium processes, 
+\oren{which relation? equilibrium or nonequilibrium?} \done
+proposed in the 1970-s, is called thermodynamic geometry. 
+%\oren{It is a bad practice to use "proposed"  in to consecutive sentences} 
+As laid out by Ruppiner and Weinhold \cite{ruppeinerThermodynamicsRiemannianGeometric1979, weinholdMetricGeometryEquilibrium1975}, this formalism defines a Riemannian metric on thermodynamic parameter space.
+\oren{It is actually not on "phase space" (momentum and coordinates), but on "parameter space"} \done
+The Riemannian metric, which defines this manifold, is simply the second derivatives of the energy, entropy or their Legendre transforms. Use of different thermodynamic potentials to derive the metric, evidently, still gives the same manifold \cite{salamonRelationEntropyEnergy1984}. 
+
+Salomon \cite{salamonThermodynamicLengthDissipated1983} showed in the 1980s that excess dissipation is related to lengths in this metric space, subject to two major caveats.
+Firstly, it was proved only for endoreversible processes. Here, endoreversible denotes processes where the system is in internal thermodynamic equilibrium, but may not be in equilibrium with the surroundings \oren{English is not correct} \omer{still?}. Secondly, the dissipation contains a term of the mean response time of the system. Meaning, that the formalism does not work well in systems with large variations in response time.
+
+Even still, this formalism has been used to calculate minimal entropy production protocols in non-equilibrium thermodynamic systems.
+\oren{more than one example will be nice} \done
+For example, in distillation and in chemical reactions \cite{andresenCurrentTrendsFiniteTime2011}. Another proposed use is as an optimization tool for computing systems \cite{rotskoffGeometricApproachOptimal2017}.
+
+In 2012 Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} defined a similar metric using linear response theory \oren{I think Crooks had similar works even before - "Measuring thermodynamic length,
+GE Crooks, PRL 99 (10), 100602} \omer{Yes, that paper basically used the Ruppiner metric with coordinates $ \lambda = \{\beta, \beta h\}$ (meaning - free entropy), and disregarded the response time in the Salomon derivation. I don't like it, therfore don't want to mention it.}. In their definition, the response time was integrated into the metric itself, and therefore does not \sout{\oren{does not -- try not to use such abbreviation}} appear directly in their definition of the dissipation. Therefore, this formalism removed the need for both the response time, and the assumption of endoreversibility, making it applicable to a much wider variety of systems. This includes not only systems with widely varying timescales, but also microscopic systems (e.g biological systems, or single molecule systems).
+
+\oren{Here it might be a good place to discuss the geometry in the presence of a phase transition, addressing the work of Rotskoff.} \done
+Several researchers have shown interest in applying thermodynamic geometry to systems with phase transitions \cite{janyszekRiemannianGeometryThermodynamics1989, PhysRevE.51.1006}. This includes searching for optimal paths in such systems (e.g the 2D ferromagnetic Ising model \cite{rotskoffDynamicRiemannianGeometry2015}). However, there has yet to be an exhaustive study of the divergence of the thermodynamic length around phase transitions. Moreover, there exist systems with entirely disconnected phases, such that crossing between two points in two different phases necessitates passing through a phase transition. For this reason, to understand the applicability of this method for systems with phase transitions, it is important to know wether the thermodynamic length converges or not in the vicinity of phase transitions.
+
+In this article we explore thermodynamic geometry in the vicinity of second order phase transitions. One property that is immediately evident from Sivak and Crooks'
+\oren{If you are in a different paragraph, don't use ``their" -- it is not obvious to whom are you referring.} \done
+definitions, which is presented in the following part (\ref{sec:framework}), is that the metric should diverge in the vicinity of the phase transition. A question that arises is whether a divergence of the metric translates to divergence of lengths. 
+
+We show markedly different behavior of the two manifolds (Ruppiner and Sivak metrics) around phase transitions \oren{Are these different manifolds, or different matrices on the same manifold?} \omer{I would say different manifolds, considering the lengths between 2 points aren't the same (since they don't converge similarly when going towards the phase transition)}, stemming from critical slowdown. Critical slowdown is a phenomenon where around phase transitions, the response time of the system also diverges.
+
+We then apply the framework to the Ruppiner metric to find the shortest protocol between 2 points that belong to different phases of the Mean-Field Anti-Ferromagnet. In this model, the phase transition line completely separates the two phases (unlike, for example, the ferromagnetic Ising model), such that any protocol must pass through a phase transition.
+
+\section{Framework\label{sec:framework}}
+Before discussing the implementation of thermodynamic geometry on second order phase transitions, we must define clearly the metrics laid out before, as well as the tools we will use as part of our analysis.
+\oren{It is better to start a new section with a short "intro". Something in the line of ``before discussing the properties of the different metrics near a second order phase transition, let us first define all the metrics that we consider in this work"} \done
+\subsection{Ruppiner and Weinhold Metric}
+The Ruppiner and Weinhold metric \cite{ruppeinerThermodynamicsRiemannianGeometric1979, weinholdMetricGeometryEquilibrium1975} is defined by the second derivatives of the thermodynamic potentials or generalized entropies:
+\begin{equation}
+    g_{\mu\nu}^{\text{Ruppiner}} = \pm \frac{\partial^2 \varphi}{\partial \lambda ^\mu \partial\lambda^\nu} 
+\end{equation}
+Where $ \varphi $ can be the energy, entropy or their Legendre transforms (i.e the Helmholtz or Gibbs free energy, Masseiu potential and so on). $ \lambda ^ \mu $ are the corresponding natural variables of the chosen thermodynamic potential (e.g $\{S, M\}$ - the entropy and total magnetization - for the internal energy $E$ of a magnetic system 
+\oren{Say that $S$ is the entropy and $M$ the total magnetization -- it is a good practice to state what a simbole stands for in the first time you are using it} \done
+) 
+\oren{Maybe it is worth stating why these properties have the properties of a Reimannian metric}. \done
+The sign is chosen such that the metric is positive-definite. Which is possible for correct choice of potential and derivation variables from the convexity/concavity of the thermodynamic potentials and entropies \cite{Callen:450289}. The definition is symmetric ($g_{\mu\nu}=g_{\nu\mu}$) from Clairaut's theorem.
+Salamon \cite{salamonThermodynamicLengthDissipated1983} showed that this metric is connected to non-equilibrium dissipation,
+via the ``dissipated availability" 
+\begin{equation} \label{SalomonDissipatedAvail}
+    \mathcal{A} = \bar{\epsilon} \intop_{\boldsymbol{\lambda} \left(t\right)} g_{\mu\nu} \partial_s\lambda^{\mu} \partial_s\lambda^{\nu} ds
+\end{equation}
+Here $\boldsymbol{\lambda} \left( t \right) $ \oren{Notation: it is not clear if $\lambda(t)$ stands for both $\lambda^\mu$ and $\lambda^\nu$, one of them, both, neither.... Possible solutions are to write something like $\lambda^{\mu/\nu}$, or a vector notation $\vec\lambda(t)\equiv (\lambda^\mu,\lambda^\nu)$, whatever you prefer} \omer{I meant to denote vectors by bold letters, but apparently didn't use the correct command for bold. Is that convention OK?} is the path, and $ \bar{\epsilon}$ is the averaged response time of the system (sometimes also referred to as "lag time").
+\oren{It is worth explaining shortly that $\mathcal{A}$ has a thermodynamic meaning, not just calling it by a name (``dissipated availability") that hint on its meaning} \done
+The dissipated availability is the excess heat (or excess entropy, if using a generalized entropy) generated by the system due to finite time effects. Accordingly, one can see that in the quasi-static limie ($ \left| \dot{\boldsymbol{\lambda}} \right| \rightarrow 0 $), the dissipated availability approaches 0. In this framework, the "thermodynamic length" associated with the metric, given by:
+\begin{equation}
+    \mathcal{L} = \intop_{\boldsymbol{\lambda} \left(t\right)} \sqrt{g_{\mu\nu} \partial_s\lambda^{\mu} \partial_s\lambda^{\nu} } ds,
+\end{equation}
+is an entirely mathematical construction. The length $\mathcal{L}$ gives a lower bound on the dissipated availability by the Cauchy-Schwartz inequality:
+\begin{equation}
+    \mathcal{A} \ge \frac{\bar{\epsilon}}{\tau} \mathcal{L}^2
+\end{equation}
+With $\tau$ being the time of the protocol. Equality attained when $ \left| \dot{\boldsymbol{\lambda}} \right|$ is constant \cite{salamonThermodynamicLengthDissipated1983}.
+% \oren{Such a statement is usually accompanied by a reference, where the interested reader can find more information about it}
+
+\subsection{Sivak and Crooks Metric}
+The endoreversible assumption, or a similar assumption about the relaxation time, required for using the above metric, is severely limiting. Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} developed a similar formalism that does not require this assumption, and is thus usable across a wider range of applications.
+% \oren{I prefer something along the line ``The endoreversible assumption, required for using the above metrics, is quite limited. Sivak and Crooks developed a similar formalism that does not require this assumptio, and is therefore applicable across a wider range of applications}. 
+This came at the price of a change in the definition of the metric:
+\begin{equation} \label{eq:SivakMetric}
+    g_{\mu\nu}^{\text{Sivak}} = \intop_0^\infty \left\langle \delta X_\mu (t) \delta X_\nu (0) \right\rangle dt \equiv \mathcal{T}_{\mu\nu} \frac{\partial^2 \ln Z}{\partial \lambda^{\mu} \partial \lambda^{\nu}}
+\end{equation}
+Where $\lambda^\mu$ are the natural variables of the Masseiu potential, e.g $\{\beta, \beta h\}$ for magnetic systems. $\boldsymbol{X}$ are the conjugate variables to $ \boldsymbol{\lambda} $ (in equilibrium, $X_\mu = \frac{\partial \ln Z}{\partial \lambda^\mu}$). $\mathcal{T}$ is the time response matrix, $Z$ is the partition function. The equivalence denoted by "$\equiv$" is true in the thermodynamic limit, and in other special cases \cite{sivakThermodynamicMetricsOptimal2012}.
+
+In the Sivak formalism the response time $ \bar{\epsilon} $ is now encoded in the metric. Accordingly, we redefine $ \mathcal{A} $ to be
+\begin{equation} \label{eqn:SivakDissAv}
+    \mathcal{A} = \intop_{\lambda \left(t\right)} g_{\mu\nu} \partial_t\lambda^{\mu} \partial_t\lambda^{\nu} dt,
+\end{equation}
+ \oren{I think it will be clearer to the reader if we write it in the opposite order: In the Sivak formalism the response time is encoded inside the metric, therefore we define $\mathcal{A}$ as:...} \done.
+
+The definition of $\mathcal{L}$ stays identical, apart for the use of the Sivak metric. Therefore, the Cauchy-Schwartz inequality gives in the Sivak case:
+\begin{equation} \label{eq:CSineq}
+    \mathcal{A} \ge \frac{\mathcal{L}^2}{\tau}
+\end{equation}
+With $\tau$ being the time of the protocol. As before, equality is attained when $\left| \dot{\boldsymbol{\lambda}} \right|$ is constant \cite{sivakThermodynamicMetricsOptimal2012}.
+
+\subsection{Scaling Hypothesis \label{subsec:ScalingHyp}}
+% \oren{I think that it is better to first state the motivation and approach, something along the line of: (i) We expect the metric to be singular near a phase transition; (ii) There are very few cases where exact calculation of this singularity is possible; (iii) The singularity is governed by a set of critical exponents and scaling functions, that are identical for all models that belong to a given universality class. Therefore, we can learn a lot on the behavior of the metric near the phase transition by using the scaling hypothesis approach.}
+
+The second derivatives of the free energy often diverges around second order phase transitions (for example, think of the diverging magnetic susceptibility in a ferromagnet). Very often exact calculation of a system's partition function is often hard or even impossible. Therefore there exist tools such as critical exponents that allow us to characterize these divergences without calculating them directly. 
+Moreover, phase transitions have been organized into universality classes. These universality classes are distinct from one another by the critical exponents.
+
+The scaling hypothesis is a general relation between the critical exponents and the scaling of the free energy, around the phase transition \cite{Kardar_2007}. This allows us to check, for many different universality classes simultaneously, whether the thermodynamic length in the Solomon formalism will diverge or not.
+\oren{I think that to present it in a clear way, start by stating that often the metric diverges at a phase transition, maybe even provide an example (divergence of the susceptibility, for example)} \oren{Then explain that divergence of the metric does not automatically imply divergence of the distance}. \omer{Didn't we already say that in the introduction?} 
+However, this doesn't tell us anything about the relaxation time, or its behavior around the phase transition. Therefore, this tool can't be used to understand divergences in the Sivak metric. % \oren{and therefore does not tell us if the corresponding length of the Sivak metric diverges or not}. 
+
+The statement underpinning the scaling hypothesis is that around the phase transition point $ (T_c, h_c) $, we can define reduced parameters 
+\begin{equation}
+    t = \frac{T-T_c}{T_c}
+\end{equation}
+\begin{equation}
+    h = \frac{H-H_c}{H_c}
+\end{equation}
+The thermodynamic potentials scale near the phase transition as \cite{Kardar_2007}:
+\begin{equation} \label{eq:scalingHypFreeEnergy}
+    \varphi \propto t^b f \left( \frac{h}{t^\Delta} \right)
+\end{equation}
+where $f$ is continuous, and $ f \left(x\right) \xrightarrow[x\rightarrow\infty]{} x^p $. The variables $b, \Delta$ and $p$ can be determined from the critical exponents. For example, one can observe the critical exponent of the heat capacity at $h=0$, $\alpha$, is related to $b$ by $b=2-\alpha$.
+
+The scaling hypothesis has been used before to quantify divergence of the metric, e.g \cite{PhysRevE.51.1006}. However, its impact on the thermodynamic length and dissipation has not been considered. 
+
+\subsubsection*{Dynamic Scaling Hypothesis}
+The scaling hypothesis can provide useful information about the divergence of the Ruppiner and Weinhold metric near a second order phase transition. However, commonly a second order phase transition is accompanied by a critical slow down, where the response timescale diverges. This can manifest itself in $ \bar{\epsilon} $, the mean response time, which may change for different paths that get closer or further away from the phase transition. 
+Gaining information about the critical slowdown can help us to quantify the divergence of $ \bar{\epsilon} $ in the Salomon dissipated availability (eq. \ref{SalomonDissipatedAvail}), 
+and also the divergences of the Sivak metric (eq. \ref{eq:SivakMetric}).
+
+The dynamical scaling hypothesis provides a relation between the relaxation time $\tau$ and the correlation length \cite{tauberCriticalDynamicsField2014}:
+\begin{equation}
+    \tau \propto \xi ^ z.
+\end{equation}
+This can be related to the scaling hypothesis of the free energy by the relation between free energies and the correlation length \cite{Kardar_2007}:
+\begin{equation}
+    \varphi \propto \xi ^ {-d}
+\end{equation}
+Where $d$ is the dimension of the system. This implies
+\begin{equation}
+    \tau \propto \varphi^{-\nicefrac{z}{d}}
+\end{equation}
+and using eq.\;\ref{eq:scalingHypFreeEnergy}, the scaling of the response time in terms of $t, h$ is given by:
+\begin{equation}
+        \tau \propto t^{-\nicefrac{bz}{d}} f ^{-\nicefrac{z}{d}} \left( \frac{h}{t^\Delta} \right)
+\end{equation}
+
+\subsection{Divergence of Lengths}
+As is known, divergence of the metric doesn't necessarily imply divergence of distances in the manifold. One can construct metrics that diverge, while lengths remain finite. One known example of a metric with both a real divergence and a divergence with finite lengths is the Schwarzschild metric. While the metric itself diverges both at $ r=0 $ and $ r=r_s $, lengths diverge at $ r \rightarrow 0 $, but not at $ r \rightarrow r_s$. 
+\oren{Before this discussion you should explain that the Schwartschild metric has two singularities: at $r=0$ and $r=r_s$.} \done
+
+\oren{This is somewhat cryptic: explain explicitly the question -- does divergence of the metric imply divergence of the availability? Does the converse statement hold?} \done
+
+It is important to note that the divergence of dissipated availability depends on the chosen protocol. In other words, along any given path, if the protocol is executed sufficiently quickly, the dissipated availability will diverge, since Eq. \ref{eqn:SivakDissAv} is sensitive to the parametrization. However, at very high driving speeds the endoreversible/linear-response approximations used in deriving the dissipation expression are no longer valid.
+
+This naturally raises the following question: can thermodynamic length provide insight into the divergence of dissipated availability? One direction is straightforward: for constant-speed protocols, the dissipated availability and the thermodynamic length are connected directly through the Cauchy–Schwarz inequality. Therefore, whenever the thermodynamic length converges, there must exist a protocol for which the dissipated availability also converges.
+
+The reverse implication is less obvious: if the thermodynamic length diverges, can there still exist a finite-time protocol yielding convergent dissipated availability? This case can also be addressed using the Cauchy–Schwarz inequality. Specifically, the minimal dissipated availability occurs when the protocol duration scales as $\tau \propto \mathcal{L}$. In this case, Eq. \ref{eq:CSineq} gives
+\begin{equation}
+    \mathcal{A}_{\text{min}} = \frac{\mathcal{L}}{c} \xrightarrow[\mathcal{L\rightarrow\infty}]{}\infty
+\end{equation}
+which shows that a divergent thermodynamic length necessarily implies divergent dissipated availability.
+
+\omer{I'm not totally sure about infinite-time protocols (I actually think some might always converge). Do such protocols matter?}  
+
+Thus, there are protocols that converge if and only if the thermodynamic length converges. Therefore we need to look only at the rate of divergence of
+\begin{equation}
+    \ell(s) = \sqrt{g_{\mu\nu} \partial_s \lambda^\mu \partial_s \lambda^\nu}
+\end{equation}
+I.e, assuming (as we will assume in the rest of this paper) $\ell \xrightarrow[s\rightarrow 0]{} \infty$, the thermodynamic length will diverge if and only if $\ell \propto s^{-p}$ where $p>1$. Note that this can't be directly translated to a divergence of the metric since that is dependent on parametrization, similarly to how there exist coordinates where the $r_s$ divergence of the Schwarzschild metric will not appear (e.g Kruskal coordinates).
+
+% \oren{I think it will be useful to state explicitly: if the divergence is like $s^{\gamma}$, then the length diverges for... and does not diverge for ....}
+
+\section{Results}
+\subsection{Scaling Hypothesis}
+\subsubsection{Scaling Hypothesis for the Free Energy}
+We will use the scaling hypothesis for the free energy to deduce the divergence of the Ruppiner metric, and understand wether the length diverges on paths that pass through a phase transition.
+% \oren{Probably not ``the" critical point: either `a critical point', but I think ``pass through a second order phase transition'' is better}
+
+Assuming the divergent part of the Massieu potential scales as
+\[ \psi \propto t^b f\left(\frac{h}{t^\Delta}\right) \]
+With all the assumptions made so far, the scaling of the metric is given by:
+\begin{align}
+    \left(g_{\mu\nu}\right) \Big|_{\frac{h}{t^\Delta} \rightarrow \text{const.}} & \propto \left(\begin{array}{cc}
+        t^{b-2} & t^{b-\Delta-1} \\
+        t^{b-\Delta-1} & t^{b-2 \Delta}
+    \end{array} \right) \\
+    \left( g_{\mu\nu} \right) \Big|_{\frac{h}{t^\Delta} \rightarrow \infty} & \propto \left(\begin{array}{cc}
+        t^{-2} h^{p} & t^{-1} h^{p-1} \\
+        t^{-1} h^{p-1} & h^{p-2}
+    \end{array} \right)
+\end{align}
+
+To determine from this how lengths diverge, we need information about the path taken, as it determines the asymptotic \textcolor{ForestGreen}{behaviour} of $ \frac{h}{t^\Delta} $. We therefore split our analysis to corresponding cases. The first is
+\begin{equation} \label{case_1}
+    \left( \begin{array}{c}
+         t \\
+         h 
+    \end{array} \right) = \left( \begin{array}{c}
+         s \\
+         s^k 
+    \end{array} \right) , \quad k \ge \Delta
+\end{equation}
+Which implies
+\begin{equation*}
+    \frac{h}{t^\Delta} \xrightarrow[s\rightarrow0]{} \text{const.}
+\end{equation*}
+In this case, the integrands are
+\begin{equation*}
+    g_{tt} \frac{dt}{ds} \frac{dt}{ds} \propto s^{b-2}
+\end{equation*}
+\begin{equation*}
+    g_{th} \frac{dt}{ds} \frac{dh}{ds} \propto s^{b-\Delta-1} s^{k-1}=s^{b-2+\left(k-\Delta\right)}
+\end{equation*}
+\begin{equation*}
+    g_{hh} \frac{dh}{ds} \frac{dh}{ds} \propto s^{b-2\Delta} s^{2\left(k-1\right)} =s^{b-2+2\left(k-\Delta\right)}
+\end{equation*}
+Since $k\ge\Delta$ we get that 
+\begin{equation} \label{h_t_delta_non_divergent}
+    b > 0
+\end{equation} 
+is a sufficient condition for the Salomon length, $\mathcal{L}$, to converge. Which, as we have established, is a necessary and sufficient condition for convergence of the Salomon dissipated availability, $\mathcal{A}$, for finite time protocols. 
+% \oren{Why do you get $b>0$? Shouldn't you get $b>1$, since $\int x^{a}dx = \frac{x^{a+1}}{a+1}$, and thus does not diverges for any $a>-1$? Or are you referring the $\mathcal{L}$ rather than to $\mathcal{A}$ (but then -- why do you use the term ``dissipated availability''?) Also -- we should probably not use the term ``finite time protocols'' because formally there is a limit $t\to 0$ in some sense.}
+
+The second option is
+\begin{equation} \label{case_2}
+    \left( \begin{array}{c}
+         t \\
+         h 
+    \end{array} \right) = \left( \begin{array}{c}
+         s^{\nicefrac{1}{k}} \\
+         s 
+    \end{array} \right) , \quad k < \Delta
+\end{equation}
+which implies
+\begin{equation*} 
+    \frac{h}{t^\Delta} \xrightarrow[s\rightarrow 0]{} \infty
+\end{equation*}
+In this case
+\begin{equation*}
+    g_{tt} \frac{dt}{ds} \frac{dt}{ds} \propto s^{-\nicefrac{2}{k}}s^p s^{2\left(\frac{2}{k}-1\right)} = s^{p-2}
+\end{equation*}
+\begin{equation*}
+    g_{th} \frac{dt}{ds} \frac{dh}{ds} \propto s^{-\nicefrac{1}{k}} s^{p-1} s^{\frac{1}{k}-1} = s^{p-2}
+\end{equation*}
+\begin{equation*}
+    g_{hh} \frac{dh}{ds} \frac{dh}{ds} \propto s^{p-2}
+\end{equation*}
+
+
+So there exist finite time protocols that do not diverge for a system when
+\begin{equation} \label{h_t_delta_divergent}
+    p>0
+\end{equation}
+% \oren{Same as the discussion above -- why not $p>1$?}
+One can observe in table \ref{tab:scaling-divergences} that both conditions \ref{h_t_delta_non_divergent} and \ref{h_t_delta_divergent} hold in multiple universality classes.  \oren{Maybe it is better to put the specific mean field example here, as it actually belong to the above discussion, not to what follow.} \omer{The mean field discussion was supposed to be for the numerical part, should it appear also in the context of scaling of the free energy/its derivatives?}
+
+ \begin{table}
+    \centering
+    \begin{tabular}{c||c|c}
+         & $b$ & $p$ \\
+         \hline \hline 
+         Mean Field & $ 2 $ & $ \frac{4}{3} $ \\
+         \hline 
+         2D Ising & $ 2 $ & $ \frac{16}{15} $ \\
+         \hline 
+         3D Ising & $ 1.88991292(35) $ & $ 1.2087751(6) $ \\
+         \hline 
+         2D 3-state Potts model & $ \frac{5}{3} $ & $ \frac{15}{14} $ \\
+         \hline 
+         2D 4-state Potts model & $ \frac{4}{3} $ & $ \frac{16}{15} $
+         % \\
+         % \hline 
+         % 3D XY Model & $ 2.0153(3) $ & $ 1.20923(6) $
+    \end{tabular}
+    \caption{Scaling Hypothesis parameters for sample universality classes}
+    \label{tab:scaling-divergences}
+\end{table}
+
+\subsubsection{Dynamical Scaling Hypothesis}
+
+We have seen that $\tau$ scales as:
+$ \tau \propto \psi ^ {-\nicefrac{z}{d} } $, so using the static scaling hypothesis
+\begin{equation}
+    \tau \propto t^{-\nicefrac{bz}{d}} g\left(\frac{h}{t^\Delta}\right)
+\end{equation}
+with $g$ continuous and 
+\begin{equation}
+    g \xrightarrow[x\rightarrow \infty]{} x^{-\nicefrac{pz}{d}}
+\end{equation}
+And the divergence of $\tau$ will be
+\begin{equation}
+    \tau \propto 
+    \begin{cases}
+        t^{-\nicefrac{bz}{d}}  &  \frac{h}{t^\Delta} \rightarrow \text{const.} \\
+        h^{-\nicefrac{pz}{d}}  &  \frac{h}{t^\Delta} \rightarrow \infty
+    \end{cases}
+\end{equation}
+
+Adding this factor to the case of the divergences in eq. \ref{case_1}
+\begin{align}
+    g_{tt} \left(\frac{dt}{ds}\right)^2 & \propto s^{b\left(1-\frac{z}{d}\right) -2 } \\
+    g_{th} \frac{dt}{ds} \frac{dh}{ds} & \propto s^{b\left(1-\frac{z}{d}\right) -2 + \left(k-\Delta\right) } \\
+    g_{hh} \left(\frac{dh}{ds}\right)^2 & \propto s^{b\left(1-\frac{z}{d}\right) -2 + 2\left(k-\Delta\right)} 
+\end{align}
+Meaning the convergence condition for the thermodynamic length will be 
+\begin{equation}
+    b\left(1-\frac{z}{d}\right) > 0
+\end{equation}
+
+Similarly in case \ref{case_2}:
+\begin{equation}
+    g_{ij}  \frac{dx^i}{ds} \frac{dx^j}{ds} \propto s^{p\left(1-\frac{z}{d}\right) -2}
+\end{equation}
+Meaning the convergence condition for the thermodynamic length will be 
+\begin{equation}
+    p\left(1-\frac{z}{d}\right) > 0
+\end{equation}
+One can see, using table \ref{tab:dynamical-divergences}, that both metrics will diverge for the 2D Ising model and Potts models (both 3- and 4-states), but the 3D Ising model will converge.
+ \begin{table}
+    \centering
+    \begin{tabular}{c|c||c|c|c}
+         
+         \multicolumn{2}{c||}{} & $d$ & $z$ & $\frac{z}{d}$\\
+         \hline \hline 
+         \multirow{2}{*}{2D Ising}  & Class A & $ 2 $ & $ 2.165\left(10\right) $ & $1.083\left(5\right)$ \\
+         \cline{2-5}
+                                    & Class B & $ 2 $ & $ 2.235\left(10\right) $ & $1.117\left(5\right)$ \\ 
+                                    % I'm not sure model B dynamics are interesting in our case.
+         \hline 
+         \multicolumn{2}{c||}{3D Ising} & $ 3 $ & $ 2.032\left(4\right) $ & $ 0.677\left(1\right) $ \\
+         \hline
+         \multicolumn{2}{c||}{2D 3-state Potts model} & $2$ & $2.198(2)$ & $1.099(1)$ \\
+         \hline
+         \multicolumn{2}{c||}{2D 4-state Potts model} & $2$ & $2.290(3)$ & $1.095(2)$ \\
+    \end{tabular}
+    \caption{Dynamical Scaling parameters for sample universality classes \cite{odor_universality_2004}}
+    \label{tab:dynamical-divergences}
+\end{table}
+
+\subsection{Antiferromagnetic Mean-Field Model}
+As was mentioned before, in the Antiferromagnet it is impossible to build a path that crosses between the antiferromagnetic and disordered phases without passing through a second order phase transition. Therefore, it is a prime example of a system where our analysis is necessary.
+
+We will now attempt to find the path of least dissipation between two points $\left(T_1, h_1\right) \rightarrow \left(T_2, h_2\right)$. Where $\left(T_1, h_1\right)$ is in the antiferromagnetic phase, and $\left(T_2, h_2\right)$ is in the disordered phase. We will use the Ruppiner metric, as it is analytically solvable.
+
+\subsubsection{The Model}
+The model we will use is the Antiferromagnetic Mean-Field model, as laid out in \cite{vivesUnifiedMeanfieldStudy1997}. The Gibbs Free energy is:
+\begin{equation}
+    f = \frac{1}{2} \left[ z x y - h \left( x + y \right) + \frac{1}{2} T \vartheta \left(x\right) +\vartheta\left(y\right)\right]
+\end{equation}
+With 
+\begin{equation}
+    \vartheta \left(x\right) = \frac{1}{2} \left[ \left(1+x\right) \log \left(1+x\right) + \left(1-x\right) \log \left(1-x\right) \right]
+\end{equation}
+When defining $x,y$ as the magnetization of the two sub-latices in thermodynamic equilibrium (the minimizers of $f$), which solve the self consistent equations
+\begin{align}
+    \label{eq:SCExy}
+    x = & \tanh\left(\frac{h-zy}{T}\right) \\
+    y = & \tanh\left(\frac{h-zx}{T}\right)
+\end{align}
+And we assume in the rest of the paper $J=-1$.
+
+Deriving gives the metric, since this is the gibbs free energy, is done w.r.t $T, h$, and gives:
+\begin{widetext}
+    \begin{equation}
+        g_{hh} = - \frac{2 \left(1-x^2\right) \left(1-y^2\right) z - T \left(2-x^2-y^2\right)}
+        {2 \left[ T^2- \left(1-x^2\right) \left(1-y^2\right) z^2\right]}
+    \end{equation}
+    \begin{equation}
+        g_{hT} = - \frac{\left(1-x^2\right) \arctanh(x) \left(T-\left(1-y^2\right) z\right)+\left(1-y^2\right) \arctanh (y) \left(T-\left(1-x^2\right) z\right)}{2 \left[ T^2- \left(1-x^2\right) \left(1-y^2\right) z^2\right]}
+    \end{equation}
+    \begin{equation}
+        g_{TT} = - \frac{ z \left( 1-x^2 \right) \left(1-y^2\right) \arctanh(y) \arctanh(x) 
+        - T \left[ \arctanh^2( y ) \left(1-y^2\right) + \arctanh^2( x ) \left(1-x^2\right)\right]}{2 \left[T^2- \left(1-x^2\right) \left(1-y^2\right) z^2\right]}
+    \end{equation}
+\end{widetext}
+% With the determinant of the metric being
+% % \begin{widetext}
+%     \begin{equation}
+%         g = \frac{\left(1-x^2\right) \left(1-y^2\right) \left(\arctanh(x)-\arctanh(y)\right)^2}{4 \left(T^2-\left(1-x^2\right) \left(1-y^2\right) z^2\right)}
+%     \end{equation}
+% % \end{widetext}
+One interesting property that can be readily observed is that in the disordered phase, in which $x=y$, $g=0$. This has been observed before in the Ferromagnetic mean-field model \cite{janyszekRiemannianGeometryThermodynamics1989}. It can be shown that the lines where the metric is 0 in the disordered phase are lines of constant magnetization (or equivalently lines of constant $x$). 
+
+\subsubsection{Numerical Methods}
+Calculation of the shortest path to the phase transition line from the inner point was done using the fast marching method\cite{kimmelComputingGeodesicPaths1998}.
+% Some more text and graphs once I finish the calculations.
+
+\bibliography{ThermodynamicGeometry}
+\end{document}
