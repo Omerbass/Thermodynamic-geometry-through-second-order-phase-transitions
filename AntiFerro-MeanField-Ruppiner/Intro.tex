@@ -1,0 +1,43 @@
+As was mentioned before, in the Antiferromagnet it is impossible to build a path that crosses between the antiferromagnetic and disordered phases without passing through a second order phase transition. Therefore, it is a prime example of a system where our analysis is necessary.
+
+We demonstrate finding the path of least dissipation between two points $\left(T_1, h_1\right) \rightarrow \left(T_2, h_2\right)$, where $\left(T_1, h_1\right)$ is in the antiferromagnetic phase, and $\left(T_2, h_2\right)$ is in the disordered phase. We use the Ruppiner metric, as it is analytically solvable.
+
+\subsubsection{The Model}
+The model we use is the Antiferromagnetic Mean-Field model, as laid out in \cite{vivesUnifiedMeanfieldStudy1997}. It consists of spins on a square lattice, divided into two sub-lattices, such that spins interact only with spins from the other sub-lattice. Denoting the magnetization of each sub-lattice by $m_A,m_B$, the Gibbs Free energy is:
+\begin{equation}
+    f = \frac{1}{2} \left[ K m_A m_B - h \left( m_A + m_B \right) + \frac{1}{2} T \left( \vartheta \left(m_A\right) +\vartheta\left(m_B\right) \right) \right]
+\end{equation}
+With 
+\begin{equation}
+    \vartheta \left(x\right) = \frac{1}{2} \left[ \left(1+x\right) \log \left(1+x\right) + \left(1-x\right) \log \left(1-x\right) \right]
+\end{equation}
+We define $K$ to be the interaction strength $J$ times the coordination number.
+
+In thermodynamic equilibrium $m_A,m_B$ are the minimizers of $f$, and solve the self consistent equations
+\begin{align}
+    \label{eq:SCExy}
+    m_A = & \tanh\left(\frac{h-Km_B}{T}\right) \\
+    m_B = & \tanh\left(\frac{h-Km_A}{T}\right)
+\end{align}
+
+Taking the derivative gives the Ruppiner metric, since this is the gibbs free energy, is done w.r.t $T, h$, and gives:
+\begin{widetext}
+
+    \begin{equation}
+        g_{hh} = \frac{T \left(2-m_A^2-m_B^2\right) - 2 K \left(1-m_A^2\right) \left(1-m_B^2\right)}
+        {2 \left[ T^2- \left(1-m_A^2\right) \left(1-m_B^2\right) K^2\right]}
+    \end{equation}
+    \begin{equation}
+        g_{hT} = - \frac{\left(1-m_A^2\right) \arctanh(m_A) \left(T-\left(1-m_B^2\right) K\right)+\left(1-m_B^2\right) \arctanh (m_B) \left(T-\left(1-m_A^2\right) K\right)}{2 \left[ T^2- \left(1-m_A^2\right) \left(1-m_B^2\right) K^2\right]}
+    \end{equation}
+    \begin{equation}
+        g_{TT} = \frac{T \left[ \arctanh^2( m_B ) \left(1-m_B^2\right) + \arctanh^2( m_A ) \left(1-m_A^2\right)\right] - K \left( 1-m_A^2 \right) \left(1-m_B^2\right) \arctanh(m_B) \arctanh(m_A) 
+        }{2 \left[T^2- \left(1-m_A^2\right) \left(1-m_B^2\right) K^2\right]}
+    \end{equation}
+\end{widetext}
+% With the determinant of the metric being
+% % \begin{widetext}
+%     \begin{equation}
+%         g = \frac{\left(1-m_A^2\right) \left(1-m_B^2\right) \left(\arctanh(m_A)-\arctanh(m_B)\right)^2}{4 \left(T^2-\left(1-m_A^2\right) \left(1-m_B^2\right) (K)^2\right)}
+%     \end{equation}
+% % \end{widetext}

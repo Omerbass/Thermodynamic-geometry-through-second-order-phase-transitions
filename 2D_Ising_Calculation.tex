@@ -1,0 +1,32 @@
+\subsection{2D Ising model}
+As an example for a system with a diverging Ruppiener metric but  nondiverging distance through the phase transition, let us consider the 2D Ising model on a triangular lattice with nearest neighbors interactions. This model has an exact solution due to Onsager, therefore it is possible to analytically calculate the thermodynamic distance for a trajectory as long as the magnetic field stays zero. This model served to numerically demonstrate trajectories with minimal thermodynamic length in \cite{rotskoffDynamicRiemannianGeometry2015}. Since we are considering  trajectories with a constant external field $h=0$, the distance between two states $T_1$ and $T_2$ is given by
+\begin{equation}
+    \mathcal{L} = \int_{T_1}^{T_2}\sqrt{g_{TT}}dT
+\end{equation}
+For the Ruppiener metric, 
+\begin{eqnarray}
+    g_{TT}&=& \frac{c(T)}{k_{\mathrm B}T^2}\nonumber \\
+		&=& \frac{4}{T^2\pi}\big(K\coth2K\big)^2\!\left[K_1(q)-E_1(q)\right]\nonumber\\
+		& &-\frac{1-\tanh^2\!2K}{T^2}\left[\frac{\pi}{2}+\frac{2}{\pi}\big(2\tanh^2\!2K-1\big)K_1(q)\right]\nonumber
+\end{eqnarray}
+where $K=\beta J$, $K_1(\cdot)$ and $E_1(\cdot)$ denote the complete elliptic integrals of the first and second kinds respectively, and $q(K)=\frac{2\sinh(2K)}{\cosh^2(2K)}$ \cite{}.
+
+Near the critical point, the metric can be expand as
+\begin{equation}
+    g_{TT}(T) \;\sim\; \frac{1}{T_c^{2}}\;\frac{2}{\pi}\left(\frac{2J}{k_{\mathrm B}T_c}\right)^{\!2}\,
+		\ln\!\left|1-\frac{T}{T_c}\right|, 
+		\qquad T\to T_c^\pm.
+\end{equation}
+and therefore the integral converges even when $T_c$ is in between $T_1$ and $T_2$. Note that $g_{TT}$ diverges as $\ln|1-T/T_c|$, which implies that the integrals in both $\mathcal{L}$ (Eq. \ref{eq:L-def}) and $\mathcal{A}$ (Eq. \ref{SalomonDissipatedAvail}) converge. Moreover, it is a (local) minimal distance  trajectory. To show that, consider a trajectory that ```bypass'' the critical point from $(t,h)=(-\epsilon,0)$ to $(t,h) = (+\epsilon,0)$ along some trajectory $(t(s), h(s))$. The length along this trajectory is
+\begin{eqnarray}
+    |\dot{\boldsymbol{\lambda}}|=\sqrt{g_{tt}\dot t^2 + g_{hh}(\dot h + \frac{g_{th}}{g_{hh}}\dot t)^2-\frac{g_{th}^2}{g_{hh}}\dot t^2}
+\end{eqnarray}
+For $h=0$, $g_{ht}=0$ (from symmetry with respect to $h$
+ around $h=0$), so at fixed $\dot t$, the minimum over $\dot h$ is at $\dot h=0$. Any deviation from $\dot h=0$ increases the integral by 
+ \begin{eqnarray}
+     \Delta|\dot{\boldsymbol{\lambda}}|\approx \frac{g_{hh}\dot h^2}{2\sqrt{g_{tt}}}.
+ \end{eqnarray}
+This implies that the trajectory along the $h=0$ is a local minimum of the distance function, even though it is not a solution of the geodesic equation due to the singularity of the metric.
+
+%Note, however, that the integral over the Sivak metric does not converge due to the critical slow down.
+

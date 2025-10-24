@@ -1,0 +1,93 @@
+\subsubsection{Disordered phase} \label{subsec:SivakDisorderedPhase}
+In the disordered phase one gets that $m_A=m_B\equiv m$ (and therefore also $\zeta_A=\zeta_B\equiv \zeta$). One gets
+\begin{equation}
+    g_{\mu\nu} = \frac{\beta\zeta}{\Gamma \left(1+\beta K \zeta\right)^2} \left(
+        \begin{array}{cc}
+            K^2 m^2 & - Km \\
+            - Km & 1
+        \end{array}
+    \right)
+\end{equation}
+In particular (and as a direct result of $\det P=0$) $\det g=0$. 
+The 0 eigenvalue corresponds to lines of constant $m$. As a result, the problem becomes a 1D minimization problem - at what distance from the phase transition line will the length be minimal? As we show below, the answer is simply at $\beta=0$.
+Firstly, the eigenvectors and eigenvalues are
+\begin{align}
+    \lambda_1 & = 0,\quad \boldsymbol{v}_1 = \left( \begin{array}{c}
+         1  \\
+        Km
+    \end{array} \right) \\
+    \lambda_2 & = K^2 m^2+1,\quad \boldsymbol{v}_2 = \left( \begin{array}{c}
+        Km \\
+         -1 
+    \end{array} \right) 
+\end{align}
+Our objective is to minimize the expression 
+$ \sqrt{{\delta\lambda}^\mu g_{\mu\nu} {\delta\lambda}^\nu}$
+along the $v_1$ axis. 
+Noting that from \ref{m(beta)}, $\zeta = \frac{1}{K\beta_c}$, and taking into account the entire expression for $g$, and, we get that 
+\begin{equation}
+    g_{\mu\nu} \propto \frac{\beta}{\left(\beta_c+\beta\right)^2}\left(K^2 m^2+1\right)
+\end{equation}
+Now we want to find the scaling of $\delta\boldsymbol{\lambda}$. We'll take an infinitesimal step, such that $m_1$ goes to a nearby $m_2$: $(\beta_{c1}, \alpha_{c1})$ goes to $(\beta_{c2}, \alpha_{c2}) = (\beta_{c1}+\delta_\beta, \alpha_{c1}+\delta_\alpha)$  (and $\delta_\beta,\delta_\alpha$ are both small)
+We want the intersection of the lines
+\begin{align} \label{eq:T0,h0}
+    \left( \begin{array}{c}
+         \beta \\
+         \alpha
+    \end{array}\right) & = a \, \boldsymbol{v}_1\left(T_c\right) + \left( \begin{array}{c}
+         \beta_{c1} \\
+         \alpha_{c1}
+    \end{array}\right) \\
+    \left( \begin{array}{c}
+         \beta \\
+         \alpha
+    \end{array}\right) & = b \, \boldsymbol{v}_1\left(T_c + \delta_T \right) + \left( \begin{array}{c}
+         \beta_{c1} + \delta_T \\
+         \alpha_{c1} + \frac{\partial \alpha_c}{\partial \beta_c}\delta_\beta
+    \end{array}\right)
+\end{align}
+Subtracting the equations we get
+\begin{equation}
+    \delta_\beta \left( \begin{array}{c}
+         1 \\
+         \frac{\partial \alpha_c}{\partial \beta_c}
+    \end{array}\right) = \left( \begin{array}{cc}
+        1 & 1 \\
+        Km_2 & Km_1
+    \end{array} \right)
+    \left( \begin{array}{c}
+         -b  \\
+         a
+    \end{array}\right)
+\end{equation}
+From \ref{alpha(beta,m)}, we get
+\begin{equation}
+    \frac{\partial \alpha_c}{\partial \beta_c} = \frac{1}{m}
+\end{equation}
+And after inverting the matrix 
+\begin{equation}
+\begin{split}
+    a & = \frac{1-m^2}{Km} \frac{\partial m}{\partial \beta_c} \\
+      & = \frac{1-m^2}{Km} \frac{2m}{\left(1-m^2\right)^2} \\
+      & = \frac{2}{K \left(1-m^2\right) } \\
+      & = 2 \beta_c
+\end{split}
+\end{equation}
+Meaning that $\delta\boldsymbol{\lambda}$ scales as $\beta+\beta_c$. Putting this all together, $ \sqrt{{\delta\lambda}^\mu g_{\mu\nu} {\delta\lambda}^\nu} \propto \sqrt{\beta}$, meaning it will be minimized at infinite temperature - when $\beta=0$.
+
+% From eqs. \ref{m(beta)} and \ref{alpha(beta,m)}
+% \begin{equation}
+%    K d\beta_c = \frac{2m}{\left(1-m^2\right)^2}dm
+% \end{equation}
+% \begin{equation}
+%     d\alpha_c = \frac{2}{\left(1-m^2\right)^2}dm
+% \end{equation}
+
+% and the length differential
+% \begin{equation} \label{eq:LengthAlongPTline_disorderedPhase}
+% \begin{split}
+%     d\ell & = \sqrt{d\lambda^\mu g_{\mu\nu} d\lambda^\nu} \\
+%           & =  \frac{\left|dm\right|}{ \sqrt{ 2 \Gamma K  } \, \zeta } \\
+%           & =  \frac{\left|d(\arctanh \, m)\right|}{ \sqrt{ 2 \Gamma K  } } \\
+% \end{split}
+% \end{equation}

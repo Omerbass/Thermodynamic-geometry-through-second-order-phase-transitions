@@ -1,0 +1,128 @@
+\subsubsection{Disordered Phase}
+One interesting property that can be readily observed is that in the disordered phase, where $m_A=m_B\equiv m$, one gets that $g=0$, i.e the determinant of the metric vanishes. This has been observed before in the Ferromagnetic mean-field model \cite{janyszekRiemannianGeometryThermodynamics1989}. It can be shown that the 0 eigenvectors in the disordered phase point along lines of constant magnetization (or equivalently lines of constant $m_A$). As a result, the problem becomes a 1D minimization problem - at what distance from the phase transition line will the length be minimal? As we show below, the answer is simply at the phase transition line itself.
+
+In the following section we will assume when writing $T_c$ that it is the critical temperature for a specific magnetization. Two central results that can be easily proven by derivation of the free energy are that on the phase transition line
+\begin{equation}
+    m_A=m_B=\pm \sqrt{1-\frac{T_c}{K}}
+\end{equation}
+And
+\begin{equation} \label{eq:h_c(T_c)}
+    h_c (T_c) = \pm\left(K\sqrt{1-\frac{T_c}{K}} + T_c \arctanh\left( \sqrt{1-\frac{T_c}{K}} \right) \right)
+\end{equation}
+
+
+The metric becomes in the disordered phase ($m_A=m_B$)
+\begin{equation}
+    g_{ij} = \frac{T_c}{K \left(T+T_c\right)}
+    \left( \begin{array}{cc}
+         \arctanh(m)^2 & -\arctanh(m) \\
+         -\arctanh(m) & 1 \\
+    \end{array} \right)
+\end{equation}
+The eigenvalues and eigenvectors of this metric are
+\begin{align}
+    \lambda_1 & = 0,\quad \boldsymbol{v}_1 = \left( \begin{array}{c}
+         1  \\
+        \arctanh(m_A)
+    \end{array} \right) \\
+    \lambda_2 & = \arctanh^2(m_A)+1,\quad \boldsymbol{v}_2 = \left( \begin{array}{c}
+        \arctanh(m_A) \\
+         -1 
+    \end{array} \right) 
+\end{align}
+One can see an illustration of the "0-length" lines in Fig. (\ref{fig:0length}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/disorderedPhaseLines.jpg}
+    \caption{lines of "0-length" in disordered phase}
+    \label{fig:0length}
+\end{figure}
+
+And so we need to minimize the expression
+$ \sqrt{\dot{\lambda}^\mu g_{\mu\nu} \dot{\lambda}^\nu} \,dt$
+along the $\boldsymbol{v}_1$ axis. We know $g_{\mu\nu}$ scales as $\left(T+T_c\right)^{-1}$. We will argue that the rest of the expression scales as $T-T_0$ for some $T_0$.
+
+\omer{It feels to me like the next part could be made more precise and clear with some statement of curvature, this is just how I  calculated it originally, but if you can formalize it better I would be happy.}
+The rest of the expression is simply euclidean distance projected onto the normal to the lines of constant magnetization. Hence, it should scale as the radial distance from the point of meeting of two adjacent lines of constant magnetization.
+The radial distance, since the lines aren't vertical or horizontal (except for one) is proportional to the distance along the $T$-axis.
+
+Taking some point $\left(T_c,h_c\right)$ and an adjacent point on the phase transition line
+\begin{equation*}
+    (T_c+\delta_T, h_c + \frac{\partial h_c}{\partial T_c}\delta_T)
+\end{equation*}
+We want the intersection of the lines (i.e, to solve for $T_0$):
+\begin{align} \label{eq:T0,h0}
+    \left( \begin{array}{c}
+         T_0 \\
+         h_0
+    \end{array}\right) & = a \, \boldsymbol{v}_1\left(T_c\right) + \left( \begin{array}{c}
+         T_c \\
+         h_c
+    \end{array}\right) \\
+    \left( \begin{array}{c}
+         T_0 \\
+         h_0
+    \end{array}\right) & = b \, \boldsymbol{v}_1\left(T_c + \delta_T \right) + \left( \begin{array}{c}
+         T_c + \delta_T \\
+         h_c + \frac{\partial h_c}{\partial T_c}\delta_T
+    \end{array}\right)
+\end{align}
+
+We first subtract the equations to get
+\begin{equation}
+    \delta_T \left( \begin{array}{c}
+         1  \\
+         \frac{\partial h_c}{\partial T_c}
+    \end{array}\right) = \left( \begin{array}{cc}
+        1 & 1 \\
+        \arctanh(m(T_c+ \delta_T)) & \arctanh(m(T_c))
+    \end{array} \right)
+    \left( \begin{array}{c}
+         -b  \\
+         a
+    \end{array}\right)
+\end{equation}
+Inverting the matrix gives:
+\begin{widetext}
+\begin{equation}
+    \begin{array}{rl}
+        \left( \begin{array}{cc}
+            1 & 1 \\
+            \arctanh(m(T_c+\delta_T)) & \arctanh(m(T_c))
+        \end{array} \right)^{-1} & = \frac{1}{\arctanh\left(m(T_c)\right) - \arctanh\left(m(T_c + \delta_T)\right)}\left( \begin{array}{cc}
+            \arctanh(m(T_c)) & -1 \\
+            -\arctanh(m(T_c + \delta_T)) & 1
+        \end{array} \right) \\ & = -\frac{2T_c \sqrt{1-\frac{T_c}{K }}}{K  \, \delta_T}\left( \begin{array}{cc}
+            \arctanh\left(\sqrt{1-\frac{T_c}{K }}\right) & -1 \\
+            -\arctanh\left(\sqrt{1-\frac{T_c + \delta_T}{K }}\right) & 1
+        \end{array} \right)
+    \end{array}
+\end{equation}
+giving
+\begin{equation} \label{eq:a}
+    a = \frac{2}{K }\arctanh\left(\sqrt{1-\frac{T_c}{K }}\right) T_c \sqrt{1-\frac{T_c}{K }} - 
+    \frac{2}{K } T_c \sqrt{1-\frac{T_c}{K }} \frac{\partial h_c}{\partial T_c}
+\end{equation}
+\end{widetext}
+
+Deriving equation \ref{eq:h_c(T_c)} one gets
+\begin{equation}
+    \frac{\partial h_c}{\partial T_c} = -\frac{1}{\sqrt{1-\frac{T_c}{K}}} + \arctanh\sqrt{1-\frac{T_c}{K }}
+\end{equation}
+
+And substituting this into equation \ref{eq:a} gives
+\begin{equation}
+    a = \frac{2 T_c}{ K }
+\end{equation}
+
+By substituting this result into \ref{eq:T0,h0} we get
+\begin{equation}
+    T_0 = T_c + \frac{2}{K} T_c = \frac{K + 2}{K} T_c
+\end{equation}
+
+Accordingly, We get that the differential length between two different points in the disordered phase with different magnetization scales as
+\begin{equation}
+    \frac{\left(T + \frac{K + 2}{K} T_c\right)^2}{T+T_c}
+\end{equation}
+the minimum in the disordered phase will be attained at $T=T_c$.

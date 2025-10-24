@@ -1,0 +1,15 @@
+\subsubsection{Minimal Paths}
+We demonstrate three types of minimal (shortest) paths, two of which will cross the phase transition. The first type of path the origin and destination points are in different phases. The path will go from the point in the anti-ferromagnetic phase to the nearest point of the phase transition. after crossing the phase transition the path will go to infinite temperature, and move along the $\beta=0$ line until it reaches the final magnetization, then move along the constant-magnetization line.
+
+The second and third types happen when both the origin and destination points are in the anti-ferromagnetic phase. The second type of path, is when it is shorter to cross the phase transition -- One can view this type of path as twice the first type - (anti-ferromagnetic to disordered and back), since, as seen in section \ref{subsec:SivakDisorderedPhase}, minimal paths in the disordered phase are of length 0.
+The third type of path is one where the beginning and end are in different phases. In the third type, the distance to the phase transition from each point is longer than the distance between the points. Therefore the shortest path will simply be the geodesic path between the two points. 
+
+An illustration of the three different types of paths can be seen in figure \ref{fig:shortestPaths}.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/ShortestPaths.png}
+    \caption{Illustration of different types of shortest paths in the Antiferromagnetic mean-field model with the Sivak metric}
+    \label{fig:shortestPaths}
+\end{figure}
+
+Lengths in the anti-ferromagnetic phase were calculated using the fast marching method \cite{kimmelComputingGeodesicPaths1998}, similarly to \cite{rotskoffDynamicRiemannianGeometry2015}. Minimal paths were extracted by gradient descent along the computed distance function.

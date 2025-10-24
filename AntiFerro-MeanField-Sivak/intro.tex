@@ -1,0 +1,154 @@
+As was mentioned before, in the Antiferromagnet it is impossible to build a path that crosses between the antiferromagnetic and disordered phases without passing through a second order phase transition. Therefore, it is a prime example of a system where our analysis is necessary.
+
+We demonstrate finding the path of least dissipation between two points $\left(T_1, h_1\right) \rightarrow \left(T_2, h_2\right)$, where $\left(T_1, h_1\right)$ is in the antiferromagnetic phase, and $\left(T_2, h_2\right)$ is in the disordered phase. We show a calculation of the Sivak metric for the  Antiferromagnetic mean-field model laid out in \cite{vivesUnifiedMeanfieldStudy1997}.
+
+\subsubsection{The Model}
+The model consists of spins on a square lattice, divided into two sub-lattices, denoted A,B. Spins in each sub-lattice interact only with spins from the other sub-lattice.
+
+Denoting the magnetization of each sub-lattice by $m_A,m_B$, the Masseiu potential is:
+\begin{equation}
+    \psi = - \frac{1}{2} \left[ \beta K m_A m_B - \beta h \left( m_A + m_B \right) + \frac{1}{2}  \left( \vartheta \left(m_A\right) +\vartheta\left(m_B\right) \right) \right]
+\end{equation}
+Where $\beta=\frac{1}{T}$ and $K = -Jz$ with $J$ being the coupling strength ($J<0$ for anti-ferromagnets), and $z=2d$ the coordination number. We also defined
+\begin{equation}
+    \vartheta \left(x\right) = \frac{1}{2} \left[ \left(1+x\right) \log \left(1+x\right) + \left(1-x\right) \log \left(1-x\right) \right]
+\end{equation}
+In the rest of the chapter I will denote $\beta h\equiv \alpha$
+
+In thermodynamic equilibrium $m_A,m_B$ are the minimizers of $f$, and solve the self consistent equations
+\begin{align}
+    \label{eq:SCEmAB}
+    m_A = & \tanh\left(\alpha-\beta Km_B\right) \\
+    m_B = & \tanh\left(\alpha -\beta Km_A\right)
+\end{align}
+
+We can define the total magnetization $m$, and the staggered magnetization $s$, as
+\begin{align}
+    m & = \frac{m_A + m_B}{2} \\
+    s & = \frac{m_A - m_B}{2}
+\end{align}
+
+For each $m\in \left[-1,1\right]$ the appropriate $(\beta_c,\alpha_c)$ on the phase transition line with this magnetization, we can show that
+\begin{equation} \label{m(beta)}
+    m = \pm\sqrt{1-\frac{1}{\beta_c K}}
+\end{equation}
+\begin{equation} \label{alpha(beta,m)}
+    \alpha_c=\pm\left(\beta_c K m + \arctanh (m)\right) 
+\end{equation}
+
+\subsubsection{Calculation of the metric}
+The calculation will be composed of three parts:
+\begin{enumerate}
+    \item Calculating $ \left\langle \delta m_i (0) \, \delta m_j (0) \right\rangle $ ($i,j \in \left\{A,B\right\} $) -- the covariance matrix at equilibrium.
+    \item Adding dynamics and calculating the integral.
+    \item Switch to the appropriate coordinates by multiplying by the Jacobian matrix.
+\end{enumerate}
+We will denote $\zeta_i = 1-m_i^2,\quad i\in\left\{A,B\right\}$
+
+The inverse of the covariance matrix is simply the Hessian of $\psi$ w.r.t $m_A, m_B$:
+\begin{equation}
+    - \Sigma^{-1} = \frac{1}{2}\left( \begin{array}{cc}
+        \frac{1}{\zeta_A} & \beta K \\
+        \beta K & \frac{1}{\zeta_B}
+    \end{array} \right)
+\end{equation}
+
+Inverting this matrix gives
+\begin{equation}
+    \Sigma = \frac{2}{1-\beta^2 K^2 \zeta_A \zeta_B}\left( \begin{array}{cc}
+         \zeta_A &  - \beta K \zeta_A \zeta_B \\
+         - \beta K \zeta_A \zeta_B &  \zeta_B
+    \end{array} \right)
+\end{equation}
+
+The dynamics of $m_A,m_B$ are \cite{klichMpembaIndexAnomalous2019}:
+\begin{align}
+    \dot{m}^A = &  \Gamma \left( \tanh\left(\alpha -\beta Km_A\right) - m_A \right) \\
+    \dot{m}^B = & \Gamma \left(\tanh\left(\alpha -\beta Km_A\right) - m_B\right)
+\end{align}
+Where $\Gamma$ is the microscopic attempt rate.
+
+Taylor expanding around the equilibrium values of $m_i$ gives
+\begin{align}
+    \delta\dot{m}_A = &  \Gamma \left(- \delta m_A - \beta K \zeta_A \, \delta m_B \right) \\
+    \delta\dot{m}_B = & \Gamma \left(-\beta K \zeta_B \, \delta m_A - \delta m_B\right)
+\end{align}
+
+denoting $\vec{y}= \left(\delta m_A,\, \delta m_B\right)$, we can rewrite the expression above as:
+\begin{equation}
+    \dot{y} = -\Gamma \left(\begin{array}{cc}
+        1 & \beta K \zeta_A \\
+        \beta K \zeta_B & 1
+    \end{array} \right) y = -My
+\end{equation}
+
+We are interested in the matrix
+\begin{equation}
+    \beta \intop_0^\infty \left\langle \delta m_i (0) \, \delta m_j (t)\right\rangle dt =
+    \beta \intop_0^\infty \left\langle y (0) \, y^T (t)\right\rangle dt
+\end{equation}
+note that addition of noise will not affect the calculation since for $t>0$, $\left\langle \delta m_i (0) \, \eta (t)\right\rangle =0$. 
+We can therefore plug in the solution for $y(t)$ into the correlation function:
+\begin{widetext}
+\begin{equation}
+\begin{split}
+    \beta \left\langle y (0) \, y^T (t)\right\rangle
+    & = \beta \left\langle y (0) \, y^T (0)\right\rangle \intop_0^\infty e^{-M^T t} dt = \beta \Sigma \left(M^T\right)^{-1} \\
+    & = \frac{2\beta}{\Gamma\left(1-\beta^2 K^2 \zeta_A \zeta_B\right)^2}\left( \begin{array}{cc}
+        \zeta_A \left(1+\beta^2 K^2 \zeta_A \zeta_B\right) & - 2\beta K \zeta_A \zeta_B \\
+        - 2 \beta K \zeta_A \zeta_B & \zeta_B \left(1+\beta^2 K^2 \zeta_A \zeta_B\right)
+    \end{array} \right)
+\end{split}
+\end{equation}
+\end{widetext}
+
+The above calculation was of the matrix $ \beta \intop_0^\infty \left\langle \delta m_i (0) \, \delta m_j (t)\right\rangle dt $. For the Sivak metric w.r.t the variables $\boldsymbol{\lambda}=\left( \beta, \beta h \right)$ we need the correlations w.r.t the internal energy and magnetization, $\{E, m\}$. This is achieved by transforming with the appropriate Jacobian matrix $\frac{\partial (E,m)}{\partial (m_A, m_B)}$. We know
+\begin{align}
+    E & = \frac{1}{2} K m_A m_B \\
+    m & = \frac{m_A + m_B}{2}
+\end{align}
+and thus
+\begin{equation}
+    P = \frac{\partial (-E,m)}{\partial (m_A, m_B)} = \frac{1}{2} \left( \begin{array}{cc}
+        -K m_B & -K m_A \\
+        1 & 1
+    \end{array}\right)
+\end{equation}
+The metric is 
+\begin{widetext}
+\begin{equation}
+\begin{split}
+    g^{\text{Sivak}}_{\mu\nu} = & \beta \, P \Sigma \left(M^T\right)^{-1} P^T \\
+    = &\frac{\beta}{2\Gamma \left(1-\beta^2 K^2 \zeta_A \zeta_B\right)^2} \\ &
+    \left(\begin{array}{cc}
+    \scriptstyle{K^2 \left( \left( 1+\beta^2 K^2 \zeta_A \zeta_B\right) \left( m_A^2 \zeta_B+m_B^2\zeta_A \right) - 4 \beta K m_A m_B \zeta_A \zeta_B \right)} & 
+    - \scriptstyle{K \left( \left( 1+\beta^2 K^2 \zeta_A \zeta_B\right) \left( m_A \zeta_B+m_B\zeta_A \right) - 2 \beta K \left(m_A + m_B\right) \zeta_A \zeta_B \right)} \\
+    - \scriptstyle{K \left( \left( 1+\beta^2 K^2 \zeta_A \zeta_B\right) \left( m_A \zeta_B+m_B\zeta_A \right) - 2 \beta K \left(m_A + m_B\right) \zeta_A \zeta_B \right)} &
+    \scriptstyle{\left( 1+\beta^2 K^2 \zeta_A \zeta_B\right) \left( \zeta_A +\zeta_B \right) - 4 \beta K \zeta_A \zeta_B}
+    \end{array}\right)
+\end{split}
+\end{equation}
+\end{widetext}
+
+\begin{figure}
+    \centering
+    \begin{subfigure} [b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_bb.png}
+        \caption{The the caloric metric element $g_{\beta\beta}$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_ab.png}
+        \caption{The the magneto-caloric metric element $g_{\alpha\beta}$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_aa.png}
+        \caption{The the magnetic metric element $g_{\alpha\alpha}$}
+    \end{subfigure}
+    \caption{The elements of the Sivak metric of the antiferromagnetic mean-field model.}
+    \label{fig:sivakmetric_antiferro}
+\end{figure}
+
+figures \ref{fig:sivakmetric_antiferro} show the different elements of the metric above 
