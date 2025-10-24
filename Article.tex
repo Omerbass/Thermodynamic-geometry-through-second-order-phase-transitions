@@ -183,173 +183,161 @@ Note that this observation does not necessarily inform  us about the metric itse
 
 
 \section{Results}
-\subsection{Scaling Hypothesis \label{subsec:ScalingHypothesisResults}}
+
+\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisResults}
+
 \subsubsection{Scaling Hypothesis for the Free Energy}
-We use the scaling hypothesis for the free energy to deduce the divergence of the Ruppiner metric, and understand wether the length diverges on paths that pass through a phase transition.
+We employ the scaling hypothesis for the free energy to analyze the divergence of the Ruppeiner 
+metric and determine whether the thermodynamic length diverges along paths crossing a phase transition.
 
-
-Assuming the divergent part of the Massieu potential scales as
-\[ \psi \propto t^b f\left(\frac{h}{t^\Delta}\right) \]
-With all the assumptions made so far, the scaling of the metric as $t,h\rightarrow 0 $ is given by:
+Assuming the singular part of the thermodynamic potential potential scales as
+\begin{equation}
+    \varphi \propto t^b f\!\left(\frac{h}{t^\Delta}\right)
+\end{equation}
+the metric near criticality ($t,h \to 0$) scales as
 \begin{align}
-    \left(g_{\mu\nu}\right) \Big|_{\frac{h}{t^\Delta} \rightarrow \text{const.}} & \propto \left(\begin{array}{cc}
+    \left(g_{\mu\nu}\right) \Big|_{\frac{h}{t^\Delta} \to \text{const.}} &\propto 
+    \begin{pmatrix}
         t^{b-2} & t^{b-\Delta-1} \\
-        t^{b-\Delta-1} & t^{b-2 \Delta}
-    \end{array} \right) \\
-    \left( g_{\mu\nu} \right) \Big|_{\frac{h}{t^\Delta} \rightarrow \infty} & \propto \left(\begin{array}{cc}
-        t^{-2} h^{p} & t^{-1} h^{p-1} \\
-        t^{-1} h^{p-1} & h^{p-2}
-    \end{array} \right)
+        t^{b-\Delta-1} & t^{b-2\Delta}
+    \end{pmatrix}, \\[4pt]
+    \left(g_{\mu\nu}\right) \Big|_{\frac{h}{t^\Delta} \to \infty} &\propto
+    \begin{pmatrix}
+        t^{-2}h^p & t^{-1}h^{p-1} \\
+        t^{-1}h^{p-1} & h^{p-2}
+    \end{pmatrix}.
 \end{align}
-Note how we take the limits: We take both $t$ and $h$ to $0$, in such a way that either $\frac{h}{t^\Delta}$ tends to a constant value, or to infinity. This gives different limits for $f$, and therefore also different limits for the thermodynamic potentials and the metric, as seen in \ref{subsec:ScalingHypothesisFramework}.
+Here, the two limits correspond to different asymptotic behaviors of $f$ as $\frac{h}{t^\Delta}$ tends to a constant or diverges.
 
-To determine from this how lengths diverge, we need information about the path taken, as it determines the asymptotic {behaviour} of $ \frac{h}{t^\Delta} $. We therefore split our analysis to corresponding cases. The first is
-\begin{equation} \label{case_1}
-    \left( \begin{array}{c}
-         t \\
-         h 
-    \end{array} \right) = \left( \begin{array}{c}
-         s \\
-         s^k 
-    \end{array} \right) , \quad k \ge \Delta
+To study length divergences, we must specify the path in parameter space, which determines the scaling of $\frac{h}{t^\Delta}$.  
+We consider two representative cases.
+
+\paragraph{Case 1: $\frac{h}{t^\Delta} \to \text{const.}$ \label{par:scalingCase_1}}
+\begin{equation}
+    \begin{pmatrix}
+        t \\ h
+    \end{pmatrix} =
+    \begin{pmatrix}
+        s \\ s^k
+    \end{pmatrix}, \quad k \ge \Delta
 \end{equation}
-Which implies
+for which
 \begin{equation*}
-    \frac{h}{t^\Delta} \xrightarrow[s\rightarrow0]{} \text{const.}
+    \frac{h}{t^\Delta} \xrightarrow[s \to 0]{} \text{const.}
 \end{equation*}
-In this case, the integrands are
-\begin{equation*}
-    g_{tt} \frac{dt}{ds} \frac{dt}{ds} \propto s^{b-2}
-\end{equation*}
-\begin{equation*}
-    g_{th} \frac{dt}{ds} \frac{dh}{ds} \propto s^{b-\Delta-1} s^{k-1}=s^{b-2+\left(k-\Delta\right)}
-\end{equation*}
-\begin{equation*}
-    g_{hh} \frac{dh}{ds} \frac{dh}{ds} \propto s^{b-2\Delta} s^{2\left(k-1\right)} =s^{b-2+2\left(k-\Delta\right)}
-\end{equation*}
-Since $k\ge\Delta$ we get that 
-\begin{equation} \label{h_t_delta_non_divergent}
+The metric contributions then scale as
+\begin{align*}
+    g_{tt} \dot{t}^2 &\propto s^{b-2}, \\
+    g_{th} \dot{t}\dot{h} &\propto s^{b-2+(k-\Delta)}, \\
+    g_{hh} \dot{h}^2 &\propto s^{b-2+2(k-\Delta)}
+\end{align*}
+Since $k \ge \Delta$, the sufficient condition for convergence of the Ruppeiner length $\mathcal{L}$ is
+\begin{equation}
     b > 0
-\end{equation} 
-is a sufficient condition for the Ruppiener length, $\mathcal{L}$, to converge. Which, as we have established, is a necessary and sufficient condition for convergence of the Salomon dissipated availability, $\mathcal{A}$, for finite time protocols, unless $\bar{\epsilon}$ diverges. 
-
-The second option is
-\begin{equation} \label{case_2}
-    \left( \begin{array}{c}
-         t \\
-         h 
-    \end{array} \right) = \left( \begin{array}{c}
-         s^{\nicefrac{1}{k}} \\
-         s 
-    \end{array} \right) , \quad k < \Delta
 \end{equation}
-which implies
-\begin{equation*} 
-    \frac{h}{t^\Delta} \xrightarrow[s\rightarrow 0]{} \infty
-\end{equation*}
-In this case
-\begin{equation*}
-    g_{tt} \frac{dt}{ds} \frac{dt}{ds} \propto s^{-\nicefrac{2}{k}}s^p s^{2\left(\frac{2}{k}-1\right)} = s^{p-2}
-\end{equation*}
-\begin{equation*}
-    g_{th} \frac{dt}{ds} \frac{dh}{ds} \propto s^{-\nicefrac{1}{k}} s^{p-1} s^{\frac{1}{k}-1} = s^{p-2}
-\end{equation*}
-\begin{equation*}
-    g_{hh} \frac{dh}{ds} \frac{dh}{ds} \propto s^{p-2}
-\end{equation*}
+As established earlier, convergence of $\mathcal{L}$ is necessary and sufficient for convergence of the Salamon dissipated availability $\mathcal{A}$ in finite-time protocols, provided $\bar{\epsilon}$ remains finite.
 
-
-So there exist finite time protocols that do not diverge for a system when
-\begin{equation} \label{h_t_delta_divergent}
-    p>0
+\paragraph{Case 2: $\frac{h}{t^\Delta} \to \infty$ \label{par:scalingCase_2}}
+\begin{equation}
+    \begin{pmatrix}
+        t \\ h
+    \end{pmatrix} =
+    \begin{pmatrix}
+        s^{1/k} \\ s
+    \end{pmatrix}, \quad k < \Delta
 \end{equation}
-% \oren{Same as the discussion above -- why not $p>1$?}
-One can observe in table \ref{tab:scaling-divergences} that both conditions \ref{h_t_delta_non_divergent} and \ref{h_t_delta_divergent} hold in multiple universality classes.  %\oren{Maybe it is better to put the specific mean field example here, as it actually belong to the above discussion, not to what follow.} \omer{The mean field discussion was supposed to be for the numerical part, should it appear also in the context of scaling of the free energy/its derivatives?}
+implying
+\begin{equation*}
+    \frac{h}{t^\Delta} \xrightarrow[s \to 0]{} \infty.
+\end{equation*}
+In this case,
+\begin{align*}
+    g_{tt} \,\dot{t}^2 &\propto s^{p-2}, &
+    g_{th} \,\dot{t}\,\dot{h} &\propto s^{p-2}, &
+    g_{hh} \,\dot{h}^2 &\propto s^{p-2}.
+\end{align*}
+Hence, convergence requires
+\begin{equation}
+    p > 0
+\end{equation}
+Both conditions ($b > 0$ and $p > 0$) hold for several universality classes, as shown in Table~\ref{tab:scaling-divergences}.
 
- \begin{table}
+\begin{table}[h]
     \centering
     \begin{tabular}{c||c|c}
-         & $b$ & $p$ \\
-         \hline \hline 
-         Mean Field & $ 2 $ & $ \frac{4}{3} $ \\
-         \hline 
-         2D Ising & $ 2 $ & $ \frac{16}{15} $ \\
-         \hline 
-         3D Ising & $ 1.88991292(35) $ & $ 1.2087751(6) $ \\
-         \hline 
-         2D 3-state Potts model & $ \frac{5}{3} $ & $ \frac{15}{14} $ \\
-         \hline 
-         2D 4-state Potts model & $ \frac{4}{3} $ & $ \frac{16}{15} $
-         % \\
-         % \hline 
-         % 3D XY Model & $ 2.0153(3) $ & $ 1.20923(6) $
+        & $b$ & $p$ \\
+        \hline \hline
+        Mean Field & $2$ & $\tfrac{4}{3}$ \\
+        2D Ising & $2$ & $\tfrac{16}{15}$ \\
+        3D Ising & $1.8899(3)$ & $1.2088(1)$ \\
+        2D 3-state Potts & $\tfrac{5}{3}$ & $\tfrac{15}{14}$ \\
+        2D 4-state Potts & $\tfrac{4}{3}$ & $\tfrac{16}{15}$ \\
+        % 3D XY Model & $ 2.0153(3) $ & $ 1.20923(6) $
     \end{tabular}
-    \caption{Scaling Hypothesis parameters for sample universality classes}
+    \caption{Scaling parameters for representative universality classes.}
     \label{tab:scaling-divergences}
 \end{table}
 
 \subsubsection{Dynamical Scaling Hypothesis}
+In both Ruppeiner and Sivak formalisms, dissipation depends on the system’s response time—appearing as $\bar{\epsilon}$ in the former and directly in the metric for the latter.  
+Using the dynamical scaling hypothesis, we can study how the relaxation time $\tau$ diverges.
 
-As we have seen, all attempts to use metrics to study dissipation take into account the system's response time. In the Ruppiner formalism this appears in the mean response time element $\bar{\epsilon}$, and in the Sivak formalism it appears directly in the metric. Here we use the dynamical scaling hypothesis to study the scaling of the response time, $\tau$.
-
-We have seen that $\tau$ scales as:
-$ \tau \propto \psi ^ {-\nicefrac{z}{d} } $, so using the static scaling hypothesis
+From $\tau \propto \psi^{-z/d}$ and the static scaling relation, we obtain
 \begin{equation}
-    \tau \propto t^{-\nicefrac{bz}{d}} g\left(\frac{h}{t^\Delta}\right)
+    \tau \propto t^{-bz/d}\, w\!\left(\frac{h}{t^\Delta}\right)
 \end{equation}
-with $g$ continuous and 
+where $w(x)$ is continuous and satisfies
 \begin{equation}
-    g \xrightarrow[x\rightarrow \infty]{} x^{-\nicefrac{pz}{d}},
+    w(x) \xrightarrow[x\to\infty]{} x^{-pz/d}.
 \end{equation}
-the divergence of $\tau$ is
+Hence, the divergence of $\tau$ follows
 \begin{equation}
-    \tau \propto 
+    \tau \propto
     \begin{cases}
-        t^{-\nicefrac{bz}{d}}  &  \frac{h}{t^\Delta} \rightarrow \text{const.} \\
-        h^{-\nicefrac{pz}{d}}  &  \frac{h}{t^\Delta} \rightarrow \infty
+        t^{-bz/d}, & \frac{h}{t^\Delta} \to \text{const.} \\[4pt]
+        h^{-pz/d}, & \frac{h}{t^\Delta} \to \infty.
     \end{cases}
 \end{equation}
 
-Adding this factor to the case of the divergences in eq. \ref{case_1}
+Including this factor modifies the scaling of the metric elements in \hyperref[par:scalingCase_1]{Case 1}
 \begin{align}
-    g_{tt} \left(\frac{dt}{ds}\right)^2 & \propto s^{b\left(1-\frac{z}{d}\right) -2 } \\
-    g_{th} \frac{dt}{ds} \frac{dh}{ds} & \propto s^{b\left(1-\frac{z}{d}\right) -2 + \left(k-\Delta\right) } \\
-    g_{hh} \left(\frac{dh}{ds}\right)^2 & \propto s^{b\left(1-\frac{z}{d}\right) -2 + 2\left(k-\Delta\right)} 
+    g_{tt}\,\dot{t}^2 &\propto s^{b(1-z/d)-2}, \\
+    g_{th}\,\dot{t}\,\dot{h} &\propto s^{b(1-z/d)-2+(k-\Delta)}, \\
+    g_{hh}\,\dot{h}^2 &\propto s^{b(1-z/d)-2+2(k-\Delta)}.
 \end{align}
-Meaning the convergence condition for the thermodynamic length will be 
+Thus, the convergence condition becomes
 \begin{equation}
-    b\left(1-\frac{z}{d}\right) > 0
+    b\!\left(1 - \frac{z}{d}\right) > 0
+\end{equation}
+Similarly, in \hyperref[par:scalingCase_2]{Case 2}
+\begin{equation}
+    g_{ij}\dot{x}^i\dot{x}^j \propto s^{p(1-z/d)-2}
+\end{equation}
+so convergence requires
+\begin{equation}
+    p\!\left(1 - \frac{z}{d}\right) > 0
 \end{equation}
 
-Similarly in case \ref{case_2}:
-\begin{equation}
-    g_{ij}  \frac{dx^i}{ds} \frac{dx^j}{ds} \propto s^{p\left(1-\frac{z}{d}\right) -2}
-\end{equation}
-Meaning the convergence condition for the thermodynamic length will be 
-\begin{equation}
-    p\left(1-\frac{z}{d}\right) > 0
-\end{equation}
-One can see, using table \ref{tab:dynamical-divergences}, that the lengths will diverge for the 2D Ising model and Potts models (both 3- and 4-states), but in the 3D Ising model, lengths converge.
- \begin{table}
+As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic lengths diverge for the 2D Ising and 2D Potts models but remain finite for the 3D Ising model.
+
+\begin{table}[h]
     \centering
     \begin{tabular}{c|c||c|c|c}
-         
-         \multicolumn{2}{c||}{} & $d$ & $z$ & $\frac{z}{d}$\\
-         \hline \hline 
-         \multirow{2}{*}{2D Ising}  & Class A & $ 2 $ & $ 2.165\left(10\right) $ & $1.083\left(5\right)$ \\
-         \cline{2-5}
-                                    & Class B & $ 2 $ & $ 2.235\left(10\right) $ & $1.117\left(5\right)$ \\ 
-                                    % I'm not sure model B dynamics are interesting in our case.
-         \hline 
-         \multicolumn{2}{c||}{3D Ising} & $ 3 $ & $ 2.032\left(4\right) $ & $ 0.677\left(1\right) $ \\
-         \hline
-         \multicolumn{2}{c||}{2D 3-state Potts model} & $2$ & $2.198(2)$ & $1.099(1)$ \\
-         \hline
-         \multicolumn{2}{c||}{2D 4-state Potts model} & $2$ & $2.290(3)$ & $1.095(2)$ \\
+        \multicolumn{2}{c||}{} & $d$ & $z$ & $z/d$ \\
+        \hline \hline
+        \multirow{2}{*}{2D Ising} & Class A & $2$ & $2.165(10)$ & $1.083(5)$ \\
+                                  & Class B & $2$ & $2.235(10)$ & $1.117(5)$ \\
+        \hline
+        \multicolumn{2}{c||}{3D Ising} & $3$ & $2.032(4)$ & $0.677(1)$ \\
+        \hline
+        \multicolumn{2}{c||}{2D 3-state Potts} & $2$ & $2.198(2)$ & $1.099(1)$ \\
+        \hline
+        \multicolumn{2}{c||}{2D 4-state Potts} & $2$ & $2.290(3)$ & $1.095(2)$ \\
     \end{tabular}
-    \caption{Dynamical Scaling parameters for sample universality classes \cite{odor_universality_2004}}
+    \caption{Dynamical scaling parameters for representative universality classes \cite{odor_universality_2004}.}
     \label{tab:dynamical-divergences}
 \end{table}
+
 
 \subsection{Antiferromagnetic Mean-Field Model - Ruppiner metric}
 \input{AntiFerro-MeanField-Ruppiner/Intro}
