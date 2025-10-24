@@ -19,6 +19,15 @@
 %prstper,
 %floatfix,
 ]{revtex4-2}
+
+% For Thesis
+% \documentclass[pra,preprint, ,superscriptaddress,notitlepage,longbibliography]{revtex4-2}
+% \usepackage{anyfontsize}
+% \renewcommand{\normalsize}{\fontsize{12}{14}\selectfont}
+% \linespread{1.5}
+% \usepackage[margin=1.5cm]{geometry}
+% \usepackage{newtxtext,newtxmath}
+
 \usepackage[normalem]{ulem}
 \usepackage{graphicx}% Include figure files
 \usepackage{dcolumn}% Align table columns on decimal point
@@ -74,156 +83,103 @@
 
 \section{Introduction}
 
-Attempts to geometrize thermodynamic parameter space have existed since the theory's early days \cite{gibbs1873method}. While we have a geometric interpretation for equilibrium thermodynamics, for example the  work performed by a heat engine can be related to the area of a stroke in the PV plane,
-% entropy/heat generation in equilibrium thermodynamics - the first law, 
-there does not exist an analogous relation for excess, non-equilibrium dissipation. 
-One similar relation for excess dissipation in non-equilibrium processes, proposed in the 1970-s, is called thermodynamic geometry. 
-Laid out by Ruppiner and Weinhold \cite{ruppeinerThermodynamicsRiemannianGeometric1979, weinholdMetricGeometryEquilibrium1975}, this formalism defines a Riemannian metric on thermodynamic parameter space.
-The Riemannian metric, which defines this manifold, is simply the second derivatives of the energy, entropy or their Legendre transforms. Use of different thermodynamic potentials to derive the metric, evidently, still gives the same manifold \cite{salamonRelationEntropyEnergy1984}. 
+Since the earliest developments of thermodynamics, there have been attempts to cast the theory in geometric form \cite{gibbs1873method}. A geometric interpretation exists for equilibrium thermodynamics—for instance, the work performed by a heat engine corresponds to the area enclosed by its stroke in the $PV$ plane. However, an analogous geometric relation for excess dissipation in non-equilibrium processes remains elusive.
 
-Salomon \cite{salamonThermodynamicLengthDissipated1983} showed in the 1980s that excess dissipation is related to lengths in this metric space, subject to two major caveats.
-Firstly, it was proved only for endoreversible processes. Here, endoreversible denotes processes where the system is in internal thermodynamic equilibrium, but may not be in equilibrium with the surroundings. Secondly, the dissipation contains a term of the mean response time of the system. Meaning, that the formalism does not work well in systems with large variations in response time.
-This formalism has been used to calculate minimal entropy production protocols in non-equilibrium thermodynamic systems, for example, in distillation and in chemical reactions \cite{andresenCurrentTrendsFiniteTime2011}. 
+One approach that bridges this gap is thermodynamic geometry, introduced in the 1970s by Ruppeiner and Weinhold \cite{ruppeinerThermodynamicsRiemannianGeometric1979, weinholdMetricGeometryEquilibrium1975}. In their formulation, the space of thermodynamic parameters is endowed with a Riemannian metric derived from the second derivatives of a thermodynamic potential—such as the internal energy, entropy, or any of their Legendre transforms. Although the choice of potential changes the explicit form of the metric, the resulting manifold remains invariant \cite{salamonRelationEntropyEnergy1984}.
 
-In 2012 Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} defined a similar metric using linear response theory. This was a continuation of earlier work by Crooks \cite{crooksMeasuringThermodynamicLength2007}. In their definition, the response time was integrated into the metric itself. Therefore, this formalism removed the need for both the response time, and the assumption of endoreversibility, making it applicable to a much wider variety of systems. This includes systems with a widely varying timescales, as well as microscopic systems (e.g biological or single molecule systems). This framework served as an optimization tool for computing systems \cite{rotskoffGeometricApproachOptimal2017}.
+In the 1980s, Salamon \cite{salamonThermodynamicLengthDissipated1983} established a connection between excess dissipation and thermodynamic length in this metric space, subject to two important limitations. First, the result holds only for endoreversible processes, where the system remains in internal equilibrium but may be out of equilibrium with its environment. Second, the dissipation depends explicitly on the mean response time of the system, restricting the formalism’s applicability to systems with uniform relaxation times. Despite these limitations, the framework has proven valuable for identifying minimal-entropy-production protocols in processes such as chemical reactions and distillation \cite{andresenCurrentTrendsFiniteTime2011}.
 
-One example of a class of systems with widely varying timescales is systems with phase transitions. Several researchers have shown interest in applying thermodynamic geometry to such systems \cite{janyszekRiemannianGeometryThermodynamics1989, PhysRevE.51.1006}. This includes searching for optimal paths in such systems (e.g the 2D ferromagnetic Ising model \cite{rotskoffDynamicRiemannianGeometry2015}). However, the divergence of the thermodynamic length near phase transitions attracted only limited attention. 
-Note that divergence of the metric does not necessarily imply divergence of the thermodynamic length. This is evident from many examples, such as the divergence of the Schwarzschild metric at $r=r_s$. 
-% {there has yet to be an exhaustive study of the divergence of the thermodynamic length around phase transitions}
-Some systems have entirely disconnected phases, such that changing the system from one state to the other necessitates crossing a phase transition. One such example that we will study in this paper is the Anti-Ferromagnet. 
-For these reasons, it is important to know wether the thermodynamic length converges or not in the vicinity of phase transitions to understand the applicability of thermodynamic geometry for systems with phase transitions.
+Building on this line of work, Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012, crooksMeasuringThermodynamicLength2007} derived a closely related metric using linear response theory. In their formulation, the system’s relaxation dynamics are incorporated directly into the metric, thereby removing the dependence on a separate response-time parameter and eliminating the assumption of endoreversibility. This generalized framework extends thermodynamic geometry to a much broader class of systems—including those with widely varying time scales and microscopic systems such as biomolecular or single-molecule systems—and has found applications in optimizing computational and physical processes \cite{rotskoffGeometricApproachOptimal2017}.
 
-One property that is immediately evident from Ruppiner, and Sivak`s definitions, and is presented in the following part (\ref{sec:framework}), is that the metric should diverge in the vicinity of the phase transition. A question that arises is whether a divergence of the metric translates to divergence of lengths.
+A particularly challenging class of systems exhibiting widely separated time scales are those undergoing phase transitions. The application of thermodynamic geometry to such systems has drawn significant attention \cite{janyszekRiemannianGeometryThermodynamics1989, PhysRevE.51.1006}, including efforts to identify optimal driving protocols across critical regions (e.g., the 2D ferromagnetic Ising model \cite{rotskoffDynamicRiemannianGeometry2015}). Yet, the divergence of thermodynamic length near phase transitions has received limited study. Notably, a divergence in the metric tensor does not necessarily imply a divergence in thermodynamic length—much as the divergence of the Schwarzschild metric at $r=r_s$ does not correspond to a physical singularity.
 
-Note that if lengths don't diverge, there might still be other signs of divergence in the manifold, such as curvature. However these don't affect the dissipation so we are less interested in them for this study.
+In systems with disconnected phases, any transformation from one phase to another must necessarily cross a phase transition. One such case, examined in this work, is the mean-field antiferromagnet, where the phase boundary entirely separates distinct thermodynamic states. Determining whether the thermodynamic length remains finite near such transitions is crucial for understanding the applicability of thermodynamic geometry in these regimes.
 
-In this article we explore thermodynamic geometry in the vicinity of second order phase transitions. We show markedly different behavior of the two manifolds (Ruppiner and Sivak metrics) around phase transitions, stemming from critical slowdown. 
-One interesting finding is that in both the Ruppiner and Sivak definitions there are cases where the metric doesn't diverge.
+Both the Ruppeiner and Sivak metrics predict that the thermodynamic metric should diverge in the vicinity of a second-order phase transition (see Sec.~\ref{sec:framework}). A natural question, therefore, is whether this divergence of the metric translates into a divergence of the corresponding thermodynamic lengths. Note that even if the length remains finite, other geometric quantities such as the curvature may diverge, signaling critical behavior. Though these do not directly contribute to dissipation and are thus outside our present focus.
 
-We then apply the framework to the Sivak metric to find the shortest protocol between 2 points that belong to different phases of the Mean-Field Anti-Ferromagnet. 
-In this model, the phase transition line completely separates the two phases (unlike, for example, the ferromagnetic Ising model), such that any protocol crossing the phase transition must pass through a phase transition.
+In this paper, we analyze the behavior of thermodynamic geometry near second-order phase transitions. We show that the Ruppeiner and Sivak manifolds exhibit qualitatively distinct behavior around criticality, primarily due to the phenomenon of critical slowing down. Interestingly, in both formalisms, there exist cases where the metric does not diverge at the transition.
 
-We see in our work that the thermodynamic length can diverge in some models with the Sivak metric. In all the models we have checked, the lengths converge for the Rupinner metric.
+Finally, we apply the Sivak metric to determine the optimal protocol connecting two points in different phases of the mean-field antiferromagnet. Because the two phases are entirely separated by a phase boundary, any such protocol necessarily traverses a phase transition. Our results show that, while the thermodynamic length can diverge for the Sivak metric in certain models, it remains finite for all cases examined under the Ruppeiner metric.
 
-\section{Framework\label{sec:framework}}
-Before discussing the implementation of thermodynamic geometry on second order phase transitions, we first define clearly the metrics laid out before, as well as the tools we  use as part of our analysis.
-\subsection{Ruppiner and Weinhold Metric}
-The Ruppiner and Weinhold metric \cite{ruppeinerThermodynamicsRiemannianGeometric1979, weinholdMetricGeometryEquilibrium1975} is defined by the second derivatives of the thermodynamic potentials or generalized entropies:
+
+\section{Framework} \label{sec:framework}
+Before analyzing thermodynamic geometry near second-order phase transitions, we briefly define the key metrics and scaling tools used in our study.
+
+\subsection{Ruppeiner and Weinhold Metric}
+The Ruppeiner–Weinhold metric \cite{ruppeinerThermodynamicsRiemannianGeometric1979, weinholdMetricGeometryEquilibrium1975} is defined as the Hessian of a thermodynamic potential or generalized entropy:
 \begin{equation}
-    g_{\mu\nu}^{\text{Ruppiner}} \equiv g_{\mu\nu}^R= \pm \frac{\partial^2 \varphi}{\partial \lambda ^\mu \partial\lambda^\nu}, 
+    g_{\mu\nu}^R = \pm \frac{\partial^2 \varphi}{\partial \lambda^\mu \partial \lambda^\nu},
 \end{equation}
-where $ \varphi $ can be the energy, entropy or their Legendre transforms (i.e the Gibbs free energy, Masseiu potential and so on), and $ \lambda ^ \mu $ are the corresponding natural variables of the chosen thermodynamic potential (e.g $\{S, M\}$ - the entropy and total magnetization - for the internal energy $E$ of a magnetic system). 
-The sign is chosen such that the metric is positive-definite, which is possible for a proper choice of $\varphi$ and $\lambda^\mu$, based on the convexity/concavity of the thermodynamic potentials and entropies \cite{Callen:450289}. 
-% The definition is symmetric ($g_{\mu\nu}=g_{\nu\mu}$).
-Salamon \cite{salamonThermodynamicLengthDissipated1983} showed that this metric is connected to non-equilibrium dissipation,
-via the ``dissipated availability" 
-\begin{equation} \label{SalomonDissipatedAvail}
-    \mathcal{A} = \bar{\epsilon} \intop_{\boldsymbol{\lambda} \left(s\right)} g^R_{\mu\nu} \partial_{s^\prime}\lambda^{\mu} \partial_{s^\prime}\lambda^{\nu} ds^\prime
-\end{equation}
-Here $\boldsymbol{\lambda} \left( s \right)$ is the path, parameterized by $s$. $ \bar{\epsilon}$ is the averaged response time of the system (sometimes also referred to as "lag time"). The dissipated availability is the excess heat (or excess entropy, if using a generalized entropy) generated by the system due to finite time effects. Accordingly, one can see that in the quasi-static limie ($ \left| \dot{\boldsymbol{\lambda}} \right| \rightarrow 0 $), the dissipated availability approaches 0. The ``thermodynamic length" associated with the metric, is given by:
-\begin{equation}\label{eq:L-def}    
-    \mathcal{L} = \intop_{\boldsymbol{\lambda} \left(t\right)} \sqrt{g_{\mu\nu} \partial_s\lambda^{\mu} \partial_s\lambda^{\nu} } ds,
-\end{equation}
-It is an entirely mathematical construction, but minimization of the thermodynamic length, $\mathcal{L}$, is identical to minimization of the dissipated availability, $\mathcal{A}$, when fixing the time of the protocol. The length $\mathcal{L}$ gives a lower bound on the dissipated availability by the Cauchy-Schwartz inequality:
+where $\varphi$ is a thermodynamic potential (e.g., internal energy, entropy, or a Legendre transform), and $\lambda^\mu$ are its natural variables (e.g., $\{S, M\}$ for $E(S, M)$).
+The sign ensures positive definiteness, consistent with the convexity or concavity of $\varphi$ \cite{Callen:450289}.
+
+Salamon \cite{salamonThermodynamicLengthDissipated1983} connected this metric to excess dissipation through the \emph{dissipated availability},
 \begin{equation}
-    \mathcal{A} \ge \frac{\bar{\epsilon}}{\tau} \mathcal{L}^2
+    \mathcal{A} = \bar{\epsilon} \int_{\boldsymbol{\lambda}(s)} g^R_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, ds,
 \end{equation}
-With $\tau$ being the time of the protocol. Equality is attained when $ \left| \dot{\boldsymbol{\lambda}} \right| = \sqrt{\dot{\lambda}^{\mu} g_{\mu\nu} \dot{\lambda}^{\nu}} $ is constant \cite{salamonThermodynamicLengthDissipated1983}.
+where $\bar{\epsilon}$ is the average response time. The corresponding \emph{thermodynamic length} is
+\begin{equation}
+    \mathcal{L} = \int_{\boldsymbol{\lambda}(s)} \sqrt{g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu}\, ds.
+\end{equation}
+Minimizing $\mathcal{L}$ minimizes excess dissipation for a fixed-duration protocol, since the Cauchy–Schwarz inequality gives
+\begin{equation}
+    \mathcal{A} \ge \frac{\bar{\epsilon}}{\tau}\mathcal{L}^2,
+\end{equation}
+with equality for constant-speed protocols (i.e $\left\|\dot{\boldsymbol{\lambda}}\right\|=\text{const.}$).
 
 \subsection{Sivak and Crooks Metric}
-The endoreversible assumption, or a similar assumption about the relaxation time, essential for using the above metric, is severely limiting. Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} developed a similar formalism that does not require this assumption, and is thus usable across a wider range of applications.
-This came at the price of a change in the definition of the metric:
-\begin{equation} \label{eq:SivakMetric}
-    g_{\mu\nu}^{\text{Sivak}} \equiv g_{\mu\nu}^S = \intop_0^\infty \left\langle \delta X_\mu (t) \delta X_\nu (0) \right\rangle dt = \mathcal{T}_{\mu\nu} \frac{\partial^2 \ln Z}{\partial \lambda^{\mu} \partial \lambda^{\nu}}
-\end{equation}
-Where as before $\lambda^\mu$ are the natural variables of the Masseiu potential, e.g $\{\beta, \beta h\}$ for magnetic systems, and $\boldsymbol{X}$ are the conjugate variables to $ \boldsymbol{\lambda} $ (in equilibrium, $X_\mu = \frac{\partial \ln Z}{\partial \lambda^\mu}$), $\mathcal{T}$ is the time response matrix, and $Z$ is the partition function. The the last equality is generically true in the thermodynamic limit,  \cite{sivakThermodynamicMetricsOptimal2012}, but for general, microscopic systems there is an added expression in the definition of the metric.
-
-In the Sivak formalism the response time is directly encoded in the metric through $\mathcal{T}
-$. Accordingly, we redefine $ \mathcal{A} $ to be
-\begin{equation} \label{eqn:SivakDissAv}
-    \mathcal{A} = \intop_{\boldsymbol\lambda \left(t\right)} g^S_{\mu\nu} \partial_t\lambda^{\mu} \partial_t\lambda^{\nu} dt,
-\end{equation}
- 
-
-The definition of $\mathcal{L}$ stays identical, apart for the use of the Sivak metric. The Cauchy-Schwartz inequality gives in this case:
-\begin{equation} \label{eq:CSineq}
-    \mathcal{A} \ge \frac{\mathcal{L}^2}{\tau}
-\end{equation}
-With $\tau$ being the time of the protocol. As before, equality is attained when $\left| \dot{\boldsymbol{\lambda}} \right| = \sqrt{\dot{\lambda}^{\mu} g_{\mu\nu} \dot{\lambda}^{\nu}}$ is constant \cite{sivakThermodynamicMetricsOptimal2012}.
-
-\subsection{Scaling Hypothesis \label{subsec:ScalingHypothesisFramework}}
-% \oren{I think that it is better to first state the motivation and approach, something along the line of: (i) We expect the metric to be singular near a phase transition; (ii) There are very few cases where exact calculation of this singularity is possible; (iii) The singularity is governed by a set of critical exponents and scaling functions, that are identical for all models that belong to a given universality class. Therefore, we can learn a lot on the behavior of the metric near the phase transition by using the scaling hypothesis approach.}
-
-The second derivatives of the free energy often diverges around second order phase transitions (e.g. the diverging magnetic susceptibility in a ferromagnet). Exact calculation of a system's partition function is many times hard or even impossible. 
-However, the divergence of the partition function, and therefore its derivatives (e.g the Ruppiner metric), is dominated by the critical exponents. Those, in turn, will dictate whether the thermodynamic length diverges through the phase transition or not.
-%Therefore there exist tools such as critical exponents that enable us to characterize these divergences without calculating them directly. 
-Moreover, phase transitions have been organized into universality classes which are distinct from one another by the critical exponents.
-
-The scaling hypothesis is a general relation between the critical exponents and the scaling of the free energy, around the phase transition \cite{Kardar_2007}. It allows us to check, for many different universality classes simultaneously, whether the thermodynamic length in the Ruppiner formalism diverges or not.
-However, this does not tell us anything about the relaxation time, or its behavior around the phase transition. Therefore, this tool is not enough to understand divergences in the Sivak metric. 
-
-The statement underpinning the scaling hypothesis is that around the phase transition point $ (T_c, h_c) $, the thermodynamic potentials scale as \cite{Kardar_2007}:
-\begin{equation} \label{eq:scalingHypFreeEnergy}
-    \varphi \propto t^b f \left( \frac{h}{t^\Delta} \right)
-\end{equation}
-where we have defined the reduced parameters around the phase transition point
+The Ruppeiner metric assumes endoreversibility and uniform response times, which limit its scope. Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} removed these restrictions using linear-response theory, defining
 \begin{equation}
-    t = \frac{T-T_c}{T_c}
+    g_{\mu\nu}^S = \int_0^\infty \langle \delta X_\mu(t)\, \delta X_\nu(0) \rangle\, dt =
+    \mathcal{T}_{\mu\nu} \frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu},
 \end{equation}
+where $\mathcal{T}_{\mu\nu}$ is the time-response matrix, $Z$ the partition function, and $X_\mu$ the conjugate variable to $\lambda^\mu$.
+The response time is thus encoded directly in the metric, and the dissipated availability becomes
 \begin{equation}
-    h = \frac{H-H_c}{H_c}
+    \mathcal{A} = \int_{\boldsymbol{\lambda}(t)} g^S_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt,
 \end{equation}
-meaning as we approach $ (T_c, h_c) $ we expect $t,h\rightarrow 0 $.
+with the inequality
+\begin{equation}
+    \mathcal{A} \ge \frac{\mathcal{L}^2}{\tau},
+\end{equation}
+again saturated by constant-speed protocols.
 
-The hypothesis states that $f$ is continuous, and $ f \left(x\right) \xrightarrow[x\rightarrow\infty]{} x^p $. 
+\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisFramework}
+Near second order phase transitions, derivatives of the free energy -- and hence the Ruppeiner and Sivak metrics often diverge (for example, via diverging magnetic susceptibility). 
+Although exact partition functions are rarely tractable, the asymptotic form of these divergences is determined by critical exponents defining universality classes.
 
-The variables $b, \Delta$ and $p$ can be determined from the critical exponents. For example, one can observe the critical exponent of the heat capacity at $h=0$, $\alpha$, is related to $b$ by $b=2-\alpha$.
-
-The scaling hypothesis has been used before to quantify divergence of the metric, e.g \cite{PhysRevE.51.1006}. However, its impact on the thermodynamic length and dissipation has not been considered. 
+The scaling hypothesis relates the free energy near the critical point $(T_c, H_c)$ to reduced variables $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$:
+\begin{equation}
+    \varphi \propto t^b f\!\left(\frac{h}{t^\Delta}\right),
+\end{equation}
+where $f(x)$ is continuous and $f(x) \sim x^p$ as $x \to \infty$ \cite{Kardar_2007}.
+The exponents $b$, $\Delta$, and $p$ can be determined by standard critical exponents, e.g., $b = 2 - \alpha$ from the heat capacity exponent $\alpha$.
+This approach captures metric divergences across universality classes but does not address relaxation times, which are critical the dissipation in the Ruppiner formalism, and for the definition of the Sivak metric.
 
 \subsubsection*{Dynamic Scaling Hypothesis}
-The scaling hypothesis can provide useful information about the divergence of the Ruppiner and Weinhold metric near a second order phase transition. However, commonly a second order phase transition is accompanied by a critical slow down, where the response timescale diverges. This can manifest itself in $ \bar{\epsilon} $, the mean response time, which may depend on the position, and even diverges at the critical point.
-% change for different paths that get closer or further away from the phase transition. 
-Gaining information about the critical slowdown can help us to quantify the divergence of $ \bar{\epsilon} $ in the Salomon dissipated availability (eq. \ref{SalomonDissipatedAvail}), 
-and also the divergences of the Sivak metric (eq. \ref{eq:SivakMetric}).
-
-The dynamical scaling hypothesis provides a relation between the relaxation time $\tau$ and the correlation length $\xi$ \cite{tauberCriticalDynamicsField2014}:
+Critical slowing down near second-order transitions leads to divergent relaxation times. The dynamic scaling hypothesis relates the relaxation time $\tau$ and correlation length $\xi$ as
 \begin{equation}
-    \tau \propto \xi ^ z.
+    \tau \propto \xi^z
 \end{equation}
-This can be related to the scaling hypothesis of the free energy by the relation between free energies and the correlation length \cite{Kardar_2007}:
+and the free energy scales as $\varphi \propto \xi^{-d}$ \cite{Kardar_2007, tauberCriticalDynamicsField2014}.
+Combining these yields
 \begin{equation}
-    \varphi \propto \xi ^ {-d}
+    \tau \propto \varphi^{-z/d} \propto t^{-bz/d}\, f^{-z/d}\!\left(\frac{h}{t^\Delta}\right),
 \end{equation}
-Where $d$ is the dimension of the system. This implies
-\begin{equation}
-    \tau \propto \varphi^{-\nicefrac{z}{d}}
-\end{equation}
-and using eq.\;\ref{eq:scalingHypFreeEnergy}, the scaling of the response time in terms of $t, h$ is given by:
-\begin{equation}
-        \tau \propto t^{-\nicefrac{bz}{d}} f ^{-\nicefrac{z}{d}} \left( \frac{h}{t^\Delta} \right)
-\end{equation}
+linking dynamical and thermodynamic critical behavior.
 
 \subsection{Divergence of Lengths}
-As is known, divergence of the metric doesn't necessarily imply divergence of distances in the manifold. One can construct metrics that diverge, while lengths remain finite. One known example of a metric with both a real divergence and a divergence with finite lengths is the Schwarzschild metric. While the metric itself diverges both at $ r=0 $ and at the Schwarzschild radius $r=r_s $, lengths diverge at $ r \rightarrow 0 $, but not at $ r \rightarrow r_s$. 
-
-
-It is important to note that the divergence of dissipated availability depends not only on the shape on the protocol in parameter space, but also on its exact time parametrization. In other words, along any given path, if the protocol is executed sufficiently fast, the dissipated availability  diverges, since Eq. \ref{eqn:SivakDissAv} is sensitive to the parametrization. 
-% However, at very high driving speeds the endoreversible/linear-response approximations used in deriving the dissipation expression are no longer valid.
-
-This naturally raises the following question: can thermodynamic length provide insight into the divergence of dissipated availability? One direction is straightforward: for constant-dissipation-rate protocols, the dissipated availability and the thermodynamic length are connected directly through the Cauchy–Schwarz inequality. Therefore, whenever the thermodynamic length converges, there must exist a protocol for which the dissipated availability also converges.
-
-The reverse implication is less obvious: if the thermodynamic length diverges, can there still exist a finite-time protocol yielding convergent dissipated availability? This case can also be addressed using the Cauchy–Schwarz inequality. Specifically, the minimal dissipated availability occurs when the protocol duration scales as $\tau \propto \mathcal{L}$. In this case, Eq. \ref{eq:CSineq} gives
+A diverging metric does not necessarily imply a divergent thermodynamic length -- analogous to how the Schwarzschild metric diverges at $r = r_s$ without a corresponding geometric singularity. 
+For constant-speed protocols of fixed duration,
 \begin{equation}
-    \mathcal{A}_{\text{min}} = \frac{\mathcal{L}}{c} \xrightarrow[\mathcal{L\rightarrow\infty}]{}\infty
+    \mathcal{A} \propto \mathcal{L}^2.
 \end{equation}
-which shows that a divergent thermodynamic length necessarily implies divergent dissipated availability.
+Thus, a finite thermodynamic length guarantees the existence of a finite-dissipation protocol. As opposed to that, from the Cauchy-Schwarz inequality $\mathcal{L} \to \infty$ implies $\mathcal{A} \to \infty$.
 
-Thus, there are protocols that converge if and only if the thermodynamic length converges. Therefore we need to look only at the rate of divergence of
-\begin{equation}
-    \ell(s) = \sqrt{g_{\mu\nu} \partial_s \lambda^\mu \partial_s \lambda^\nu},
-\end{equation}
-i.e, assuming (as we assume in the rest of this paper) $\ell \xrightarrow[s\rightarrow 0]{} \infty$, the thermodynamic length  diverges if and only if $\ell \propto s^{-p}$ where $p>1$. Note that this cannot be directly translated to a divergence of the metric since it is parametrization dependent, similarly to how there exist coordinate systems where the $r_s$ divergence of the Schwarzschild metric do not appear (e.g Kruskal coordinates\cite{PhysRev.119.1743,Szekeres:1960gm}).
+Consequently, the convergence of thermodynamic length determines whether finite-dissipation protocols exist. 
+If $\ell(s) = \sqrt{g_{\mu\nu}\dot{\lambda}^\mu\!\left(s\right)\dot{\lambda}^\nu\!\left(s\right)} \propto s^{-p}$ near criticality (as $s \rightarrow 0$), the total length diverges only for $p > 1$. 
+
+Note that this observation does not necessarily inform  us about the metric itself, or intrinsic geometry of the manifold. The metric might diverge for flat space \cite{PhysRev.119.1743,Szekeres:1960gm}, and the manifold might have divergent curvature despite having finite lengths and a non-divergent metric. 
 
 
 \section{Results}
