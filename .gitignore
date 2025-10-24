@@ -1,0 +1,43 @@
+# LaTeX auxiliary / build files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.toc
+*.lof
+*.lot
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex
+*.xdv
+*.nav
+*.snm
+*.vrb
+*.idx
+*.ilg
+*.ind
+
+# Build outputs
+*.dvi
+*.ps
+*.eps
+*.pdf
+
+# Editor / OS temp files
+*~
+*.swp
+*.swo
+*.bak
+.#*
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+
+#other
+ArticleNotes.bib
