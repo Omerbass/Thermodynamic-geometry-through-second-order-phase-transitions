@@ -1,79 +1,98 @@
+
 \subsubsection{Disordered phase} \label{subsec:SivakDisorderedPhase}
-In the disordered phase one gets that $m_A=m_B\equiv m$ (and therefore also $\zeta_A=\zeta_B\equiv \zeta$). One gets
+
+In the disordered phase we have $m_A=m_B\equiv m$ (hence $\zeta_A=\zeta_B\equiv \zeta$). 
+The Sivak metric in $(\beta,\alpha)$, with $\alpha=\beta h$, reduces to
 \begin{equation}
-    g_{\mu\nu} = \frac{\beta\zeta}{\Gamma \left(1+\beta K \zeta\right)^2} \left(
-        \begin{array}{cc}
-            K^2 m^2 & - Km \\
-            - Km & 1
-        \end{array}
-    \right)
+    g_{\mu\nu} \;=\; \frac{\beta\,\zeta}{\Gamma\bigl(1+\beta K \zeta\bigr)^2}
+    \begin{pmatrix}
+        K^2 m^2 & -K m \\[2pt]
+        -K m & 1
+    \end{pmatrix}.
 \end{equation}
-In particular (and as a direct result of $\det P=0$) $\det g=0$. 
-The 0 eigenvalue corresponds to lines of constant $m$. As a result, the problem becomes a 1D minimization problem - at what distance from the phase transition line will the length be minimal? As we show below, the answer is simply at $\beta=0$.
-Firstly, the eigenvectors and eigenvalues are
+Since $\det P=0$ in this phase (rows of $P$ become proportional when $m_A=m_B$), the metric is rank-one and $\det g=0$. 
+The null eigenvector aligns with directions of constant $m$, so motion along that direction incurs zero thermodynamic length. 
+Therefore the problem reduces to a 1D minimization: at what distance from the phase boundary does the length minimize? 
+We show below that the minimum occurs at $\beta=0$ (infinite temperature).
+
+\paragraph{Eigenstructure and the zero-length direction.}
+The eigenpairs of the bracketed matrix are
 \begin{align}
-    \lambda_1 & = 0,\quad \boldsymbol{v}_1 = \left( \begin{array}{c}
-         1  \\
-        Km
-    \end{array} \right) \\
-    \lambda_2 & = K^2 m^2+1,\quad \boldsymbol{v}_2 = \left( \begin{array}{c}
-        Km \\
-         -1 
-    \end{array} \right) 
+    \lambda_1 &= 0, 
+    & \boldsymbol{v}_1 &= \begin{pmatrix} 1 \\ K m \end{pmatrix},
+    \\
+    \lambda_2 &= 1+K^2 m^2, 
+    & \boldsymbol{v}_2 &= \begin{pmatrix} K m \\ -1 \end{pmatrix}.
 \end{align}
-Our objective is to minimize the expression 
-$ \sqrt{{\delta\lambda}^\mu g_{\mu\nu} {\delta\lambda}^\nu}$
-along the $v_1$ axis. 
-Noting that from \ref{m(beta)}, $\zeta = \frac{1}{K\beta_c}$, and taking into account the entire expression for $g$, and, we get that 
+Thus the zero mode $\boldsymbol{v}_1$ follows lines of constant $m$ in $(\beta,\alpha)$.
+
+\paragraph{Scaling of the metric prefactor.}
+From \eqref{m(beta)} we have $\zeta=1-m^2=1/(\beta_c K)$ along the phase boundary labeled by magnetization $m$, with critical parameter $\beta_c$.
+Using this in the prefactor gives
 \begin{equation}
-    g_{\mu\nu} \propto \frac{\beta}{\left(\beta_c+\beta\right)^2}\left(K^2 m^2+1\right)
+    g_{\mu\nu} \;\propto\; 
+    \frac{\beta}{\bigl(\beta_c+\beta\bigr)^2}\,\bigl(1+K^2 m^2\bigr).
 \end{equation}
-Now we want to find the scaling of $\delta\boldsymbol{\lambda}$. We'll take an infinitesimal step, such that $m_1$ goes to a nearby $m_2$: $(\beta_{c1}, \alpha_{c1})$ goes to $(\beta_{c2}, \alpha_{c2}) = (\beta_{c1}+\delta_\beta, \alpha_{c1}+\delta_\alpha)$  (and $\delta_\beta,\delta_\alpha$ are both small)
-We want the intersection of the lines
-\begin{align} \label{eq:b0,a0}
-    \left( \begin{array}{c}
-         \beta \\
-         \alpha
-    \end{array}\right) & = a \, \boldsymbol{v}_1\left(T_c\right) + \left( \begin{array}{c}
-         \beta_{c1} \\
-         \alpha_{c1}
-    \end{array}\right) \\
-    \left( \begin{array}{c}
-         \beta \\
-         \alpha
-    \end{array}\right) & = b \, \boldsymbol{v}_1\left(T_c + \delta_T \right) + \left( \begin{array}{c}
-         \beta_{c1} + \delta_T \\
-         \alpha_{c1} + \frac{\partial \alpha_c}{\partial \beta_c}\delta_\beta
-    \end{array}\right)
+
+\paragraph{Scaling of the displacement along the zero mode.}
+Consider two neighboring constant-$m$ lines labeled by 
+$(\beta_{c1},\alpha_{c1})$ and $(\beta_{c2},\alpha_{c2})=(\beta_{c1}+\delta_\beta,\alpha_{c1}+\delta_\alpha)$.
+We find their intersection with a straight line parallel to the zero mode at each point:
+\begin{align}
+    \begin{pmatrix}\beta\\ \alpha\end{pmatrix}
+    &= a\,\boldsymbol{v}_1(\beta_{c1}) + \begin{pmatrix}\beta_{c1}\\ \alpha_{c1}\end{pmatrix}
+    \label{eq:b0a0-1}\\[2pt]
+    \begin{pmatrix}\beta\\ \alpha\end{pmatrix}
+    &= b\,\boldsymbol{v}_1(\beta_{c2}) + \begin{pmatrix}\beta_{c1}+\delta_\beta\\ \alpha_{c1} + \dfrac{\partial \alpha_c}{\partial \beta_c}\,\delta_\beta \end{pmatrix}
+    \label{eq:b0a0-2}
 \end{align}
-Subtracting the equations we get
+Subtracting \eqref{eq:b0a0-1} from \eqref{eq:b0a0-2} yields
 \begin{equation}
-    \delta_\beta \left( \begin{array}{c}
-         1 \\
-         \frac{\partial \alpha_c}{\partial \beta_c}
-    \end{array}\right) = \left( \begin{array}{cc}
+    \delta_\beta 
+    \begin{pmatrix} 1 \\[2pt] \dfrac{\partial \alpha_c}{\partial \beta_c} \end{pmatrix}
+    =
+    \begin{pmatrix}
         1 & 1 \\
-        Km_2 & Km_1
-    \end{array} \right)
-    \left( \begin{array}{c}
-         -b  \\
-         a
-    \end{array}\right)
+        K m_2 & K m_1
+    \end{pmatrix}
+    \begin{pmatrix} -b \\[2pt] a \end{pmatrix}
 \end{equation}
-From \ref{alpha(beta,m)}, we get
+where $m_1=m(\beta_{c1})$, $m_2=m(\beta_{c2})$.
+From \eqref{alpha(beta,m)} we have 
+\(
+\dfrac{\partial \alpha_c}{\partial \beta_c} = \dfrac{1}{m}
+\)
+Inverting gives
 \begin{equation}
-    \frac{\partial \alpha_c}{\partial \beta_c} = \frac{1}{m}
+\begin{aligned}
+    a \;&=\; \frac{1-m^2}{K m}\,\frac{\partial m}{\partial \beta_c}
+      \;=\; \frac{1-m^2}{K m}\,\frac{2m}{(1-m^2)^2}\\
+      \;&=\; \frac{2}{K(1-m^2)}
+      \;=\; 2\beta_c
+\end{aligned}
 \end{equation}
-And after inverting the matrix 
-\begin{equation}
-\begin{split}
-    a & = \frac{1-m^2}{Km} \frac{\partial m}{\partial \beta_c} \\
-      & = \frac{1-m^2}{Km} \frac{2m}{\left(1-m^2\right)^2} \\
-      & = \frac{2}{K \left(1-m^2\right) } \\
-      & = 2 \beta_c
-\end{split}
-\end{equation}
-Meaning that $\delta\boldsymbol{\lambda}$ scales as $\beta+\beta_c$. Putting this all together, $ \sqrt{{\delta\lambda}^\mu g_{\mu\nu} {\delta\lambda}^\nu} \propto \sqrt{\beta}$, meaning it will be minimized at infinite temperature - when $\beta=0$.
+where we used $1-m^2=1/(\beta_c K)$ and $\dfrac{\partial m}{\partial \beta_c} = \dfrac{2m}{(1-m^2)^2}$ from \eqref{m(beta)}.
+Hence the displacement along the zero mode scales as 
+\(
+\delta\boldsymbol{\lambda}\sim (\beta+\beta_c).
+\)
+
+\paragraph{Conclusion: minimum at $\beta=0$.}
+Combining the prefactor and displacement scalings,
+\[
+\sqrt{\delta\lambda^\mu\, g_{\mu\nu}\, \delta\lambda^\nu}
+\;\propto\;
+\sqrt{\beta}
+\]
+so the infinitesimal thermodynamic length is minimized at $\beta=0$ (infinite temperature).
+Thus, within the disordered phase, the least-dissipation path approaches the high-temperature limit.
+
+\paragraph{Geometric interpretation.}
+In this regime the metric degenerates, leaving a single nonzero eigenvalue that defines a unique geodesic submanifold. 
+The null direction $\boldsymbol{v}_1$ corresponds to constant-magnetization curves, which carry zero thermodynamic cost. 
+Hence the effective optimization reduces to minimizing the scalar prefactor of the metric in $\beta$, rather than the full Riemannian length. 
+Geometrically, the least-dissipation trajectory is the projection of the full geodesic flow onto this one-dimensional submanifold, collapsing the dynamics of the manifold onto its non-degenerate component.
+
 
 % From eqs. \ref{m(beta)} and \ref{alpha(beta,m)}
 % \begin{equation}
