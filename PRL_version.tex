@@ -40,6 +40,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{comment}
 
 %\newcommand{\oren}[1]{{\color{red} [Oren:]\xspace}}%\usepackage{hyperref}% add hypertext capabilities
 \newcommand{\oren}[1]{{\color{red} [Oren: #1]\xspace}}
@@ -81,7 +82,7 @@
 
 \maketitle
 
-\section{Introduction}
+\paragraph{Introduction}
 
 Since the earliest developments of thermodynamics, there have been attempts to cast the theory in geometric form \cite{gibbs1873method}. A geometric interpretation exists for equilibrium thermodynamics—for instance, the work performed by a heat engine corresponds to the area enclosed by its stroke in the $PV$ plane. However, an analogous geometric relation for excess dissipation in non-equilibrium processes remains elusive.
 
@@ -102,8 +103,10 @@ In this paper, we analyze the behavior of thermodynamic geometry near second-ord
 Finally, we apply the Sivak metric to determine the optimal protocol connecting two points in different phases of the mean-field antiferromagnet. Because the two phases are entirely separated by a phase boundary, any such protocol necessarily traverses a phase transition. Our results show that, while the thermodynamic length can diverge for the Sivak metric in certain models, it remains finite for all cases examined under the Ruppeiner metric.
 
 
-\section{Framework} \label{sec:framework}
-Before analyzing thermodynamic geometry near second-order phase transitions, we briefly define the key metrics and scaling tools used in our study.
+\paragraph{Framework} \label{sec:framework}
+First, we briefly define the key metrics and scaling tools used in our study.
+
+\begin{comment}
 
 \subsection{Ruppeiner and Weinhold Metric}
 The Ruppeiner–Weinhold metric \cite{ruppeinerThermodynamicsRiemannianGeometric1979, weinholdMetricGeometryEquilibrium1975} is defined as the Hessian of a thermodynamic potential or generalized entropy:
@@ -126,55 +129,47 @@ Minimizing $\mathcal{L}$ minimizes excess dissipation for a fixed-duration proto
     \mathcal{A} \ge \frac{\bar{\epsilon}}{\tau}\mathcal{L}^2
 \end{equation}
 with equality for constant-speed protocols (i.e $\left\|\dot{\boldsymbol{\lambda}}\right\|=\text{const.}$).
+\end{comment}
 
-\subsection{Sivak and Crooks Metric}
-The Ruppeiner metric assumes endoreversibility and uniform response times, which limit its scope. Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} removed these restrictions using linear-response theory, defining
+We are using the dissipation metric, first introduced in \cite{sivakThermodynamicMetricsOptimal2012}. It is defined as
 \begin{equation}
     g_{\mu\nu}^S = \int_0^\infty \langle \delta X_\mu(t)\, \delta X_\nu(0) \rangle\, dt =
     \mathcal{T}_{\mu\nu} \frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu}
 \end{equation}
-where $\mathcal{T}_{\mu\nu}$ is the time-response matrix, $Z$ the partition function, and $X_\mu$ the conjugate variable to $\lambda^\mu$.
-The response time is thus encoded directly in the metric, and the dissipated availability becomes
+where $\mathcal{T}_{\mu\nu}$ is the time-response matrix, $Z$ the partition function, and $X_\mu$ the conjugate variable to $\lambda^\mu$ -- the natural variables of the free energy (e.g., $\{S, M\}$ for $F(S, M)$).
+The response time is directly encoded in the metric through $\mathcal{T}_{\mu\nu}$, and the dissipated availability can be expressed as
 \begin{equation}
-    \mathcal{A} = \int_{\boldsymbol{\lambda}(t)} g^S_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt
+    \mathcal{A} = \int_{\boldsymbol{\lambda}(t)} g^S_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt,
 \end{equation}
-with the inequality
-\begin{equation}
+which is subject to the inequality
+\begin{equation}\label{Eq:A_bound}
     \mathcal{A} \ge \frac{\mathcal{L}^2}{\tau}
 \end{equation}
-again saturated by constant-speed protocols.
+ saturated by constant-speed protocols.
 
-\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisFramework}
-Near second order phase transitions, derivatives of the free energy -- and hence the Ruppeiner and Sivak metrics often diverge (for example, via diverging magnetic susceptibility). 
-Although exact partition functions are rarely tractable, the asymptotic form of these divergences is determined by critical exponents defining universality classes.
+%\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisFramework}
+Near second order phase transitions, free energy derivatives--- and hence the dissipation metric--- often diverge. Although exact partition functions are rarely tractable, the asymptotic form of these divergences is determined by critical exponents defining universality classes.
 
-The scaling hypothesis relates the free energy near the critical point $(T_c, H_c)$ to reduced variables $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$:
-\begin{equation}
+The scaling hypothesis relates the free energy $\varphi$ near the critical point $(T_c, H_c)$ to reduced variables $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$:
+\begin{equation} \label{eq:ScalingHyp}
     \varphi \propto t^b f\!\left(\frac{h}{t^\Delta}\right),
 \end{equation}
 where $f(x)$ is continuous and $f(x) \sim x^p$ as $x \to \infty$ \cite{Kardar_2007}.
-The exponents $b$, $\Delta$, and $p$ can be determined by standard critical exponents, e.g., $b = 2 - \alpha$ from the heat capacity exponent $\alpha$.
-This approach captures metric divergences across universality classes but does not address relaxation times, which are critical the dissipation in the Ruppiner formalism, and for the definition of the Sivak metric.
-
-\subsubsection*{Dynamic Scaling Hypothesis}
-Critical slowing down near second-order transitions leads to divergent relaxation times. The dynamic scaling hypothesis relates the relaxation time $\tau$ and correlation length $\xi$ as
+The exponents $b$, $\Delta$, are directly related to the standard critical exponents through the hyperscaling relations, e.g., $b = 2 - \alpha$ from the heat capacity exponent $\alpha$.
+This approach captures metric divergences across universality classes but does not address relaxation times, which are critical for the dissipation metric. The dynamic scaling hypothesis relates the relaxation time $\tau$ and correlation length $\xi$ as
 \begin{equation}
     \tau \propto \xi^z
 \end{equation}
 and the free energy scales as $\varphi \propto \xi^{-d}$ \cite{Kardar_2007, tauberCriticalDynamicsField2014}.
 Combining these yields
-\begin{equation}
+\begin{equation}\label{eq:TimeResponsScaling}
     \tau \propto \varphi^{-z/d} \propto t^{-bz/d}\, f^{-z/d}\!\left(\frac{h}{t^\Delta}\right)
 \end{equation}
 linking dynamical and thermodynamic critical behavior.
 
-\subsection{Divergence of Lengths}
-A diverging metric does not necessarily imply a divergent thermodynamic length -- analogous to how the Schwarzschild metric diverges at $r = r_s$ without a corresponding geometric singularity. 
-For constant-speed protocols of fixed duration,
-\begin{equation}
-    \mathcal{A} \propto \mathcal{L}^2
-\end{equation}
-Thus, a finite thermodynamic length guarantees the existence of a finite-dissipation protocol. As opposed to that, from the Cauchy-Schwarz inequality $\mathcal{L} \to \infty$ implies $\mathcal{A} \to \infty$.
+%\subsection{Divergence of Lengths}
+A diverging metric does not necessarily imply a divergent thermodynamic length. For constant-speed protocols of fixed duration, Eq.(\ref{Eq:A_bound}) implies $\mathcal{A} \propto \mathcal{L}^2$.
+Thus, a finite thermodynamic length guarantees the existence of a finite-dissipation protocol. In addition, from the Cauchy-Schwarz inequality $\mathcal{L} \to \infty$ implies $\mathcal{A} \to \infty$.
 
 Consequently, the convergence of thermodynamic length determines whether finite-dissipation protocols exist. 
 If $\ell(s) = \sqrt{g_{\mu\nu}\dot{\lambda}^\mu\!\left(s\right)\dot{\lambda}^\nu\!\left(s\right)} \propto s^{-p}$ near criticality (as $s \rightarrow 0$), the total length diverges only for $p > 1$. 
@@ -182,37 +177,73 @@ If $\ell(s) = \sqrt{g_{\mu\nu}\dot{\lambda}^\mu\!\left(s\right)\dot{\lambda}^\nu
 Note that this observation does not necessarily inform  us about the metric itself, or intrinsic geometry of the manifold. The metric might diverge for flat space \cite{PhysRev.119.1743,Szekeres:1960gm}, and the manifold might have divergent curvature despite having finite lengths and a non-divergent metric. 
 
 
-\section{Results}
+\paragraph{Results}
 
-\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisResults}
+%\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisResults}
 
-\subsubsection{Scaling Hypothesis for the Free Energy}
-We employ the scaling hypothesis for the free energy to analyze the divergence of the Ruppeiner 
-metric and determine whether the thermodynamic length diverges along paths crossing a phase transition.
-
-Assuming the singular part of the thermodynamic potential potential scales as
-\begin{equation}
-    \varphi \propto t^b f\!\left(\frac{h}{t^\Delta}\right)
-\end{equation}
-the metric near criticality ($t,h \to 0$) scales as
+%\subsubsection{Scaling Hypothesis for the Free Energy}
+The metric near a phase transition diverges when either one of the free energy derivatives or the time responses diverge. Assuming the singular part of the thermodynamic potential scales as Eq.(\ref{eq:ScalingHyp}), the scaling of the derivatives depends on the direction of the approach to criticality. Specifically, the two possible asymptotic behaviors are 
 \begin{align}
-    \left(g_{\mu\nu}\right) \Big|_{\frac{h}{t^\Delta} \to \text{const.}} &\propto 
+    \left(\frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu}\right) \Big|_{\frac{h}{t^\Delta} \to \text{const.}} &\propto 
     \begin{pmatrix}
         t^{b-2} & t^{b-\Delta-1} \\
         t^{b-\Delta-1} & t^{b-2\Delta}
     \end{pmatrix}, \\[4pt]
-    \left(g_{\mu\nu}\right) \Big|_{\frac{h}{t^\Delta} \to \infty} &\propto
+    \left(\frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu}\right) \Big|_{\frac{h}{t^\Delta} \to \infty} &\propto
     \begin{pmatrix}
         t^{-2}h^p & t^{-1}h^{p-1} \\
         t^{-1}h^{p-1} & h^{p-2}
     \end{pmatrix}.
 \end{align}
-Here, the two limits correspond to different asymptotic behaviors of $f$ as $\frac{h}{t^\Delta}$ tends to a constant or diverges.
+The time response divergence can be obtained from  Eq.(\ref{eq:TimeResponsScaling}). From the static scaling relation, we obtain that the divergence of $\tau$ follows
+\begin{equation}
+    \tau \propto
+    \begin{cases}
+        t^{-bz/d}, & \frac{h}{t^\Delta} \to \text{const.} \\[4pt]
+        h^{-pz/d}, & \frac{h}{t^\Delta} \to \infty
+    \end{cases}
+\end{equation}
+Together, the derivatives of the free energy and the response time imply the following scaling: For $\frac{h}{t^\Delta} \to \text{const.}$, one finds that
+\begin{align}
+    g_{tt}\,\dot{t}^2 &\propto s^{b(1-z/d)-2} \\
+    g_{th}\,\dot{t}\,\dot{h} &\propto s^{b(1-z/d)-2+(k-\Delta)} \\
+    g_{hh}\,\dot{h}^2 &\propto s^{b(1-z/d)-2+2(k-\Delta)}
+\end{align}
+Thus, the convergence condition becomes
+\begin{equation}
+    b\!\left(1 - \frac{z}{d}\right) > 0
+\end{equation}
+Similarly, for $\frac{h}{t^\Delta} \to \infty$,
+\begin{equation}
+    g_{ij}\dot{x}^i\dot{x}^j \propto s^{p(1-z/d)-2}
+\end{equation}
+so convergence requires
+\begin{equation}
+    p\!\left(1 - \frac{z}{d}\right) > 0
+\end{equation}
+These relations can be used to explore the distance divergence across phase transitions in various models. As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic lengths diverge for the 2D Ising and 2D Potts models. Surprisingly, however, it remains finite for the 3D Ising model.
 
-To study length divergences, we must specify the path in parameter space, which determines the scaling of $\frac{h}{t^\Delta}$.  
-We consider two representative cases.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|c||c|c|c}
+        \multicolumn{2}{c||}{} & $d$ & $z$ & $z/d$ \\
+        \hline \hline
+        \multirow{2}{*}{2D Ising} & Class A & $2$ & $2.165(10)$ & $1.083(5)$ \\
+                                  & Class B & $2$ & $2.235(10)$ & $1.117(5)$ \\
+        \hline
+        \multicolumn{2}{c||}{3D Ising} & $3$ & $2.032(4)$ & $0.677(1)$ \\
+        \hline
+        \multicolumn{2}{c||}{2D 3-state Potts} & $2$ & $2.198(2)$ & $1.099(1)$ \\
+        \hline
+        \multicolumn{2}{c||}{2D 4-state Potts} & $2$ & $2.290(3)$ & $1.095(2)$ \\
+    \end{tabular}
+    \caption{Dynamical scaling parameters for representative universality classes \cite{odor_universality_2004}.}
+    \label{tab:dynamical-divergences}
+\end{table}
 
-\paragraph{Case 1: $\frac{h}{t^\Delta} \to \text{const.}$ \label{par:scalingCase_1}}
+\begin{comment}
+This implies that to study length divergences, we must specify the path in parameter space, which determines the scaling of $\frac{h}{t^\Delta}$.  We therefore consider the two relevant cases.
+Case 1: $\frac{h}{t^\Delta} \to \text{const.}$ Near the phase transition, such a trajectory can be parametrized using
 \begin{equation}
     \begin{pmatrix}
         t \\ h
@@ -225,6 +256,20 @@ for which
 \begin{equation*}
     \frac{h}{t^\Delta} \xrightarrow[s \to 0]{} \text{const.}
 \end{equation*}
+The other case is $\frac{h}{t^\Delta} \to \infty$, which can be parametrized using 
+\begin{equation}
+    \begin{pmatrix}
+        t \\ h
+    \end{pmatrix} =
+    \begin{pmatrix}
+        s^{1/k} \\ s
+    \end{pmatrix}, \quad k < \Delta
+\end{equation}
+which implies
+\begin{equation*}
+    \frac{h}{t^\Delta} \xrightarrow[s \to 0]{} \infty
+\end{equation*}
+
 The metric contributions then scale as
 \begin{align*}
     g_{tt} \dot{t}^2 &\propto s^{b-2} \\
@@ -278,19 +323,12 @@ Both conditions ($b > 0$ and $p > 0$) hold for several universality classes, as 
     \label{tab:scaling-divergences}
 \end{table}
 
-\subsubsection{Dynamical Scaling Hypothesis}
+%\subsubsection{Dynamical Scaling Hypothesis}
 In both Ruppeiner and Sivak formalisms, dissipation depends on the system’s response time—appearing as $\bar{\epsilon}$ in the former and directly in the metric for the latter.  
 Using the dynamical scaling hypothesis, we can study how the relaxation time $\tau$ diverges.
 
-From $\tau \propto \psi^{-z/d}$ and the static scaling relation, we obtain
-\begin{equation}
-    \tau \propto t^{-bz/d}\, w\!\left(\frac{h}{t^\Delta}\right)
-\end{equation}
-where $w(x)$ is continuous and satisfies
-\begin{equation}
-    w(x) \xrightarrow[x\to\infty]{} x^{-pz/d}
-\end{equation}
-Hence, the divergence of $\tau$ follows
+From Eq.(\ref{eq:TimeResponsScaling}) and the static scaling relation, we obtain
+that the divergence of $\tau$ follows
 \begin{equation}
     \tau \propto
     \begin{cases}
@@ -298,8 +336,7 @@ Hence, the divergence of $\tau$ follows
         h^{-pz/d}, & \frac{h}{t^\Delta} \to \infty
     \end{cases}
 \end{equation}
-
-Including this factor modifies the scaling of the metric elements in \hyperref[par:scalingCase_1]{Case 1}
+Together, the derivatives of the free energy and the response time imply the following scaling in the  \hyperref[par:scalingCase_1]{Case 1}
 \begin{align}
     g_{tt}\,\dot{t}^2 &\propto s^{b(1-z/d)-2} \\
     g_{th}\,\dot{t}\,\dot{h} &\propto s^{b(1-z/d)-2+(k-\Delta)} \\
@@ -337,22 +374,22 @@ As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic length
     \caption{Dynamical scaling parameters for representative universality classes \cite{odor_universality_2004}.}
     \label{tab:dynamical-divergences}
 \end{table}
+\end{comment}
 
-
-\subsection{Antiferromagnetic Mean-Field Model - Ruppiner metric}
-\input{AntiFerro-MeanField-Ruppiner/Intro}
-\input{AntiFerro-MeanField-Ruppiner/disorderedPhase}
+%\subsection{Antiferromagnetic Mean-Field Model - Ruppiner metric}
+%\input{AntiFerro-MeanField-Ruppiner/Intro}
+%\input{AntiFerro-MeanField-Ruppiner/disorderedPhase}
 % \input{AntiFerro-MeanField-Ruppiner/AntiFerroPhase}
  
-\subsection{Antiferromagnetic Mean-Field Model - Sivak metric}
-\omer{I wrote this assuming we will only publish this, and not the Ruppiner metric}
+\paragraph{An example: the antiferromagnetic Mean-Field Ising Model}
+%\omer{I wrote this assuming we will only publish this, and not the Ruppiner metric}
 
-\input{AntiFerro-MeanField-Sivak/intro}
+\input{AntiFerro-MeanField-Sivak/intro_PRL}
 \input{AntiFerro-MeanField-Sivak/disorderedPhase}
 \input{AntiFerro-MeanField-Sivak/AntiFerroPhase}
 \input{AntiFerro-MeanField-Sivak/minimalPaths}
 
-\input{2D_Ising_Calculation}
+%\input{2D_Ising_Calculation}
 
 
 \bibliography{ThermodynamicGeometry}

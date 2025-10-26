@@ -1,25 +1,30 @@
-\subsubsection{Ordered phase}
+\subsubsection{Divergence at the Phase transition}
 
-In this model, as seen in \cite{vivesUnifiedMeanfieldStudy1997}, around the phase transition 
+In the ordered phase, near the critical line, the sublattice magnetizations can be expanded as shown in \cite{vivesUnifiedMeanfieldStudy1997}:
 \begin{align}
-    m & \approx \pm\sqrt{1-\frac{1}{\beta_c K}} + a_m \Delta \alpha - b_m \Delta \beta \\
-    s & \approx \sqrt{a_s \Delta \alpha + b_s \Delta \beta}
+    m &\approx \pm\sqrt{1-\frac{1}{\beta_c K}} + a_m\,\Delta\alpha - b_m\,\Delta\beta \\
+    s &\approx \sqrt{a_s\,\Delta\alpha + b_s\,\Delta\beta}
 \end{align}
-With $a,b$ being some positive constants, and 
+where $a_m,b_m,a_s,b_s>0$, and
 \begin{align*}
-    \Delta \alpha & = \alpha - \alpha_c \\
-    \Delta \beta & = \beta - \beta_c
+    \Delta\alpha &= \alpha - \alpha_c &
+    \Delta\beta &= \beta - \beta_c
 \end{align*}
-For shorter notation we'll denote 
+For brevity we define
 \begin{align*}
-    \Delta_m & = a_m \Delta \alpha - b_m \Delta \beta \\
-    \Delta_s & = a_s \Delta \alpha + b_s \Delta \beta
+    \Delta_m &= a_m\,\Delta\alpha - b_m\,\Delta\beta &
+    \Delta_s &= a_s\,\Delta\alpha + b_s\,\Delta\beta
 \end{align*}
 
-One can show that to lowest order in $\Delta$
+To lowest order in these small deviations, the sublattice magnetizations and corresponding susceptibilities satisfy
 \begin{align}
-    m_{A,B} & \approx \pm\sqrt{1-\frac{1}{\beta_c K}} \pm \sqrt{\Delta_s} \\
-    \zeta_{A,B} & \approx \frac{1}{\beta_c K} \left(1 \pm 2\sqrt{\Delta_s}\right)
+    m_{A,B} &\approx \pm\sqrt{1-\frac{1}{\beta_c K}} \;\pm\; \sqrt{\Delta_s} \\
+    \zeta_{A,B} &\approx \frac{1}{\beta_c K}\bigl(1 \pm 2\sqrt{\Delta_s}\bigr)
 \end{align}
 
-And the metric is to lowest order proportional to $\Delta_s^{-1}$. Meaning it diverges, but from the same considerations as in chapter \ref{subsec:ScalingHypothesisResults}, the length remains finite.
+Substituting these expressions into the Sivak metric yields, to leading order,
+\[
+g_{\mu\nu}\;\propto\;\Delta_s^{-1}
+\]
+Hence, while the metric diverges as $\Delta_s\!\to\!0$, the associated thermodynamic length remains finite—consistent with the scaling-hypothesis argument discussed in Sec.~\ref{subsec:ScalingHypothesisResults}. 
+In other words, although curvature quantities diverge at the transition, the thermodynamic length stays bounded when crossing the critical line.
