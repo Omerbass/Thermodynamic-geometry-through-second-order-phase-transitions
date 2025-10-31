@@ -121,10 +121,10 @@ The Ruppeiner–Weinhold metric \cite{ruppeinerThermodynamicsRiemannianGeometric
 \begin{equation}
     g_{\mu\nu}^R = \pm \frac{\partial^2 \varphi}{\partial \lambda^\mu \partial \lambda^\nu}
 \end{equation}
-where $\varphi$ is a thermodynamic potential (e.g., internal energy, entropy, or a Legendre transform), and $\lambda^\mu$ are its natural variables (e.g., $\{S, M\}$ for $E(S, M)$).
+where $\varphi$ is a thermodynamic potential (e.g., internal energy, entropy, or a Legendre transform), and $\lambda^\mu$ are its natural variables (e.g., $\{S, M\}$ for $E$).
 The sign ensures positive definiteness, consistent with the convexity or concavity of $\varphi$ \cite{Callen:450289}.
 
-Salamon \cite{salamonThermodynamicLengthDissipated1983} connected this metric to excess dissipation through the dissipated availability,
+Salamon \cite{salamonThermodynamicLengthDissipated1983} connected this metric to excess dissipation through the dissipated availability:
 \begin{equation} \label{SalomonDissipatedAvail}
     \mathcal{A} = \bar{\epsilon} \int_{\boldsymbol{\lambda}(s)} g^R_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, ds
 \end{equation}
@@ -132,11 +132,11 @@ where $\bar{\epsilon}$ is the average response time. The corresponding thermodyn
 \begin{equation}
     \mathcal{L} = \int_{\boldsymbol{\lambda}(s)} \sqrt{g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu}\, ds
 \end{equation}
-Minimizing $\mathcal{L}$ minimizes excess dissipation for a fixed-duration protocol, since the Cauchy–Schwarz inequality gives
+Minimizing $\mathcal{L}$ minimizes excess dissipation for a fixed-duration protocol, a result of the Cauchy–Schwarz inequality:
 \begin{equation}
     \mathcal{A} \ge \frac{\bar{\epsilon}}{\tau}\mathcal{L}^2
 \end{equation}
-with equality for constant-speed protocols (i.e $\left\|\dot{\boldsymbol{\lambda}}\right\|=\text{const.}$).
+with equality for constant-speed protocols (i.e $\sqrt{g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu}=\text{const.}$).
 
 \subsection{Sivak and Crooks Metric}
 The Ruppeiner metric assumes endoreversibility and uniform response times, which limit its scope. Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} removed these restrictions using linear-response theory, defining
