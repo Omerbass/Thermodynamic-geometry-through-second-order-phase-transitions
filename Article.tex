@@ -1,32 +1,32 @@
-\documentclass[%
- reprint,
-%superscriptaddress,
-%groupedaddress,
-%unsortedaddress,
-%runinaddress,
-%frontmatterverbose, 
-%preprint,
-%preprintnumbers,
-%nofootinbib,
-%nobibnotes,
-%bibnotes,
- amsmath,amssymb,
- aps,
-%pra,
-%prb,
-%rmp,
-%prstab,
-%prstper,
-%floatfix,
-]{revtex4-2}
+% \documentclass[%
+%  reprint,
+% %superscriptaddress,
+% %groupedaddress,
+% %unsortedaddress,
+% %runinaddress,
+% %frontmatterverbose, 
+% %preprint,
+% %preprintnumbers,
+% %nofootinbib,
+% %nobibnotes,
+% %bibnotes,
+%  amsmath,amssymb,
+%  aps,
+% %pra,
+% %prb,
+% %rmp,
+% %prstab,
+% %prstper,
+% %floatfix,
+% ]{revtex4-2}
 
 % For Thesis
-% \documentclass[pra,preprint, ,superscriptaddress,notitlepage,longbibliography]{revtex4-2}
-% \usepackage{anyfontsize}
-% \renewcommand{\normalsize}{\fontsize{12}{14}\selectfont}
-% \linespread{1.5}
-% \usepackage[margin=1.5cm]{geometry}
-% \usepackage{newtxtext,newtxmath}
+\documentclass[pra,preprint, ,superscriptaddress,notitlepage,longbibliography]{revtex4-2}
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{12}{14}\selectfont}
+\linespread{1.5}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{newtxtext,newtxmath}
 
 \usepackage[normalem]{ulem}
 \usepackage{graphicx}% Include figure files
@@ -76,6 +76,17 @@
 \date{\today}
 
 \begin{abstract}
+
+Thermodynamic geometry provides a powerful framework to analyze the dissipation of physical systems driven out of equilibrium, but near equilibrium.
+In its original formulation, the system's relaxation timescales had to be, to good approximation, constant throughout the control parameter space.
+In its current form, the formalism requires that linear response theory holds.
+We study the thermodynamic geometry of systems that undergo second-order phase transitions. 
+Using the scaling hypothesis, we show that while the Ruppeiner metric diverges at the critical point, the thermodynamic length may remain finite.
+However, for the Sivak-Crooks formulation of the metric, we show by use of the dynamical scaling hypothesis that the thermodynamic length can diverge in some systems.
+We argue, that the length likely converges for higher dimensional systems.
+Finally, we compute the Sivak-Crooks metric of the mean-field antiferromagnetic Ising model, and use it to study optimal protocols connecting points of interest in the system.
+We show analytically that in the disordered phase, the metric effectively reduces to a 1D manifold, allowing for simple determination of optimal protocols.
+In the ordered phase, we numerically find optimal protocols using the Fast-Marching method.
 
 \end{abstract}
 
