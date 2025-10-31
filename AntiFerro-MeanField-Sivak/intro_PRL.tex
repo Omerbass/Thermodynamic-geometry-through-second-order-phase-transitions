@@ -3,126 +3,25 @@ This makes it an ideal setting for our analysis. Exact solutions for the free en
 $\left(T_1,h_1\right)\!\to\!\left(T_2,h_2\right)$,
 with $\left(T_1,h_1\right)$ in the antiferromagnetic phase and $\left(T_2,h_2\right)$ in the disordered phase, for the mean-field antiferromagnetic model introduced in \cite{vivesUnifiedMeanfieldStudy1997}. 
 
-In this model, the spins are split into sublattices $A$ and $B$, where a spin in sublattice $A$ interactions only between opposite sublattices. 
-Let $m_A$ and $m_B$ denote the sublattice magnetizations. 
-The Massieu potential is
-\begin{widetext}
-\begin{equation}
-    \psi \;=\ln Z=\; -\frac{1}{2}\!\left[ \beta K\, m_A m_B \;-\; \beta h\, (m_A+m_B)
-    \;+\; \frac{1}{2}\,\big(\vartheta(m_A)+\vartheta(m_B)\big) \right]
-\end{equation}
-\end{widetext}
-where $\beta=1/T$, $K=-Jz$ with $J<0$ (antiferromagnetic coupling) and $z=2d$ the coordination number, and
+In this model, the spins $s_i$ are split into sublattices $A$ and $B$, where a spin in sublattice $A$ interacts with all spins in sublattice $B$ with equal interaction strength. There are no interactions between spins in the same sublattice.
+Let $m_A=\sum_{i\in A} s_i$ and $m_B = \sum_{i\in B}s_i$ denote the sublattice magnetizations. 
+The Massieu potential of the system is given by
+\begin{eqnarray}
+    \psi \;=\ln Z&= -\frac{1}{2}\!\Big[&  \beta K\, m_A m_B \;-\; \beta h\, (m_A+m_B)\nonumber \\
+      & &\left. \;+\; \,\big(\vartheta(m_A)+\vartheta(m_B)\big) \right]
+\end{eqnarray}
+where $\beta=1/T$, $K=-J$ with $J<0$ (antiferromagnetic coupling), and we define
 \begin{equation}
     \vartheta(x) \;=\; \frac{1}{2}\Big[(1+x)\log(1+x)+(1-x)\log(1-x)\Big]
 \end{equation}
 We also set $\alpha\equiv \beta h$ for brevity.
 
-At equilibrium, $m_A$ and $m_B$ minimize $\psi$ and satisfy the mean-field equations
-\begin{align}
-    m_A &= \tanh\!\left(\alpha - \beta K\, m_B\right) \label{eq:SCEmAB-A}\\
-    m_B &= \tanh\!\left(\alpha - \beta K\, m_A\right) \label{eq:SCEmAB-B}
-\end{align}
-It is convenient to define the total and staggered magnetizations
-\begin{align}
-    m &= \frac{m_A+m_B}{2}\\
-    s &= \frac{m_A-m_B}{2}
-\end{align}
-
-For each $m\in[-1,1]$, the corresponding critical parameters $(\beta_c,\alpha_c)$ on the phase boundary satisfy
-\begin{align}
-    m &= \pm\sqrt{1-\frac{1}{\beta_c K}} \label{m(beta)}\\
-    \alpha_c &= \pm\Big(\beta_c K\, m + \arctanh m\Big) \label{alpha(beta,m)}
-\end{align}
-
-\subsubsection{Calculation of the Metric}
-The computation proceeds in three steps:
-\begin{enumerate}
-    \item \textbf{Equilibrium covariances:} evaluate \\
-    $\langle \delta m_i(0)\,\delta m_j(0)\rangle$ ($i,j\in\{A,B\}$).
-    \item \textbf{Dynamics and time integral:} incorporate linearized relaxation to obtain the integrated correlation.
-    \item \textbf{Variable transform:} convert to the $\boldsymbol{\lambda}=(\beta,\beta h)$ representation via the Jacobian from $(m_A,m_B)$ to $(-E,m)$.
-\end{enumerate}
-Let $\zeta_i\equiv 1-m_i^2$ for $i\in\{A,B\}$. 
-The inverse covariance is the Hessian of $\psi$ with respect to $(m_A,m_B)$:
-\begin{equation}
-    -\Sigma^{-1} \;=\; \frac{1}{2}\!
-    \begin{pmatrix}
-        \dfrac{1}{\zeta_A} & \beta K \\
-        \beta K & \dfrac{1}{\zeta_B}
-    \end{pmatrix}.
-\end{equation}
-Its inverse is
-\begin{equation}
-    \Sigma \;=\; \frac{2}{\,1-\beta^2 K^2 \zeta_A \zeta_B\,}
-    \begin{pmatrix}
-        \zeta_A & -\beta K\,\zeta_A\zeta_B \\
-        -\beta K\,\zeta_A\zeta_B & \zeta_B
-    \end{pmatrix}
-\end{equation}
-
-The relaxation dynamics \cite{klichMpembaIndexAnomalous2019} are
-\begin{align}
-    \dot m_A &= \Gamma\!\left[\tanh\!\left(\alpha - \beta K\, m_A\right) - m_A\right]\\
-    \dot m_B &= \Gamma\!\left[\tanh\!\left(\alpha - \beta K\, m_B\right) - m_B\right]
-\end{align}
-with microscopic attempt rate $\Gamma$. 
-Linearizing about equilibrium gives
-\begin{align}
-    \delta \dot m_A &= \Gamma\left(-\,\delta m_A \;-\; \beta K\,\zeta_A\,\delta m_B\right)\\
-    \delta \dot m_B &= \Gamma\left(-\,\beta K\,\zeta_B\,\delta m_A \;-\; \delta m_B\right)
-\end{align}
-In vector form, with $y=(\delta m_A,\delta m_B)^{\!\top}$
-\begin{equation}
-    \dot y \;=\; -\Gamma 
-    \begin{pmatrix}
-        1 & \beta K\,\zeta_A \\
-        \beta K\,\zeta_B & 1
-    \end{pmatrix} y \;=\; -M y
-\end{equation}
-
-We require
-\begin{equation}
-    \beta \int_{0}^{\infty}\!\langle \delta m_i(0)\,\delta m_j(t)\rangle\,dt
-    \;=\; \beta \int_0^\infty \!\langle y(0)\,y^{\!\top}(t)\rangle\,dt
-\end{equation}
-Since $\langle \delta m_i(0)\,\eta(t)\rangle=0$ for $t>0$, substituting $y(t)=e^{-Mt}y(0)$ yields
-\begin{widetext}
-\begin{equation}
-\begin{aligned}
-    \beta \int_0^\infty \!\langle y(0)\,y^{\!\top}(t)\rangle\,dt
-    &= \beta\,\langle y(0)\,y^{\!\top}(0)\rangle \int_0^\infty \!e^{-M^{\!\top}t}\,dt
-     \;=\; \beta\,\Sigma\,(M^{\!\top})^{-1} \\[3pt]
-    &= \frac{2\beta}{\Gamma\big(1-\beta^2 K^2 \zeta_A \zeta_B\big)^{\!2}}
-    \begin{pmatrix}
-        \zeta_A\big(1+\beta^2 K^2 \zeta_A \zeta_B\big) & -\,2\beta K\,\zeta_A\zeta_B\\
-        -\,2\beta K\,\zeta_A\zeta_B & \zeta_B\big(1+\beta^2 K^2 \zeta_A \zeta_B\big)
-    \end{pmatrix}\!
-\end{aligned}
-\end{equation}
-\end{widetext}
-
-To express the Sivak metric in the control variables $\boldsymbol{\lambda}=(\beta,\beta h)$, we transform fluctuations to $(-E,m)$ via
-\begin{align}
-    E &= \tfrac{1}{2} K\, m_A m_B\\
-    m &= \tfrac{1}{2}(m_A+m_B)
-\end{align}
-so the Jacobian is
-\begin{equation}
-    P \;=\; \frac{\partial(-E,m)}{\partial(m_A,m_B)} 
-    \;=\; \frac{1}{2}
-    \begin{pmatrix}
-        -K m_B & -K m_A \\
-        \;1 & \;1
-    \end{pmatrix}
-\end{equation}
-The Sivak metric then reads
+As shown in the end matter, assuming Glauber rates for a single transition with a microscopic timescale $\Gamma$, the dissipation metric is given by 
 \begin{widetext}
 \begin{equation}
 \resizebox{\columnwidth}{!}{$
 \begin{aligned}
-    g^{\text{Sivak}}_{\mu\nu}
-    \;= & \; \beta\, P\,\Sigma\,(M^{\!\top})^{-1} P^{\!\top} \\
+    g_{\mu\nu}
     \;= & \; \frac{\beta}{2\Gamma\big(1-\beta^2 K^2 \zeta_A \zeta_B\big)^{\!2}}
     \begin{pmatrix}
     \scriptstyle K^2 \!\left[\!\big(1+\beta^2 K^2 \zeta_A \zeta_B\big)\big(m_A^2 \zeta_B + m_B^2 \zeta_A\big) - 4\beta K\, m_A m_B \zeta_A \zeta_B \!\right]
@@ -137,28 +36,10 @@ The Sivak metric then reads
 $}
 \end{equation}
 \end{widetext}
+where $\zeta_i = 1-m_i^2$, and where $m_A$ and $m_B$ are the minimizer of $\psi$, satisfying the mean-field equations
+\begin{align}
+    m_A &= \tanh\!\left(\alpha - \beta K\, m_B\right) \label{eq:SCEmAB-A}\\
+    m_B &= \tanh\!\left(\alpha - \beta K\, m_A\right) \label{eq:SCEmAB-B}
+\end{align}
+Let us discuss the implications of this metric on the two sides of the phase transition: the disordered and ordered phases. 
 
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_bb.png}
-        \caption{Caloric element $g_{\beta\beta}$}
-    \end{subfigure}%\hfill
-    
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_ab.png}
-        \caption{Magneto–caloric element $g_{\alpha\beta}$}
-    \end{subfigure}
-    % \vspace{0.75ex}
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_aa.png}
-        \caption{Magnetic element $g_{\alpha\alpha}$}
-    \end{subfigure}
-    \caption{Elements of the Sivak metric for the mean-field antiferromagnet}
-    \label{fig:sivakmetric_antiferro}
-\end{figure}
-
-Figures~\ref{fig:sivakmetric_antiferro} show the resulting metric components.

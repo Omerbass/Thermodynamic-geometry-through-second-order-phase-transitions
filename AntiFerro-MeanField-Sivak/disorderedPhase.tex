@@ -1,8 +1,7 @@
 
 \subsubsection{Disordered phase} \label{subsec:SivakDisorderedPhase}
-
-In the disordered phase we have $m_A=m_B\equiv m$ (hence $\zeta_A=\zeta_B\equiv \zeta$). 
-The Sivak metric in $(\beta,\alpha)$, with $\alpha=\beta h$, reduces to
+In the disordered phase, $m_A=m_B\equiv m$ (hence $\zeta_A=\zeta_B\equiv \zeta$). 
+The metric in this case reduces to
 \begin{equation}
     g_{\mu\nu} \;=\; \frac{\beta\,\zeta}{\Gamma\bigl(1+\beta K \zeta\bigr)^2}
     \begin{pmatrix}
@@ -10,103 +9,9 @@ The Sivak metric in $(\beta,\alpha)$, with $\alpha=\beta h$, reduces to
         -K m & 1
     \end{pmatrix}.
 \end{equation}
-Since $\det P=0$ in this phase (rows of $P$ become proportional when $m_A=m_B$), the metric is rank-one and $\det g=0$. 
-The null eigenvector aligns with directions of constant $m$, so motion along that direction incurs zero thermodynamic length. 
-Therefore the problem reduces to a 1D minimization: at what distance from the phase boundary does the length minimize? 
-We show below that the minimum occurs at $\beta=0$ (infinite temperature).
+The metric is rank-one for any value of $m$, with $\det g=0$. This is physically expected: in the disorder phase the system is uniquely defined by a single order parameter -- the total magnetization, therefore there is no dissipation associate with changing the parameters such that the total magnetization stays fixed. Indeed, the null ezgenvector aligns with directions of constant $m$.
+The problem of minimizing distances therefore reduces to a 1D minimization: at what distance from the phase boundary does the length minimize? 
 
-\paragraph{Eigenstructure and the zero-length direction.}
-The eigenpairs of the bracketed matrix are
-\begin{align}
-    \lambda_1 &= 0, 
-    & \boldsymbol{v}_1 &= \begin{pmatrix} 1 \\ K m \end{pmatrix},
-    \\
-    \lambda_2 &= 1+K^2 m^2, 
-    & \boldsymbol{v}_2 &= \begin{pmatrix} K m \\ -1 \end{pmatrix}.
-\end{align}
-Thus the zero mode $\boldsymbol{v}_1$ follows lines of constant $m$ in $(\beta,\alpha)$.
-
-\paragraph{Scaling of the metric prefactor.}
-From \eqref{m(beta)} we have $\zeta=1-m^2=1/(\beta_c K)$ along the phase boundary labeled by magnetization $m$, with critical parameter $\beta_c$.
-Using this in the prefactor gives
-\begin{equation}
-    g_{\mu\nu} \;\propto\; 
-    \frac{\beta}{\bigl(\beta_c+\beta\bigr)^2}\,\bigl(1+K^2 m^2\bigr).
-\end{equation}
-
-\paragraph{Scaling of the displacement along the zero mode.}
-Consider two neighboring constant-$m$ lines labeled by 
-$(\beta_{c1},\alpha_{c1})$ and $(\beta_{c2},\alpha_{c2})=(\beta_{c1}+\delta_\beta,\alpha_{c1}+\delta_\alpha)$.
-We find their intersection with a straight line parallel to the zero mode at each point:
-\begin{align}
-    \begin{pmatrix}\beta\\ \alpha\end{pmatrix}
-    &= a\,\boldsymbol{v}_1(\beta_{c1}) + \begin{pmatrix}\beta_{c1}\\ \alpha_{c1}\end{pmatrix}
-    \label{eq:b0a0-1}\\[2pt]
-    \begin{pmatrix}\beta\\ \alpha\end{pmatrix}
-    &= b\,\boldsymbol{v}_1(\beta_{c2}) + \begin{pmatrix}\beta_{c1}+\delta_\beta\\ \alpha_{c1} + \dfrac{\partial \alpha_c}{\partial \beta_c}\,\delta_\beta \end{pmatrix}
-    \label{eq:b0a0-2}
-\end{align}
-Subtracting \eqref{eq:b0a0-1} from \eqref{eq:b0a0-2} yields
-\begin{equation}
-    \delta_\beta 
-    \begin{pmatrix} 1 \\[2pt] \dfrac{\partial \alpha_c}{\partial \beta_c} \end{pmatrix}
-    =
-    \begin{pmatrix}
-        1 & 1 \\
-        K m_2 & K m_1
-    \end{pmatrix}
-    \begin{pmatrix} -b \\[2pt] a \end{pmatrix}
-\end{equation}
-where $m_1=m(\beta_{c1})$, $m_2=m(\beta_{c2})$.
-From \eqref{alpha(beta,m)} we have 
-\(
-\dfrac{\partial \alpha_c}{\partial \beta_c} = \dfrac{1}{m}
-\)
-Inverting gives
-\begin{equation}
-\begin{aligned}
-    a \;&=\; \frac{1-m^2}{K m}\,\frac{\partial m}{\partial \beta_c}
-      \;=\; \frac{1-m^2}{K m}\,\frac{2m}{(1-m^2)^2}\\
-      \;&=\; \frac{2}{K(1-m^2)}
-      \;=\; 2\beta_c
-\end{aligned}
-\end{equation}
-where we used $1-m^2=1/(\beta_c K)$ and $\dfrac{\partial m}{\partial \beta_c} = \dfrac{2m}{(1-m^2)^2}$ from \eqref{m(beta)}.
-Hence the displacement along the zero mode scales as 
-\(
-\delta\boldsymbol{\lambda}\sim (\beta+\beta_c).
-\)
-
-\paragraph{Conclusion: minimum at $\beta=0$.}
-Combining the prefactor and displacement scalings,
-\[
-\sqrt{\delta\lambda^\mu\, g_{\mu\nu}\, \delta\lambda^\nu}
-\;\propto\;
-\sqrt{\beta}
-\]
-so the infinitesimal thermodynamic length is minimized at $\beta=0$ (infinite temperature).
-Thus, within the disordered phase, the least-dissipation path approaches the high-temperature limit.
-
-\paragraph{Geometric interpretation.}
-In this regime the metric degenerates, leaving a single nonzero eigenvalue that defines a unique geodesic submanifold. 
-The null direction $\boldsymbol{v}_1$ corresponds to constant-magnetization curves, which carry zero thermodynamic cost. 
-Hence the effective optimization reduces to minimizing the scalar prefactor of the metric in $\beta$, rather than the full Riemannian length. 
-Geometrically, the least-dissipation trajectory is the projection of the full geodesic flow onto this one-dimensional submanifold, collapsing the dynamics of the manifold onto its non-degenerate component.
+The disordered phase there is a single nonzero eigenvalue that defines a unique geodesic submanifold. The null direction  corresponds to constant-magnetization curves, which carry zero thermodynamic cost. Hence the effective optimization reduces to minimizing the scalar prefactor of the metric in $\beta$, rather than the full Riemannian length. Geometrically, the least-dissipation trajectory is the projection of the full geodesic flow onto this one-dimensional submanifold, collapsing the dynamics of the manifold onto its non-degenerate component. In this model, the minimum occurs at $\beta=0$ (see End Matter), namely at infinite temperature. This means that the optimal trajectory between two points in this phase follows the null trajectory from the initial point to $\beta=0$, then traverse along $\beta=0$, then return along a null trajectory to the final point. 
 
 
-% From eqs. \ref{m(beta)} and \ref{alpha(beta,m)}
-% \begin{equation}
-%    K d\beta_c = \frac{2m}{\left(1-m^2\right)^2}dm
-% \end{equation}
-% \begin{equation}
-%     d\alpha_c = \frac{2}{\left(1-m^2\right)^2}dm
-% \end{equation}
-
-% and the length differential
-% \begin{equation} \label{eq:LengthAlongPTline_disorderedPhase}
-% \begin{split}
-%     d\ell & = \sqrt{d\lambda^\mu g_{\mu\nu} d\lambda^\nu} \\
-%           & =  \frac{\left|dm\right|}{ \sqrt{ 2 \Gamma K  } \, \zeta } \\
-%           & =  \frac{\left|d(\arctanh \, m)\right|}{ \sqrt{ 2 \Gamma K  } } \\
-% \end{split}
-% \end{equation}

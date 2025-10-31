@@ -1,0 +1,21 @@
+
+We identify four distinct classes of minimal (shortest) paths. If both initial and final points are in the disordered phase, then the shortest path is to traverse along the constant magnetization towards $\beta=0$, then change the external magnetic field until the correct value of total magnetization is acheived, then traverse back along a constant total magnetization line to the final point. 
+
+
+In the second case, the initial and final states lie in different phases. The optimal trajectory, which for simplicity we describe as initiating in the antiferromagnetic phase and ending in the disordered phase, starts from the initial point in one phase to the nearest point on the phase transition line, crosses into the disordered phase, and then ascends to infinite temperature ($\beta = 0$). Once at $\beta = 0$, the trajectory traverses at this value of $\beta$—where the thermodynamic length vanishes—until reaching the final magnetization value, and finally descends along the constant-magnetization line to the final point.
+
+In the third case, both points are in the antiferromagnetic phase, and the direct geodesic connecting them is shorter than any path that detours through the disordered region.  Here, the minimal path lies entirely within the ordered manifold.
+
+The fourth case occurs when both endpoints are in the antiferromagnetic phase, but it is nevertheless shorter to cross the phase transition back and forth to the disorder phase than to remain entirely within the ordered region across all the trajectory. This trajectory can be viewed as a composition of two  paths: the system transitions from the ordered phase to the disordered phase and then back again. 
+Because paths within the disordered phase have zero thermodynamic length except for the part at $\beta=0$, the total length of such a trajectory is often dominated by the two crossings, and can be shorter than any trajectory that does not cross the phase transition.
+
+An illustration of these three classes of paths is shown in Fig.~\ref{fig:shortestPaths}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/ShortestPaths.png}
+    \caption{Illustration of the three types of minimal paths in the mean-field antiferromagnet. The dashed black line is the phase transition between the disordered phase in the left and the antiferromagnetic in the right. The colored lines are example for optimal trajectories.}
+    \label{fig:shortestPaths}
+\end{figure}
+
+The thermodynamic lengths within the antiferromagnetic phase were computed using the Fast Marching Method \cite{kimmelComputingGeodesicPaths1998}, following the approach of \cite{rotskoffDynamicRiemannianGeometry2015}. 
+Minimal paths were obtained by performing gradient descent along the numerically computed distance function.
