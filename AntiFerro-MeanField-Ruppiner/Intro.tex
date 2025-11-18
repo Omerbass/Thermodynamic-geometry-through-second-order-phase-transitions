@@ -1,13 +1,14 @@
-As discussed earlier, in the antiferromagnet it is impossible to construct a continuous path between the antiferromagnetic and disordered phases without crossing a second-order phase transition. 
-This makes the model an ideal test case for applying our framework.
 
-We demonstrate how to determine the path of least dissipation between two thermodynamic states, 
-$\left(T_1, h_1\right) \rightarrow \left(T_2, h_2\right)$, 
-where $\left(T_1, h_1\right)$ lies in the antiferromagnetic phase and $\left(T_2, h_2\right)$ in the disordered phase. 
-For analytical tractability, we use the Ruppeiner metric.
+
+
+As discussed earlier, the model used as a case study is the mean-field (MF) Ising model with antiferromagnetic interactions and a uniform magnetic field, in contrast to other treatments of antiferromagnets that introduce a staggered magnetic field acting oppositely on neighboring spins.
+In this model, it is impossible to construct a continuous path connecting the antiferromagnetic and disordered phases without crossing a second-order phase transition.
+This property makes it an ideal test case for applying the thermodynamic geometry framework laid out above.
+
+I now show a calculation of the Ruppiner metric as well as an interesting result concerning minimal paths in the disordered phase, that turns out to be a general result for MF models.
 
 \subsubsection{The Model}
-We consider the mean-field antiferromagnet introduced by Vives \textit{et al.}~\cite{vivesUnifiedMeanfieldStudy1997}. 
+We consider the MF antiferromagnet introduced by Vives \textit{et al.}~\cite{vivesUnifiedMeanfieldStudy1997}. 
 The system consists of spins arranged on a square lattice divided into two interpenetrating sublattices, $A$ and $B$, such that spins on one sublattice interact only with spins on the other. 
 Denoting the sublattice magnetizations by $m_A$ and $m_B$, the Gibbs free energy per spin is
 \begin{equation}
@@ -42,10 +43,3 @@ Differentiating the Gibbs free energy with respect to $T$ and $h$ yields the Rup
     {2\!\left[T^2 - K^2(1 - m_A^2)(1 - m_B^2)\right]}
 \end{align}
 \end{widetext}
-
-% Optional: include determinant if relevant
-% The determinant of the metric is
-% \begin{equation}
-%     g = \frac{(1 - m_A^2)(1 - m_B^2)\left[\arctanh(m_A) - \arctanh(m_B)\right]^2}
-%     {4\!\left[T^2 - K^2(1 - m_A^2)(1 - m_B^2)\right]}.
-% \end{equation}

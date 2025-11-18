@@ -1,5 +1,6 @@
 
 \section{Calculating the dissipation metrix}
+\begin{comment}
 It is convenient to define the total and staggered magnetizations
 \begin{align}
     m &= \frac{m_A+m_B}{2}\\
@@ -11,17 +12,15 @@ For each $m\in[-1,1]$, the corresponding critical parameters $(\beta_c,\alpha_c)
     m &= \pm\sqrt{1-\frac{1}{\beta_c K}} \label{m(beta)}\\
     \alpha_c &= \pm\Big(\beta_c K\, m + \arctanh m\Big) \label{alpha(beta,m)}
 \end{align}
+\end{comment}
 
 \subsubsection{Calculation of the Metric}
-The computation proceeds in three steps:
-\begin{enumerate}
-    \item \textbf{Equilibrium covariances:} evaluate \\
+The computation is done as follows: First, we calculate the equilibrium covariances, namely we evaluate 
     $\langle \delta m_i(0)\,\delta m_j(0)\rangle$ ($i,j\in\{A,B\}$).
-    \item \textbf{Dynamics and time integral:} incorporate linearized relaxation to obtain the integrated correlation.
-    \item \textbf{Variable transform:} convert to the $\boldsymbol{\lambda}=(\beta,\beta h)$ representation via the Jacobian from $(m_A,m_B)$ to $(-E,m)$.
-\end{enumerate}
+    From these, we calculate the time integrated correlations by incorporate linearized relaxation. As these calculations are easier in $m_i$ variables, we then convert to the $\boldsymbol{\lambda}=(\beta,\beta h) \equiv (\beta, \alpha)$ representation, in which the metric is provided.
+
 Let $\zeta_i\equiv 1-m_i^2$ for $i\in\{A,B\}$. 
-The inverse covariance is the Hessian of $\psi$ with respect to $(m_A,m_B)$:
+The inverse covariance is the Hessian of the function $\psi$ with respect to the coordinates $(m_A,m_B)$. Using the expression for $\psi$, it is given by
 \begin{equation}
     -\Sigma^{-1} \;=\; \frac{1}{2}\!
     \begin{pmatrix}
@@ -29,7 +28,7 @@ The inverse covariance is the Hessian of $\psi$ with respect to $(m_A,m_B)$:
         \beta K & \dfrac{1}{\zeta_B}
     \end{pmatrix}.
 \end{equation}
-Its inverse is
+Its inverse is given by
 \begin{equation}
     \Sigma \;=\; \frac{2}{\,1-\beta^2 K^2 \zeta_A \zeta_B\,}
     \begin{pmatrix}
@@ -38,10 +37,10 @@ Its inverse is
     \end{pmatrix}
 \end{equation}
 
-The relaxation dynamics \cite{klichMpembaIndexAnomalous2019} are
+The relaxation dynamics we use \cite{klichMpembaIndexAnomalous2019}, corresponds to single spin Glauber dynamics, and are given by
 \begin{align}
-    \dot m_A &= \Gamma\!\left[\tanh\!\left(\alpha - \beta K\, m_A\right) - m_A\right]\\
-    \dot m_B &= \Gamma\!\left[\tanh\!\left(\alpha - \beta K\, m_B\right) - m_B\right]
+    \dot m_A &= \Gamma\!\left[\tanh\!\left(\alpha - \beta K\, m_B\right) - m_A\right]\\
+    \dot m_B &= \Gamma\!\left[\tanh\!\left(\alpha - \beta K\, m_A\right) - m_B\right]
 \end{align}
 with microscopic attempt rate $\Gamma$. 
 Linearizing about equilibrium gives
@@ -49,26 +48,36 @@ Linearizing about equilibrium gives
     \delta \dot m_A &= \Gamma\left(-\,\delta m_A \;-\; \beta K\,\zeta_A\,\delta m_B\right)\\
     \delta \dot m_B &= \Gamma\left(-\,\beta K\,\zeta_B\,\delta m_A \;-\; \delta m_B\right)
 \end{align}
-In vector form, with $y=(\delta m_A,\delta m_B)^{\!\top}$
-\begin{equation}
-    \dot y \;=\; -\Gamma 
+In vector form, 
+\begin{eqnarray}
+    \begin{pmatrix}
+        \delta \dot m_A\\
+        \delta \dot m_B
+    \end{pmatrix} &=& -\Gamma 
     \begin{pmatrix}
         1 & \beta K\,\zeta_A \\
         \beta K\,\zeta_B & 1
-    \end{pmatrix} y \;=\; -M y
-\end{equation}
+    \end{pmatrix} \begin{pmatrix}
+        \delta  m_A\\
+        \delta  m_B
+    \end{pmatrix} \nonumber\\
+    &=& -M \begin{pmatrix}
+        \delta m_A\\
+        \delta  m_B
+    \end{pmatrix}
+\end{eqnarray}
 
-We require
-\begin{equation}
-    \beta \int_{0}^{\infty}\!\langle \delta m_i(0)\,\delta m_j(t)\rangle\,dt
-    \;=\; \beta \int_0^\infty \!\langle y(0)\,y^{\!\top}(t)\rangle\,dt
-\end{equation}
-Since $\langle \delta m_i(0)\,\eta(t)\rangle=0$ for $t>0$, substituting $y(t)=e^{-Mt}y(0)$ yields
+%We require
+%\begin{equation}
+%    \beta \int_{0}^{\infty}\!\langle \delta m_i(0)\,\delta m_j(t)\rangle\,dt
+%    \;=\; \beta \int_0^\infty \!\langle y(0)\,y^{\!\top}(t)\rangle\,dt
+%\end{equation}
+Since $\langle \delta m_i(0)\,\eta(t)\rangle=0$ for $t>0$, substituting $\delta \vec m(t)=e^{-Mt}\delta \vec m(0)$ yields
 \begin{widetext}
 \begin{equation}
 \begin{aligned}
-    \beta \int_0^\infty \!\langle y(0)\,y^{\!\top}(t)\rangle\,dt
-    &= \beta\,\langle y(0)\,y^{\!\top}(0)\rangle \int_0^\infty \!e^{-M^{\!\top}t}\,dt
+    \beta \int_0^\infty \!\langle \delta m_i(0)\,\delta m_j (t)\rangle\,dt
+    &= \beta\,\langle \delta m_i(0)\,\delta m_j (0)\rangle \int_0^\infty \!e^{-M^{\!\top}t}\,dt
      \;=\; \beta\,\Sigma\,(M^{\!\top})^{-1} \\[3pt]
     &= \frac{2\beta}{\Gamma\big(1-\beta^2 K^2 \zeta_A \zeta_B\big)^{\!2}}
     \begin{pmatrix}
@@ -79,27 +88,27 @@ Since $\langle \delta m_i(0)\,\eta(t)\rangle=0$ for $t>0$, substituting $y(t)=e^
 \end{equation}
 \end{widetext}
 
-To express the Sivak metric in the control variables $\boldsymbol{\lambda}=(\beta,\beta h)$, we transform fluctuations to $(-E,m)$ via
+To express the dissipation metric in the control variables $\boldsymbol{\lambda}=(\beta,\beta h)$, we transform fluctuations to $(-E,m)$ via
 \begin{align}
     E &= \tfrac{1}{2} K\, m_A m_B\\
     m &= \tfrac{1}{2}(m_A+m_B)
 \end{align}
 so the Jacobian is
 \begin{equation}
-    P \;=\; \frac{\partial(-E,m)}{\partial(m_A,m_B)} 
+    \mathcal{J} \;=\; \frac{\partial(-E,m)}{\partial(m_A,m_B)} 
     \;=\; \frac{1}{2}
     \begin{pmatrix}
         -K m_B & -K m_A \\
         \;1 & \;1
     \end{pmatrix}
 \end{equation}
-The Sivak metric then reads
+The dissipation metric then reads
 \begin{widetext}
 \begin{equation}
 \resizebox{\columnwidth}{!}{$
 \begin{aligned}
-    g^{\text{Sivak}}_{\mu\nu}
-    \;= & \; \beta\, P\,\Sigma\,(M^{\!\top})^{-1} P^{\!\top} \\
+    g_{\mu\nu}
+    \;= & \; \beta\, \mathcal{J}\,\Sigma\,(M^{\!\top})^{-1} \mathcal{J}^{\!\top} \\
     \;= & \; \frac{\beta}{2\Gamma\big(1-\beta^2 K^2 \zeta_A \zeta_B\big)^{\!2}}
     \begin{pmatrix}
     \scriptstyle K^2 \!\left[\!\big(1+\beta^2 K^2 \zeta_A \zeta_B\big)\big(m_A^2 \zeta_B + m_B^2 \zeta_A\big) - 4\beta K\, m_A m_B \zeta_A \zeta_B \!\right]
@@ -115,31 +124,21 @@ $}
 \end{equation}
 \end{widetext}
 
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_bb.png}
-        \caption{Caloric element $g_{\beta\beta}$}
-    \end{subfigure}%\hfill
-    
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_ab.png}
-        \caption{Magneto–caloric element $g_{\alpha\beta}$}
-    \end{subfigure}
-    % \vspace{0.75ex}
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{figures/sivakmetric_aa.png}
-        \caption{Magnetic element $g_{\alpha\alpha}$}
-    \end{subfigure}
-    \caption{Elements of the Sivak metric for the mean-field antiferromagnet}
-    \label{fig:sivakmetric_antiferro}
-\end{figure}
 
-Figures~\ref{fig:sivakmetric_antiferro} show the resulting metric components.
+
+%Figures~\ref{fig:sivakmetric_antiferro} show the resulting metric components.
 \section{Minimal Dissipation in Disordered Phase}
+In the disordered phase, the magnetizations of the two sublattices are identical. Therefore, the total magnetizaiton
+\begin{align}
+    m &= \frac{m_A+m_B}{2} = m_A = m_B
+\end{align}
+
+For each $m\in[-1,1]$, the corresponding critical parameters $(\beta_c,\alpha_c)$ on the phase boundary satisfy (here and in what follows we use $\alpha=\beta h$ for simplicity) 
+\begin{align}
+    m &= \pm\sqrt{1-\frac{1}{\beta_c K}} \label{m(beta)}\\
+    \alpha_c &= \pm\Big(\beta_c K\, m + \arctanh m\Big) \label{alpha(beta,m)}
+\end{align}
+
 \paragraph{Eigenstructure and the zero-length direction.}
 The eigenpairs of the bracketed matrix are
 \begin{align}

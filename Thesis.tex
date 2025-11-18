@@ -40,6 +40,8 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{comment}
+\usepackage{enumitem}
 
 %\newcommand{\oren}[1]{{\color{red} [Oren:]\xspace}}%\usepackage{hyperref}% add hypertext capabilities
 \newcommand{\oren}[1]{{\color{red} [Oren: #1]\xspace}}
@@ -65,10 +67,8 @@
 
 \title{Thermodynamic Geometry Through Second Order Phase Transitions}
 
-\author{Omer Michael Basri}
- \email{omer.basri@weizmann.ac.il}
-\author{Oren Raz}
- \email{oren.raz@weizmann.ac.il}
+\author{Omer M. Basri}
+ % \email{omer.basri@weizmann.ac.il}
 \affiliation{%
  Department of Physics of Complex Systems,\\Weizmann Institute of Science, Rehovot 76100, Israel. 
 }%
@@ -80,17 +80,27 @@
 Thermodynamic geometry provides a powerful framework to analyze the dissipation of physical systems driven out of equilibrium, but near equilibrium.
 In its original formulation, the system's relaxation timescales had to be, to good approximation, constant throughout the control parameter space.
 In its current form, the formalism requires that linear response theory holds.
-We study the thermodynamic geometry of systems that undergo second-order phase transitions. 
-Using the scaling hypothesis, we show that while the Ruppeiner metric diverges at the critical point, the thermodynamic length may remain finite.
-However, for the Sivak-Crooks formulation of the metric, we show by use of the dynamical scaling hypothesis that the thermodynamic length can diverge in some systems.
-We argue, that the length likely converges for higher dimensional systems.
-Finally, we compute the Sivak-Crooks metric of the mean-field antiferromagnetic Ising model, and use it to study optimal protocols connecting points of interest in the system.
-We show analytically that in the disordered phase, the metric effectively reduces to a 1D manifold, allowing for simple determination of optimal protocols.
-In the ordered phase, we numerically find optimal protocols using the Fast-Marching method.
+This thesis studies the thermodynamic geometry of systems that undergo second-order phase transitions.
+
+Using the scaling hypothesis, which provides the form of the divergent part of the free energy across universality classes, I show that while the Ruppeiner metric diverges at the critical point, the thermodynamic length may remain finite.
+The dynamical scaling hypothesis relates the response time near a phase transition to the scaling of the free energy, allowing the divergence of the metric in the Sivak–Crooks formulation to be evaluated.
+This analysis shows that the thermodynamic length can diverge in some systems, but likely converges in higher-dimensional systems with Ising-like phase transitions, suggesting a critical dimensionality of three.
+
+Finally, I compute the Sivak-Crooks metric of the mean-field antiferromagnetic Ising model, and use it to study optimal protocols connecting points of interest in the system.
+I show analytically that in the disordered phase, the metric effectively reduces to a 1D manifold, allowing for simple determination of optimal protocols.
+In the ordered phase, I numerically find optimal protocols using the Fast-Marching method.
 
 \end{abstract}
 
 \maketitle
+
+\section*{List of Abbreviations}
+
+\begin{description}[leftmargin=!,labelwidth=3cm]
+    \item[MF] Mean-Field
+    \item[1D/2D/3D] One-, two-, or three-dimensional systems
+\end{description}
+
 
 \section{Introduction}
 
@@ -100,46 +110,57 @@ One approach that bridges this gap is thermodynamic geometry, introduced in the 
 
 In the 1980s, Salamon \cite{salamonThermodynamicLengthDissipated1983} established a connection between excess dissipation and thermodynamic length in this Riemannian manifold, subject to two important limitations. First, the result holds only for endoreversible processes, where the system remains in internal equilibrium but may be out of equilibrium with its environment. Second, the dissipation depends explicitly on the mean response time of the system, restricting the formalism’s applicability to systems with varying relaxation times. Despite these limitations, the framework has proven valuable for identifying minimal-entropy-production protocols in processes such as chemical reactions and distillation \cite{andresenCurrentTrendsFiniteTime2011}.
 
-Building on this line of work, Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012, crooksMeasuringThermodynamicLength2007} derived a closely related metric using linear response theory. In their formulation, the system’s relaxation dynamics are incorporated directly into the metric, thereby removing the dependence on a separate response-time parameter and eliminating the assumption of endoreversibility. This generalized framework extends thermodynamic geometry to a much broader class of systems—including those with widely varying time scales and microscopic systems such as biomolecular or single-molecule systems—and has found applications in optimizing computational and physical processes \cite{rotskoffGeometricApproachOptimal2017}.
+Building on this line of work, Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012, crooksMeasuringThermodynamicLength2007} derived a closely related metric using LRT (linear response theory). In their formulation, the system’s relaxation dynamics are incorporated directly into the metric, thereby removing the dependence on a separate response-time parameter and eliminating the assumption of endoreversibility. This generalized framework extends thermodynamic geometry to a much broader class of systems—including those with widely varying time scales and microscopic systems such as biomolecular or single-molecule systems—and has found applications in optimizing computational and physical processes \cite{rotskoffGeometricApproachOptimal2017}.
 
-A particularly challenging class of systems exhibiting widely separated time scales are those undergoing phase transitions. The application of thermodynamic geometry to such systems has drawn significant attention \cite{janyszekRiemannianGeometryThermodynamics1989, PhysRevE.51.1006}, including efforts to identify optimal driving protocols across critical regions (e.g., the 2D ferromagnetic Ising model \cite{rotskoffDynamicRiemannianGeometry2015}). Yet, the divergence of thermodynamic length near phase transitions has received limited study. Notably, a divergence in the metric tensor does not necessarily imply a divergence in thermodynamic length—much as the divergence of the Schwarzschild metric at $r=r_s$ does not correspond to a physical singularity.
+A particularly challenging class of systems exhibiting widely separated time scales are those undergoing phase transitions. The application of thermodynamic geometry to such systems has drawn significant attention \cite{janyszekRiemannianGeometryThermodynamics1989, PhysRevE.51.1006}, including efforts to identify optimal driving protocols across critical regions (e.g., the 2D ferromagnetic Ising model \cite{rotskoffDynamicRiemannianGeometry2015}). Yet, the divergence of thermodynamic length near phase transitions has received limited study. 
 
-In systems with disconnected phases, any transformation from one phase to another must necessarily cross a phase transition. One such case, examined in this work, is the mean-field antiferromagnet, where the phase boundary entirely separates distinct thermodynamic states. Determining whether the thermodynamic length remains finite near such transitions is crucial for understanding the applicability of thermodynamic geometry in these regimes.
+In systems with disconnected phases, any transformation from one phase to another must necessarily cross a phase transition. One such case, examined in this work, is the mean-field (MF) antiferromagnet, where the phase boundary entirely separates distinct thermodynamic phases. Determining whether the thermodynamic length remains finite near such transitions is crucial for understanding the applicability of thermodynamic geometry in these regimes.
 
 Both the Ruppeiner and Sivak metrics predict that the thermodynamic metric should diverge in the vicinity of a second-order phase transition (see Sec.~\ref{sec:framework}). A natural question, therefore, is whether this divergence of the metric translates into a divergence of the corresponding thermodynamic lengths. Note that even if the length remains finite, other geometric quantities such as the curvature may diverge, signaling critical behavior. Though these do not directly contribute to dissipation and are thus outside our present focus.
 
-In this paper, we analyze the behavior of thermodynamic geometry near second-order phase transitions. We show that the Ruppeiner and Sivak manifolds exhibit qualitatively distinct behavior around criticality, primarily due to the phenomenon of critical slowing down. Interestingly, in both formalisms, there exist cases where the metric does not diverge at the transition.
+In this thesis, I analyze the behavior of thermodynamic geometry near second-order phase transitions. I show that the Ruppeiner and Sivak manifolds exhibit qualitatively distinct behavior around criticality, primarily due to the phenomenon of critical slowing down. Interestingly, there exist cases where the metric does not diverge at the transition.
 
-Finally, we apply the Sivak metric to determine the optimal protocol connecting two points in different phases of the mean-field antiferromagnet. Because the two phases are entirely separated by a phase boundary, any such protocol necessarily traverses a phase transition. Our results show that, while the thermodynamic length can diverge for the Sivak metric in certain models, it remains finite for all cases examined under the Ruppeiner metric.
+Finally, I calculate both the ruppiner and Sivak metrics for the MF antiferromagnet. Using the Sivak metric I determine the optimal protocol connecting point-pairs of interest. Because the two phases are entirely separated by a phase boundary, any such protocol necessarily traverses a phase transition. My results show that, there are cases where the optimal path crosses the phase transition even when a path exists that avoids it.
 
+\section{Goals}
+
+We wish to focus on the following questions:
+\begin{itemize}
+    \item What happens to the dissipated availability when crossing a second order phase transition?
+    \item Is it possible for the optimal path to traverse a second-order phase transition, even when an alternative path confined to a single phase is available?
+\end{itemize}
+
+Answering these questions can clarify how thermodynamic geometry can be applied to systems undergoing second-order phase transitions.
+This, in turn, will inform future optimization of driving protocols—indicating whether this approximate geometric framework may direct optimal paths through phase transitions, or whether alternative optimization approaches are required to handle protocols that cross phase boundaries.
 
 \section{Framework} \label{sec:framework}
-Before analyzing thermodynamic geometry near second-order phase transitions, we briefly define the key metrics and scaling tools used in our study.
+Before analyzing thermodynamic geometry near second-order phase transitions, a brief definition of the key metrics and scaling tools used in this study is appropriate.
 
 \subsection{Ruppeiner and Weinhold Metric}
 The Ruppeiner–Weinhold metric \cite{ruppeinerThermodynamicsRiemannianGeometric1979, weinholdMetricGeometryEquilibrium1975} is defined as the Hessian of a thermodynamic potential or generalized entropy:
 \begin{equation}
     g_{\mu\nu}^R = \pm \frac{\partial^2 \varphi}{\partial \lambda^\mu \partial \lambda^\nu}
 \end{equation}
-where $\varphi$ is a thermodynamic potential (e.g., internal energy, entropy, or a Legendre transform), and $\lambda^\mu$ are its natural variables (e.g., $\{S, M\}$ for $E$).
-The sign ensures positive definiteness, consistent with the convexity or concavity of $\varphi$ \cite{Callen:450289}.
+where $\varphi$ is a thermodynamic potential (e.g., internal energy, entropy, or their Legendre transform), and $\lambda^\mu$ are its natural variables (e.g., $\{S, M\}$ -- entropy and magnetization -- for $E$).
+The sign ensures positive definiteness, consistent with the convexity or concavity of $\varphi$ \cite{Callen:450289}. In the original works, these definitions were introduced without a specific physical motivation, but rather as a mathematical observation that they constitute a well-defined Riemannian metric.
 
 Salamon \cite{salamonThermodynamicLengthDissipated1983} connected this metric to excess dissipation through the dissipated availability:
 \begin{equation} \label{SalomonDissipatedAvail}
-    \mathcal{A} = \bar{\epsilon} \int_{\boldsymbol{\lambda}(s)} g^R_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, ds
+    \mathcal{A}^R = \bar{\epsilon} \int_{\boldsymbol{\lambda}(s)} g^R_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, ds
 \end{equation}
-where $\bar{\epsilon}$ is the average response time. The corresponding thermodynamic length is
+where $\bar{\epsilon}$ is the average response time. 
+This result was derived under the endoreversible assumption, wherein the system is internally equilibrated at all times but not necessarily in equilibrium with its environment. The corresponding thermodynamic length is
 \begin{equation}
-    \mathcal{L} = \int_{\boldsymbol{\lambda}(s)} \sqrt{g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu}\, ds
+    \mathcal{L} = \int_{\boldsymbol{\lambda}(s)} \sqrt{g^R_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu}\, ds
 \end{equation}
 Minimizing $\mathcal{L}$ minimizes excess dissipation for a fixed-duration protocol, a result of the Cauchy–Schwarz inequality:
 \begin{equation}
-    \mathcal{A} \ge \frac{\bar{\epsilon}}{\tau}\mathcal{L}^2
+    \mathcal{A}^R \ge \frac{\bar{\epsilon}}{\tau}\mathcal{L}^2
 \end{equation}
 with equality for constant-speed protocols (i.e $\sqrt{g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu}=\text{const.}$).
 
 \subsection{Sivak and Crooks Metric}
-The Ruppeiner metric assumes endoreversibility and uniform response times, which limit its scope. Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} removed these restrictions using linear-response theory, defining
+The assumptions of endoreversibility and uniform response times restrict the applicability of this formalism. Sivak and Crooks \cite{sivakThermodynamicMetricsOptimal2012} lifted these limitations by employing linear-response theory, defining
 \begin{equation}
     g_{\mu\nu}^S = \int_0^\infty \langle \delta X_\mu(t)\, \delta X_\nu(0) \rangle\, dt =
     \mathcal{T}_{\mu\nu} \frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu}
@@ -147,11 +168,15 @@ The Ruppeiner metric assumes endoreversibility and uniform response times, which
 where $\mathcal{T}_{\mu\nu}$ is the time-response matrix, $Z$ the partition function, and $X_\mu$ the conjugate variable to $\lambda^\mu$.
 The response time is thus encoded directly in the metric, and the dissipated availability becomes
 \begin{equation}
-    \mathcal{A} = \int_{\boldsymbol{\lambda}(t)} g^S_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt
+    \mathcal{A}^S = \int_{\boldsymbol{\lambda}(t)} g^S_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt
+\end{equation}
+The thermodynamic length in this formalism retains the same definition:
+\begin{equation}
+    \mathcal{L} = \int_{\boldsymbol{\lambda}(s)} \sqrt{g^S_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu}\, ds
 \end{equation}
 with the inequality
 \begin{equation}
-    \mathcal{A} \ge \frac{\mathcal{L}^2}{\tau}
+    \mathcal{A}^S \ge \frac{\mathcal{L}^2}{\tau}
 \end{equation}
 again saturated by constant-speed protocols.
 
@@ -159,20 +184,22 @@ again saturated by constant-speed protocols.
 Near second order phase transitions, derivatives of the free energy -- and hence the Ruppeiner and Sivak metrics often diverge (for example, via diverging magnetic susceptibility). 
 Although exact partition functions are rarely tractable, the asymptotic form of these divergences is determined by critical exponents defining universality classes.
 
-The scaling hypothesis relates the free energy near the critical point $(T_c, H_c)$ to reduced variables $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$:
+The scaling hypothesis connects the divergent part of the free energy near the critical point to a set of reduced variables.
+For Ising-type models, the critical point is some $(T_c, H_c)$, the reduced variables are defined as $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$, and the singular contribution to the free energy scales as
 \begin{equation}
-    \varphi \propto t^b f\!\left(\frac{h}{t^\Delta}\right),
+\varphi \propto t^b f!\left(\frac{h}{t^\Delta}\right),
 \end{equation}
-where $f(x)$ is continuous and $f(x) \sim x^p$ as $x \to \infty$ \cite{Kardar_2007}.
-The exponents $b$, $\Delta$, and $p$ can be determined by standard critical exponents, e.g., $b = 2 - \alpha$ from the heat capacity exponent $\alpha$.
-This approach captures metric divergences across universality classes but does not address relaxation times, which are critical the dissipation in the Ruppiner formalism, and for the definition of the Sivak metric.
+where $f(x)$ is continuous and satisfies $f(x) \sim x^p$ as $x \to \infty$ \cite{Kardar_2007}.
+The exponents $b$, $\Delta$, and $p$ are determined by the standard critical exponents—for example, $b = 2 - \alpha$, where $\alpha$ is the heat-capacity exponent.
+For models with different symmetries, the definitions of the reduced variables and the precise form of the scaling relation may differ.
+While this framework effectively captures metric divergences across universality classes, it does not account for relaxation times, which influence dissipation through the mean relaxation time $\bar{\epsilon}$ in the Ruppeiner formalism, and affect both the thermodynamic length and dissipation in the Sivak formulation.
 
 \subsubsection*{Dynamic Scaling Hypothesis}
-Critical slowing down near second-order transitions leads to divergent relaxation times. The dynamic scaling hypothesis relates the relaxation time $\tau$ and correlation length $\xi$ as
+Critical slowing down near second-order transitions leads to divergent relaxation times. The dynamic scaling hypothesis relates the relaxation time $\tau$ and correlation length $\xi$ as \cite{tauberCriticalDynamicsField2014}
 \begin{equation}
     \tau \propto \xi^z
 \end{equation}
-and the free energy scales as $\varphi \propto \xi^{-d}$ \cite{Kardar_2007, tauberCriticalDynamicsField2014}.
+and the free energy scales as $\varphi \propto \xi^{-d}$ \cite{Kardar_2007}.
 Combining these yields
 \begin{equation}
     \tau \propto \varphi^{-z/d} \propto t^{-bz/d}\, f^{-z/d}\!\left(\frac{h}{t^\Delta}\right)
@@ -198,8 +225,7 @@ Note that this observation does not necessarily inform  us about the metric itse
 \subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisResults}
 
 \subsubsection{Scaling Hypothesis for the Free Energy}
-We employ the scaling hypothesis for the free energy to analyze the divergence of the Ruppeiner 
-metric and determine whether the thermodynamic length diverges along paths crossing a phase transition.
+We employ the scaling hypothesis for the free energy to analyze the divergence of the Ruppeiner metric and determine whether the thermodynamic length diverges along paths crossing a phase transition.
 
 Assuming the singular part of the thermodynamic potential potential scales as
 \begin{equation}
@@ -238,8 +264,8 @@ for which
 \end{equation*}
 The metric contributions then scale as
 \begin{align*}
-    g_{tt} \dot{t}^2 &\propto s^{b-2} \\
-    g_{th} \dot{t}\dot{h} &\propto s^{b-2+(k-\Delta)} \\
+    g_{tt} \dot{t}^2 &\propto s^{b-2} &
+    g_{th} \dot{t}\dot{h} &\propto s^{b-2+(k-\Delta)} &
     g_{hh} \dot{h}^2 &\propto s^{b-2+2(k-\Delta)}
 \end{align*}
 Since $k \ge \Delta$, the sufficient condition for convergence of the Ruppeiner length $\mathcal{L}$ is
@@ -290,7 +316,7 @@ Both conditions ($b > 0$ and $p > 0$) hold for several universality classes, as 
 \end{table}
 
 \subsubsection{Dynamical Scaling Hypothesis}
-In both Ruppeiner and Sivak formalisms, dissipation depends on the system’s response time—appearing as $\bar{\epsilon}$ in the former and directly in the metric for the latter.  
+In both Ruppeiner and Sivak formalisms, dissipation depends on the system’s response time -- appearing as $\bar{\epsilon}$ in the former and directly in the metric for the latter.  
 Using the dynamical scaling hypothesis, we can study how the relaxation time $\tau$ diverges.
 
 From $\tau \propto \psi^{-z/d}$ and the static scaling relation, we obtain
@@ -322,15 +348,16 @@ Thus, the convergence condition becomes
 \end{equation}
 Similarly, in \hyperref[par:scalingCase_2]{Case 2}
 \begin{equation}
-    g_{ij}\dot{x}^i\dot{x}^j \propto s^{p(1-z/d)-2}
+    g_{ij}\dot{\lambda}^i\dot{\lambda}^j \propto s^{p(1-z/d)-2}
 \end{equation}
 so convergence requires
 \begin{equation}
     p\!\left(1 - \frac{z}{d}\right) > 0
 \end{equation}
 
-As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic lengths diverge for the 2D Ising and 2D Potts models but remain finite for the 3D Ising model.
+As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic lengths diverge for the 2D Ising and 2D Potts models but remain finite for the 3D Ising model. This, and RG results for the dynamical scaling hypothesis \cite{Cardy_1996, hohenberg1977theory}, leads us to the conclusion that there is likely a critical dimension of 3 for convergence of the thermodynamic length.
 
+\begin{comment}
 \begin{table}[h]
     \centering
     \begin{tabular}{c|c||c|c|c}
@@ -348,6 +375,24 @@ As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic length
     \caption{Dynamical scaling parameters for representative universality classes \cite{odor_universality_2004}.}
     \label{tab:dynamical-divergences}
 \end{table}
+\end{comment}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c||c|c|c}
+         & $d$ & $z$ & $z/d$ \\
+        \hline \hline
+        2D Ising & $2$ & $2.165(10)$ & $1.083(5)$ \\
+        \hline
+        3D Ising & $3$ & $2.032(4)$ & $0.677(1)$ \\
+        \hline
+        2D 3-state Potts & $2$ & $2.198(2)$ & $1.099(1)$ \\
+        \hline
+        2D 4-state Potts & $2$ & $2.290(3)$ & $1.095(2)$ \\
+    \end{tabular}
+    \caption{Dynamical scaling parameters for representative universality classes \cite{odor_universality_2004}.}
+    \label{tab:dynamical-divergences}
+\end{table}
 
 
 \subsection{Antiferromagnetic Mean-Field Model - Ruppiner metric}
@@ -356,15 +401,44 @@ As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic length
 % \input{AntiFerro-MeanField-Ruppiner/AntiFerroPhase}
  
 \subsection{Antiferromagnetic Mean-Field Model - Sivak metric}
-\omer{I wrote this assuming we will only publish this, and not the Ruppiner metric}
 
 \input{AntiFerro-MeanField-Sivak/intro}
 \input{AntiFerro-MeanField-Sivak/disorderedPhase}
 \input{AntiFerro-MeanField-Sivak/AntiFerroPhase}
 \input{AntiFerro-MeanField-Sivak/minimalPaths}
 
-\input{2D_Ising_Calculation}
+% \input{2D_Ising_Calculation}
+\section{Discussion}
 
+These results show that thermodynamic geometry remains a meaningful framework even in the presence of second-order phase transitions, provided the appropriate scaling of thermodynamic quantities is taken into account.  
+Using the scaling and dynamic scaling hypotheses, I demonstrated that while the Ruppeiner and Sivak metrics generally diverge near criticality, the associated thermodynamic lengths can remain finite for a wide range of universality classes.  
+This implies that finite-dissipation protocols exist even across critical points, as long as the effective metric divergence is sufficiently weak.
+
+For the MF antiferromagnet, the analytic structure of both the Ruppeiner and Sivak metrics reveals a singular but integrable behavior.  
+In the disordered phase, both metrics collapse to a one-dimensional manifold with a null direction corresponding to constant magnetization.  
+Geometrically, this indicates that only one independent degree of freedom contributes to dissipation, while motion along the null direction is thermodynamically free.  
+Consequently, the minimal-dissipation protocol in this phase is obtained by projecting the geodesic flow onto the non-degenerate submanifold, leading to a trajectory that approaches the $\beta=0$ line, i.e., infinite temperature.
+
+In the ordered phase, the divergence of the metric near the phase boundary mirrors the expected critical singularity of the susceptibility.  
+However, consistent with the scaling analysis, the corresponding thermodynamic length remains finite, suggesting that criticality increases local dissipation rates without rendering finite-time driving impractical.  
+Numerically computed minimal paths confirm this picture: depending on the relative positions of the initial and final states, the shortest path may cross the phase transition or remain within a single phase.  
+Crossing becomes advantageous whenever the direct path between phases is shorter than circumventing the divergent region, reflecting a competition between geometric curvature and metric magnitude.
+
+Altogether, these findings clarify how thermodynamic geometry can be extended to systems exhibiting phase transitions.  
+Even though the metric diverges at criticality, the geometric length—and therefore the minimal excess dissipation—often remains finite, preserving the predictive power of the geometric framework.  
+This result establishes a foundation for optimizing nonequilibrium control in systems with critical points, where the interplay of geometry and dynamics determines the most efficient thermodynamic pathways.
+
+\paragraph*{Outlook:}
+Future work could extend this framework to practical systems such as finite-time heat engines operating near criticality \cite{PhysRevLett.128.230601,campisi2016power}, where enhanced response functions may either amplify or suppress dissipation.  
+A natural next step is to generalize the geometric approach to first-order phase transitions, where discontinuities in the order parameter introduce new challenges for defining continuous thermodynamic metrics.  
+A systematic study of convergence properties and dissipation bounds would further clarify the limits of validity of the geometric formalism.  
+In particular, the mathematical framework is expected to break down either through the failure of linear-response theory or due to finite-size effects.  
+Establishing quantitative cutoffs for the onset of these regimes would illuminate the interplay between these two limiting factors and may allow for extending the usefulness of the formalism to lower-dimensional systems.
+
+\section*{Acknowledgments}
+I would like to thank my advisor, Prof.~Oren Raz, for his guidance, insight, and encouragement throughout this work.  
+I am grateful the members of our research group, in particular to Doron Benyamin and Roi Holtzman, for their stimulating discussions, constructive feedback, and continuous support.  
+I am also thankful to David Sivak, and Grant Rotskoff for their valuable contributions and for enlightening conversations that helped shape study. 
 
 \bibliography{ThermodynamicGeometry}
 \end{document}

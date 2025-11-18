@@ -67,7 +67,7 @@
 
 \title{Thermodynamic Geometry Through Second Order Phase Transitions}
 
-\author{Omer Michael Basri}
+\author{Omer M. Basri}
  \email{omer.basri@weizmann.ac.il}
 \author{Oren Raz}
  \email{oren.raz@weizmann.ac.il}
@@ -93,12 +93,12 @@ We then demonstrate a numerical approach for computing minimal paths in such sys
 
 \paragraph{Framework} \label{sec:framework}
 Here we briefly define the key metrics and scaling tools used in our study. The dissipation metric, first introduced in \cite{sivakThermodynamicMetricsOptimal2012}, is defined as
-\begin{equation}
+\begin{equation}\label{Eq:Metric}
     g_{\mu\nu} = \beta \int_0^\infty \langle \delta X_\mu(t)\, \delta X_\nu(0) \rangle\, dt =
     \beta \mathcal{T}_{\mu\nu} \frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu}
 \end{equation}
 where $\mathcal{T}_{\mu\nu}$ is the time-response matrix, $Z$ the partition function, and $X_\mu$ the conjugate variable to $\lambda^\mu$ -- the natural variables of the free energy, e.g., $\{X_1,X_2\} = \{S, M\}$ for $F(T, h)$.
-The dissipated availability, which expresses the excess dissipation in a performing the trajectory $\boldsymbol{\lambda(t)}$ in parameter space, can be expressed as
+The dissipated availability, which expresses the excess dissipation in performing the trajectory $\boldsymbol{\lambda(t)}$ in parameter space, is given by
 \begin{equation}
     \mathcal{A} = \int_{\boldsymbol{\lambda}(t)} g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt.
 \end{equation}
@@ -108,18 +108,18 @@ It is related to the length associated with the thermodynamic metric, defined by
 \end{equation}
 through the inequality
 \begin{equation}\label{Eq:A_bound}
-    \mathcal{A} \ge \frac{\mathcal{L}^2}{\tau}
+    \mathcal{A} \ge \frac{\mathcal{L}^2}{T}
 \end{equation}
- (here $\tau$ is the protocol duration, and $\lambda(s)$ parametrize the trajectory in parameter space). This bound is saturated by a constant-speed protocols, where $g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu=const.$ throughout the protocol.
+ (here $T$ is the protocol duration, and $\lambda(s)$ parametrize the trajectory in parameter space). This bound is saturated for protocols with $g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu=const.$ at all time \cite{becker2003self}.
 
 %\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisFramework}
-Near second order phase transitions, second order derivatives of the free energy derivatives, and hence the dissipation metric diverges as well. The asymptotic form of these divergences is determined by critical exponents defining universality classes. These critical exponents can be analyzed using the scaling hypothesis, which relates the free energy $\varphi$ near the critical point $(T_c, H_c)$ to reduced variables, which for models in the same universality class as the Ising model are often chosen to be $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$. The scaling hypothesis then states that
+Near second order phase transitions, second derivatives of the free energy ---and hence the metric defined in Eq.(\ref{Eq:Metric})--- diverge. The asymptotic form of these divergences is determined by critical exponents, that are common to all models that belong to the same universality class. These critical exponents can be analyzed using Widom's scaling \cite{stanley1987introduction}, which for Ising type models relates the free energy $\varphi$ near the critical point $(T_c, H_c)$ to reduced variables, often chosen to be $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$. The Widom scaling then states that
 \begin{equation} \label{eq:ScalingHyp}
-    \varphi \propto t^b f\!\left(\frac{h}{t^\Delta}\right),
+    \varphi \propto t^b f\!\left(\frac{h}{t^\Delta}\right)
 \end{equation}
 where $f(x)$ is continuous and $f(x) \sim x^p$ as $x \to \infty$ \cite{Kardar_2007}.
-The exponents $b$, $\Delta$, $p$, are directly related to the standard critical exponents through the hyperscaling relations, e.g., $b = 2 - \alpha$ from the heat capacity exponent $\alpha$.
-This approach captures divergences of the free energy second derivatives across phase transitions, but does not address relaxation times, which are critical for the dissipation metric. The dynamic scaling hypothesis relates the relaxation time $\tau$ and correlation length $\xi$ as
+The exponents $b$, $\Delta$, $p$, are enough to uniquely dictate the standard critical exponents through the hyperscaling relations, e.g., the heat capacity exponent $\alpha$ defined through $C_H(t)\sim |t|^{-\alpha}$ is given by $\alpha = 2 - b$.
+This approach captures divergences of the free energy second derivatives across phase transitions, but does not address relaxation times, which are critical for the dissipation metric in Eq.(\ref{Eq:Metric}). This can nevertheless be done using the dynamical scaling relations \cite{hohenberg1977theory}, that relates the relaxation time $\tau$ and correlation length $\xi$ as
 \begin{equation}
     \tau \propto \xi^z
 \end{equation}
@@ -131,12 +131,10 @@ Combining these yields
 linking dynamical and thermodynamic critical behavior.
 
 %\subsection{Divergence of Lengths}
-With the scaling hypothesis it is thus possible to find the divergence of the metric near the phase transition at various equivalence classes, but  diverging metric does not necessarily imply a divergent thermodynamic length.
-Since it is always possible to saturate the equality in  Eq.(\ref{Eq:A_bound}),  finite thermodynamic length guarantees the existence of a finite-dissipation protocol. In addition, from the Cauchy-Schwarz inequality $\mathcal{L} \to \infty$ implies $\mathcal{A} \to \infty$.
+With the Widom and dynamical scaling, it is thus possible to find the divergence of the metric near the phase transition at various equivalence classes. Diverging metric, however, does not necessarily imply a divergent thermodynamic length.
+Since it is always possible to saturate the equality in  Eq.(\ref{Eq:A_bound}),  finite thermodynamic length guarantees the existence of a finite-dissipation protocol. In addition,  $\mathcal{L} \to \infty$ implies $\mathcal{A} \to \infty$ for all finite time protocols.
 Consequently, the convergence of thermodynamic length determines whether finite-dissipation protocols exist. 
-If $\ell(s) = \sqrt{g_{\mu\nu}\dot{\lambda}^\mu\!\left(s\right)\dot{\lambda}^\nu\!\left(s\right)} \propto s^{-a}$ near criticality (as $s \rightarrow 0$), the total length diverges only for $a > 1$. 
-
-Note that this observation does not necessarily inform  us about the metric itself, or intrinsic geometry of the manifold. The metric might diverge for flat space \cite{PhysRev.119.1743,Szekeres:1960gm}, and the manifold might have divergent curvature despite having finite lengths and a non-divergent metric. 
+If $\dot{\mathcal{L}}(s) = \sqrt{g_{\mu\nu}\dot{\lambda}^\mu\!\left(s\right)\dot{\lambda}^\nu\!\left(s\right)} \propto s^{-a}$ near criticality (as $s \rightarrow 0$), the total length diverges only for $a > 1$. Note, however, that finite distance across a phase transition does not necessarily inform  us about the metric itself, or the intrinsic geometry of the manifold. The metric might diverge for flat space \cite{PhysRev.119.1743,Szekeres:1960gm}, and the manifold might have divergent curvature despite having finite lengths and a non-divergent metric. 
 
 
 \paragraph{Results}
@@ -144,7 +142,7 @@ Note that this observation does not necessarily inform  us about the metric itse
 %\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisResults}
 
 %\subsubsection{Scaling Hypothesis for the Free Energy}
-The metric near a phase transition diverges when either one of the free energy derivatives or the time responses diverge. Assuming the singular part of the thermodynamic potential scales as Eq.(\ref{eq:ScalingHyp}), the scaling of the derivatives depends on the direction of the approach to criticality. Specifically, the two possible asymptotic behaviors are 
+The metric near a phase transition diverges when either one of the free energy derivatives or the time responses diverge. Since the singular part of the thermodynamic potential scales as Eq.(\ref{eq:ScalingHyp}), the scaling of the derivatives depends on the direction of the approach to criticality. Specifically, the two possible asymptotic behaviors are 
 \begin{align}
     \left(\frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu}\right) \Big|_{\frac{h}{t^\Delta} \to \text{const.}} &\propto 
     \begin{pmatrix}
@@ -157,7 +155,7 @@ The metric near a phase transition diverges when either one of the free energy d
         t^{-1}h^{p-1} & h^{p-2}
     \end{pmatrix}.
 \end{align}
-The time response divergence can be obtained from  Eq.(\ref{eq:TimeResponsScaling}). From the static scaling relation, we obtain that the divergence of $\tau$ follows
+The time response divergence in the two cases can be obtained from  Eq.(\ref{eq:TimeResponsScaling}). From the static scaling relation, we obtain that the divergence of $\tau$ follows
 \begin{equation}
     \tau \propto
     \begin{cases}
@@ -171,13 +169,13 @@ Together, the derivatives of the free energy and the response time imply the fol
     g_{th}\,\dot{t}\,\dot{h} &\propto s^{b(1-z/d)-2+(k-\Delta)} \\
     g_{hh}\,\dot{h}^2 &\propto s^{b(1-z/d)-2+2(k-\Delta)}
 \end{align}
-Thus, the convergence condition becomes
+In the above equations, the approach of the protocol to the critical point is asymptotically parametrized by $(t,h)\sim(s,s^k)$. This parametrization assures $h/t^\Delta\to const.$ in the limit $s\to 0$. Regardless of the exact value of $k>\Delta$, the convergence condition becomes
 \begin{equation}
     b\!\left(1 - \frac{z}{d}\right) > 0
 \end{equation}
 Similarly, for $\frac{h}{t^\Delta} \to \infty$,
 \begin{equation}
-    g_{ij}\dot{x}^i\dot{x}^j \propto s^{p(1-z/d)-2}
+    g_{ij}\dot{\lambda}^i\dot{\lambda}^j \propto s^{p(1-z/d)-2}
 \end{equation}
 so convergence requires
 \begin{equation}
@@ -185,7 +183,8 @@ so convergence requires
 \end{equation}
 These relations can be used to explore the distance divergence across phase transitions in various models. As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic lengths diverge for the 2D Ising and 2D Potts models. Surprisingly, however, it remains finite for the 3D Ising model.
 
-\begin{table}[h]
+\begin{comment}
+    \begin{table}[h]
     \centering
     \begin{tabular}{c|c||c|c|c}
         \multicolumn{2}{c||}{} & $d$ & $z$ & $z/d$ \\
@@ -200,6 +199,25 @@ These relations can be used to explore the distance divergence across phase tran
         \multicolumn{2}{c||}{2D 4-state Potts} & $2$ & $2.290(3)$ & $1.095(2)$ \\
     \end{tabular}
     \caption{Dynamical scaling parameters for representative universality classes \cite{odor_universality_2004}.}
+    \label{tab:dynamical-divergences}
+\end{table}
+\end{comment}
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.5} % Increase vertical padding
+    \begin{tabular}{c|c||c|c|c}
+        \multicolumn{2}{c||}{} & $b$ & $p$ &  $z/d$ \\
+        \hline \hline
+        \multirow{2}{*}{2D Ising} & Class A & \multirow{2}{*}{2} & \multirow{2}{*}{$\frac{16}{15}$} & $1.083(5)$ \\
+                                  & Class B & & & $1.117(5)$ \\
+        \hline
+        \multicolumn{2}{c||}{3D Ising} & $1.8899(3)$ & $ 1.2088(1) $ & $0.677(1)$ \\
+        \hline
+        \multicolumn{2}{c||}{2D 3-state Potts} & $\frac{5}{3}$ & $\frac{15}{14}$ & $1.099(1)$ \\
+        \hline
+        \multicolumn{2}{c||}{2D 4-state Potts} & $\frac{4}{3}$ & $\frac{16}{15}$ & $1.095(2)$ \\
+    \end{tabular}
+    \caption{Scaling parameters for representative universality classes \cite{odor_universality_2004}.}
     \label{tab:dynamical-divergences}
 \end{table}
 
@@ -343,7 +361,7 @@ As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic length
 %\input{AntiFerro-MeanField-Ruppiner/disorderedPhase}
 % \input{AntiFerro-MeanField-Ruppiner/AntiFerroPhase}
  
-\paragraph{An example: the antiferromagnetic Mean-Field Ising Model}
+\paragraph{An example:}
 %\omer{I wrote this assuming we will only publish this, and not the Ruppiner metric}
 
 \input{AntiFerro-MeanField-Sivak/intro_PRL}
@@ -351,10 +369,12 @@ As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic length
 \input{AntiFerro-MeanField-Sivak/AntiFerroPhase_PRL}
 \input{AntiFerro-MeanField-Sivak/minimalPaths_PRL}
 
-\paragraph{Conclusions} To conclude, we showed that although the dissipation metric diverges at a second order phase transition, for some universality classes crossing the phase transition can be achieved at a finite length. Surprisingly, we find that in some cases the optimal trajectory between two points that are in the same phase crosses to the other phase, then crosses back to the initial phase towards the end point. Many related problems, however, remained open: How can first order phase transitions be incorporate to such a framework? Are there models where the critical exponents vary continuously along the phase transition line (e.g. the 2D Ashkin-Teller model) such that crossing the phase transition cost infinite dissipation for some parts of the phase transition line, but finite for others? Lastly, many heat engines and refrigerators work intentionally near the phase transition. Using the suggested framework to optimize their protocol can be an interesting application.   
+\paragraph{Conclusions} To conclude, we showed that although the dissipation metric diverges at a second order phase transition, for some universality classes crossing the phase transition can be achieved at a finite thermodynamic length. Surprisingly, we find that the optimal trajectory between two points that are in the same phase might even cross to the other phase and back to the initial phase. Many related problems, however, remain open: How can first order phase transitions be incorporate to such a framework? Are there models where the critical exponents vary continuously along the phase transition line (e.g. the 2D Ashkin-Teller model \cite{aoun2024phase}) such that crossing the phase transition cost infinite dissipation for some parts of the phase transition line, but finite for others? Lastly, many heat engines and refrigerators work intentionally near the phase transition \cite{campisi2016power}. Using the suggested framework to optimize their protocol can be an interesting application.   
 
 %\input{2D_Ising_Calculation}
 \paragraph{Acknowledgments} O.R. acknowledges financial support from ISF Grant No. 232/23 and from the Minerva foundation with funding from the Federal German Ministry for Education and Research. We thank David Sivak for many useful discussions and for his hospitality.
 
 \bibliography{ThermodynamicGeometry}
+\newpage
+\input{EndMatter}
 \end{document}

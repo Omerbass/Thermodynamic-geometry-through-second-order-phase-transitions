@@ -1,14 +1,10 @@
-As discussed above, in the antiferromagnet it is impossible to traverse from the antiferromagnetic phase to the disordered phase without crossing a second-order phase transition. 
-This makes it an ideal setting for our analysis.
 
 We now determine the least-dissipation path between two states 
 $\left(T_1,h_1\right)\!\to\!\left(T_2,h_2\right)$,
 with $\left(T_1,h_1\right)$ in the antiferromagnetic phase and $\left(T_2,h_2\right)$ in the disordered phase. 
-In particular, we compute the Sivak metric for the mean-field antiferromagnetic model of \cite{vivesUnifiedMeanfieldStudy1997}.
+In particular, we compute the Sivak metric for the MF antiferromagnetic model of \cite{vivesUnifiedMeanfieldStudy1997}.
 
 \subsubsection{The Model}
-We consider a square lattice split into two interpenetrating sublattices, $A$ and $B$, with interactions only between opposite sublattices. 
-Let $m_A$ and $m_B$ denote the sublattice magnetizations. 
 The Massieu potential is
 \begin{widetext}
 \begin{equation}
@@ -16,37 +12,18 @@ The Massieu potential is
     \;+\; \frac{1}{2}\,\big(\vartheta(m_A)+\vartheta(m_B)\big) \right]
 \end{equation}
 \end{widetext}
-where $\beta=1/T$, $K=-Jz$ with $J<0$ (antiferromagnetic coupling) and $z=2d$ the coordination number, and
-\begin{equation}
-    \vartheta(x) \;=\; \frac{1}{2}\Big[(1+x)\log(1+x)+(1-x)\log(1-x)\Big]
-\end{equation}
-We also set $\alpha\equiv \beta h$ for brevity.
-
-At equilibrium, $m_A$ and $m_B$ minimize $\psi$ and satisfy the mean-field equations
-\begin{align}
-    m_A &= \tanh\!\left(\alpha - \beta K\, m_B\right) \label{eq:SCEmAB-A}\\
-    m_B &= \tanh\!\left(\alpha - \beta K\, m_A\right) \label{eq:SCEmAB-B}
-\end{align}
-It is convenient to define the total and staggered magnetizations
-\begin{align}
-    m &= \frac{m_A+m_B}{2}\\
-    s &= \frac{m_A-m_B}{2}
-\end{align}
-
-For each $m\in[-1,1]$, the corresponding critical parameters $(\beta_c,\alpha_c)$ on the phase boundary satisfy
-\begin{align}
-    m &= \pm\sqrt{1-\frac{1}{\beta_c K}} \label{m(beta)}\\
-    \alpha_c &= \pm\Big(\beta_c K\, m + \arctanh m\Big) \label{alpha(beta,m)}
-\end{align}
+where $\beta=1/T$.
 
 \subsubsection{Calculation of the Metric}
 The computation proceeds in three steps:
 \begin{enumerate}
-    \item \textbf{Equilibrium covariances:} evaluate \\
+    \item \textbf{Equilibrium covariances:} evaluate 
     $\langle \delta m_i(0)\,\delta m_j(0)\rangle$ ($i,j\in\{A,B\}$).
     \item \textbf{Dynamics and time integral:} incorporate linearized relaxation to obtain the integrated correlation.
-    \item \textbf{Variable transform:} convert to the $\boldsymbol{\lambda}=(\beta,\beta h)$ representation via the Jacobian from $(m_A,m_B)$ to $(-E,m)$.
+    \item \textbf{Variable transform:} convert to the $\boldsymbol{\lambda}=(\beta,\beta h)\equiv(\beta,\alpha)$ representation, which is the representation of our control parameters, via the Jacobian from $(m_A,m_B)$ to $(-E,m)$.
 \end{enumerate}
+Note we set $\alpha \equiv \beta h$ for brevity.
+
 Let $\zeta_i\equiv 1-m_i^2$ for $i\in\{A,B\}$. 
 The inverse covariance is the Hessian of $\psi$ with respect to $(m_A,m_B)$:
 \begin{equation}
@@ -106,7 +83,7 @@ Since $\langle \delta m_i(0)\,\eta(t)\rangle=0$ for $t>0$, substituting $y(t)=e^
 \end{equation}
 \end{widetext}
 
-To express the Sivak metric in the control variables $\boldsymbol{\lambda}=(\beta,\beta h)$, we transform fluctuations to $(-E,m)$ via
+To express the Sivak metric in the control variables $\boldsymbol{\lambda}=(\beta,\alpha)$, we transform fluctuations to $(-E,m)$ via
 \begin{align}
     E &= \tfrac{1}{2} K\, m_A m_B\\
     m &= \tfrac{1}{2}(m_A+m_B)
@@ -144,24 +121,24 @@ $}
 
 \begin{figure}[h]
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{figures/sivakmetric_bb.png}
         \caption{Caloric element $g_{\beta\beta}$}
     \end{subfigure}%\hfill
     
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{figures/sivakmetric_ab.png}
         \caption{Magneto–caloric element $g_{\alpha\beta}$}
     \end{subfigure}
     % \vspace{0.75ex}
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{figures/sivakmetric_aa.png}
         \caption{Magnetic element $g_{\alpha\alpha}$}
     \end{subfigure}
-    \caption{Elements of the Sivak metric for the mean-field antiferromagnet}
+    \caption{Elements of the Sivak metric for the MF antiferromagnet}
     \label{fig:sivakmetric_antiferro}
 \end{figure}
 

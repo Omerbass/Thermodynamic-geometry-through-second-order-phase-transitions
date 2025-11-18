@@ -1,18 +1,16 @@
-In the antiferromagnet Ising model in a uniform magnetic field it is impossible to traverse from the antiferromagnetic phase to the disordered phase without crossing a second-order phase transition. 
-This makes it an ideal setting for our analysis. Exact solutions for the free energy in antiferromagnetic Ising models are known only for either $1d$ or mean field setting, and in order to explore the crossing of a phase transition we use the latter. With the framework discussed above, we next determine the least-dissipation path between two states 
-$\left(T_1,h_1\right)\!\to\!\left(T_2,h_2\right)$,
-with $\left(T_1,h_1\right)$ in the antiferromagnetic phase and $\left(T_2,h_2\right)$ in the disordered phase, for the mean-field antiferromagnetic model introduced in \cite{vivesUnifiedMeanfieldStudy1997}. 
+The antiferromagnet Ising model in the presence of a uniform magnetic field is a useful example for our analysis, as in these systems, at high enough dimension, it is impossible to traverse from the antiferromagnetic to the disordered phase without crossing a second-order phase transition line \cite{wang1997critical}. Exact solutions for the free energy in antiferromagnetic Ising models in the presence of external field are known only for $1d$ and mean field settings, and in order to explore the crossing of a phase transition we use the latter. With the framework discussed above, we next determine the least-dissipation path between two states 
+$\left(T_1,h_1\right)\!\to\!\left(T_2,h_2\right)$, for the mean-field antiferromagnetic model introduced in \cite{vivesUnifiedMeanfieldStudy1997}. 
 
-In this model, the spins $s_i$ are split into sublattices $A$ and $B$, where a spin in sublattice $A$ interacts with all spins in sublattice $B$ with equal interaction strength. There are no interactions between spins in the same sublattice.
-Let $m_A=\sum_{i\in A} s_i$ and $m_B = \sum_{i\in B}s_i$ denote the sublattice magnetizations. 
-The Massieu potential of the system is given by
+In this model, the spins $s_i$ are equally split into sublattices $A$ and $B$. A spin in sublattice $A$ interacts with all spins in sublattice $B$ with equal interaction strength, which is antiferromagnetic in sign. There are no interactions between spins in the same sublattice.
+Let $m_A=N^{-1}\sum_{i\in A} s_i$ and $m_B = N^{-1}\sum_{i\in B}s_i$ denote the sublattice magnetizations ($N$ is the number of spins in the sublattice). 
+The Massieu potential of the system is given by \cite{vivesUnifiedMeanfieldStudy1997}
 \begin{eqnarray}
     \psi \;=\ln Z&= -\frac{1}{2}\!\Big[&  \beta K\, m_A m_B \;-\; \beta h\, (m_A+m_B)\nonumber \\
       & &\left. \;+\; \,\big(\vartheta(m_A)+\vartheta(m_B)\big) \right]
 \end{eqnarray}
 where $\beta=1/T$, $K=-J$ with $J<0$ (antiferromagnetic coupling), and we define
 \begin{equation}
-    \vartheta(x) \;=\; \frac{1}{2}\Big[(1+x)\log(1+x)+(1-x)\log(1-x)\Big]
+    \vartheta(x) \;=\; \frac{1}{2}\Big[(1+x)\log(1+x)+(1-x)\log(1-x)\Big].
 \end{equation}
 We also set $\alpha\equiv \beta h$ for brevity.
 
