@@ -94,6 +94,8 @@ In the ordered phase, I numerically find optimal protocols using the Fast-Marchi
 
 \maketitle
 
+\tableofcontents
+
 \section*{List of Abbreviations}
 
 \begin{description}[leftmargin=!,labelwidth=3cm]
@@ -170,7 +172,7 @@ The response time is thus encoded directly in the metric, and the dissipated ava
 \begin{equation}
     \mathcal{A}^S = \int_{\boldsymbol{\lambda}(t)} g^S_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt
 \end{equation}
-The thermodynamic length in this formalism retains the same definition:
+The thermodynamic length in this formalism retains the same definition, just using the new metric definition:
 \begin{equation}
     \mathcal{L} = \int_{\boldsymbol{\lambda}(s)} \sqrt{g^S_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu}\, ds
 \end{equation}
@@ -187,7 +189,7 @@ Although exact partition functions are rarely tractable, the asymptotic form of 
 The scaling hypothesis connects the divergent part of the free energy near the critical point to a set of reduced variables.
 For Ising-type models, the critical point is some $(T_c, H_c)$, the reduced variables are defined as $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$, and the singular contribution to the free energy scales as
 \begin{equation}
-\varphi \propto t^b f!\left(\frac{h}{t^\Delta}\right),
+\varphi \propto t^b f\left(\frac{h}{t^\Delta}\right),
 \end{equation}
 where $f(x)$ is continuous and satisfies $f(x) \sim x^p$ as $x \to \infty$ \cite{Kardar_2007}.
 The exponents $b$, $\Delta$, and $p$ are determined by the standard critical exponents—for example, $b = 2 - \alpha$, where $\alpha$ is the heat-capacity exponent.
@@ -435,9 +437,9 @@ A systematic study of convergence properties and dissipation bounds would furthe
 In particular, the mathematical framework is expected to break down either through the failure of linear-response theory or due to finite-size effects.  
 Establishing quantitative cutoffs for the onset of these regimes would illuminate the interplay between these two limiting factors and may allow for extending the usefulness of the formalism to lower-dimensional systems.
 
-\section*{Acknowledgments}
+\section{Acknowledgments}
 I would like to thank my advisor, Prof.~Oren Raz, for his guidance, insight, and encouragement throughout this work.  
-I am grateful the members of our research group, in particular to Doron Benyamin and Roi Holtzman, for their stimulating discussions, constructive feedback, and continuous support.  
+I am grateful to the members of our research group, in particular to Doron Benyamin and Roi Holtzman, for their stimulating discussions, constructive feedback, and continuous support.  
 I am also thankful to David Sivak, and Grant Rotskoff for their valuable contributions and for enlightening conversations that helped shape study. 
 
 \bibliography{ThermodynamicGeometry}

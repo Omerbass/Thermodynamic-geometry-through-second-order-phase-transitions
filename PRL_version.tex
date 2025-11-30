@@ -78,9 +78,9 @@
 \date{\today}
 
 \begin{abstract}
-A novel approach for calculating excess dissipation in slowly driven thermodynamic processes is through the use of a Riemannian metric on the space of control parameters, where optimal driving protocols follow geodesics.
+A useful approach to quantify excess dissipation in slowly driven thermodynamic processes is through the use of a Riemannian metric on the space of control parameters, where optimal driving protocols follow geodesics.
 Near phase transitions, this geometric picture breaks down as the metric diverges and geodesics may cease to exist.
-Using the scaling hypothesis, we analyze this framework across several universality classes and show that the thermodynamic length can remain finite.
+Using the scaling and dynamical scaling hypotheses, we analyze this framework across several universality classes and show that the thermodynamic length can remain finite.
 We then demonstrate a numerical approach for computing minimal paths in such systems. We show that, in some regimes, the shortest path crosses the phase transition -- even when alternative paths confined to a single phase exist.
 \end{abstract}
 
@@ -97,9 +97,9 @@ Here we briefly define the key metrics and scaling tools used in our study. The 
     g_{\mu\nu} = \beta \int_0^\infty \langle \delta X_\mu(t)\, \delta X_\nu(0) \rangle\, dt =
     \beta \mathcal{T}_{\mu\nu} \frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu}
 \end{equation}
-where $\mathcal{T}_{\mu\nu}$ is the time-response matrix, $Z$ the partition function, and $X_\mu$ the conjugate variable to $\lambda^\mu$ -- the natural variables of the free energy, e.g., $\{X_1,X_2\} = \{S, M\}$ for $F(T, h)$.
+where $\mathcal{T}_{\mu\nu}$ is the time integrated temporal response matrix, $Z$ the partition function, and $X_\mu$ the conjugate variable to $\lambda^\mu$ -- the natural variables of the free energy, e.g., $\{X_1,X_2\} = \{S, M\}$ for $F(T, h)$ \footnote{We assume that the Hamiltonian of the system is linear with $\lambda_i$.}.
 The dissipated availability, which expresses the excess dissipation in performing the trajectory $\boldsymbol{\lambda(t)}$ in parameter space, is given by
-\begin{equation}
+\begin{equation} \label{Eq:DissipationRelation}
     \mathcal{A} = \int_{\boldsymbol{\lambda}(t)} g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt.
 \end{equation}
 It is related to the length associated with the thermodynamic metric, defined by
@@ -110,7 +110,7 @@ through the inequality
 \begin{equation}\label{Eq:A_bound}
     \mathcal{A} \ge \frac{\mathcal{L}^2}{T}
 \end{equation}
- (here $T$ is the protocol duration, and $\lambda(s)$ parametrize the trajectory in parameter space). This bound is saturated for protocols with $g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu=const.$ at all time \cite{becker2003self}.
+ (here $T$ is the protocol duration, and $\lambda(s)$ parametrize the trajectory in parameter space). This bound is saturated for protocols with $g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu=const.$ at all time \cite{salamonThermodynamicLengthDissipated1983}.
 
 %\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisFramework}
 Near second order phase transitions, second derivatives of the free energy ---and hence the metric defined in Eq.(\ref{Eq:Metric})--- diverge. The asymptotic form of these divergences is determined by critical exponents, that are common to all models that belong to the same universality class. These critical exponents can be analyzed using Widom's scaling \cite{stanley1987introduction}, which for Ising type models relates the free energy $\varphi$ near the critical point $(T_c, H_c)$ to reduced variables, often chosen to be $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$. The Widom scaling then states that
@@ -156,7 +156,7 @@ The metric near a phase transition diverges when either one of the free energy d
     \end{pmatrix}.
 \end{align}
 The time response divergence in the two cases can be obtained from  Eq.(\ref{eq:TimeResponsScaling}). From the static scaling relation, we obtain that the divergence of $\tau$ follows
-\begin{equation}
+\begin{equation} \label{Eq:tauPropto}
     \tau \propto
     \begin{cases}
         t^{-bz/d}, & \frac{h}{t^\Delta} \to \text{const.} \\[4pt]
@@ -221,148 +221,91 @@ These relations can be used to explore the distance divergence across phase tran
     \label{tab:dynamical-divergences}
 \end{table}
 
+\paragraph{Linear Response Applicability:}
+As shown in previous works, the validity of the dissipation relation given in Eq.\eqref{Eq:DissipationRelation} requires a separation of timescales between the system’s relaxation rate and the rate of change of the control parameters \cite{rotskoffGeometricApproachOptimal2017}.
+This condition can be satisfied in certain models.
+Assume that the relaxation time diverges near the phase transition as $\tau\propto (\lambda^\mu)^{-\kappa}$ for some reduced control parameter $\lambda^\mu$ that goes to 0 at the phase transition, and $\kappa>0$. If the protocol is driven with $\dot{\lambda}^\mu \propto (\lambda^\mu) ^ a$ with $a>\kappa$, so that the protocol slows down faster than the response time diverges, then the trajectory is in the linear-response regime  throughout the evolution. Such protocols correspond to algebraic slowdowns near the critical point and are physically realizable \cite{holtzman2025shortcuts}.
+To ensure that this is a finite time protocol, we require that the total driving time
+\begin{equation}
+    T = \intop_0 \frac{d\lambda^\mu}{\dot{\lambda}^\mu} < \infty
+\end{equation}
+remains finite, which holds for $a<1$. Therefore, finite-time protocols that remain entirely within the linear-response regime exist if and only if $\kappa < 1$. Note that the condition $\kappa<1$ is independent of the geometric convergence conditions derived earlier.
+
+From Eq.~\eqref{Eq:tauPropto}, the two relevant cases are:
+\begin{align}
+    \frac{h}{t^\Delta} & \to \text{const.} \, : & \lambda^\mu & =t & \kappa & = \frac{bz}{d} \\
+     \frac{h}{t^\Delta} & \to \infty \, : & \lambda^\mu & = h & \kappa &= \frac{pz}{d}
+\end{align}
+Although the examples discussed above do not necessarily satisfy $\kappa < 1$, models with this property do exist.
+One notable case is the quantum 2D transverse-field Ising model, which belongs to the same universality class as the 3D classical Ising model \cite{ZHANG2021114632,10.1143/PTP.56.1454}, and hence has finite length across the phase transition \footnote{See \cite{scandi2019thermodynamic} for discussion on thermodynamic geometry in quantum systems}.
+Using the corresponding critical exponents from the 3D Ising model and the dynamic critical exponent $z = 1$ \cite{Continentino_2017, Sachdev_2011}, we find:
+\begin{align}
+    \frac{h}{t^\Delta} & \to \text{const.} \, : & \kappa & = \frac{bz}{d+1} = 0.630 < 1 \\
+     \frac{h}{t^\Delta} & \to \infty \, : & \kappa &= \frac{pz}{d+1} = 0.402 < 1
+\end{align}
+Thus, the quantum 2D transverse-field Ising model provides an example of a system where the phase transition can be crossed at a finite time, with a finite dissipated availability.
+
 \begin{comment}
-This implies that to study length divergences, we must specify the path in parameter space, which determines the scaling of $\frac{h}{t^\Delta}$.  We therefore consider the two relevant cases.
-Case 1: $\frac{h}{t^\Delta} \to \text{const.}$ Near the phase transition, such a trajectory can be parametrized using
-\begin{equation}
-    \begin{pmatrix}
-        t \\ h
-    \end{pmatrix} =
-    \begin{pmatrix}
-        s \\ s^k
-    \end{pmatrix}, \quad k \ge \Delta
-\end{equation}
-for which
-\begin{equation*}
-    \frac{h}{t^\Delta} \xrightarrow[s \to 0]{} \text{const.}
-\end{equation*}
-The other case is $\frac{h}{t^\Delta} \to \infty$, which can be parametrized using 
-\begin{equation}
-    \begin{pmatrix}
-        t \\ h
-    \end{pmatrix} =
-    \begin{pmatrix}
-        s^{1/k} \\ s
-    \end{pmatrix}, \quad k < \Delta
-\end{equation}
-which implies
-\begin{equation*}
-    \frac{h}{t^\Delta} \xrightarrow[s \to 0]{} \infty
-\end{equation*}
 
-The metric contributions then scale as
-\begin{align*}
-    g_{tt} \dot{t}^2 &\propto s^{b-2} \\
-    g_{th} \dot{t}\dot{h} &\propto s^{b-2+(k-\Delta)} \\
-    g_{hh} \dot{h}^2 &\propto s^{b-2+2(k-\Delta)}
-\end{align*}
-Since $k \ge \Delta$, the sufficient condition for convergence of the Ruppeiner length $\mathcal{L}$ is
+It is, indeed true that the response time of the system diverges. However, since the metric diverges, the rate of change of the control parameters should become infinitely slow. 
+However, as long as the divergence of the response time is slow enough, we can promise that there exist finite time protocols that will diverge slower, such that the protocol will always stay within the linear response regime. 
+This can be quantified as follows: For a response time that is divergent as $\tau\propto s^{-\iota}$, a protocol that started in the linear response regime, where 
 \begin{equation}
-    b > 0
+    \sqrt{\sum_\mu \left({\dot{\lambda}}^{\prime \mu}\right)^2}  \propto s^{a}
 \end{equation}
-As established earlier, convergence of $\mathcal{L}$ is necessary and sufficient for convergence of the Salamon dissipated availability $\mathcal{A}$ in finite-time protocols, provided $\bar{\epsilon}$ remains finite.
+will always remain within the linear response regime if $a>\iota$.
 
-\paragraph{Case 2: $\frac{h}{t^\Delta} \to \infty$ \label{par:scalingCase_2}}
+Old (Probably wrong) explanation, keeping in case I will need some of this in the future.
+
+If the covariances diverge as $\partial_\mu\partial_\nu Z \propto s^\upsilon$, the protocol time will be
 \begin{equation}
-    \begin{pmatrix}
-        t \\ h
-    \end{pmatrix} =
-    \begin{pmatrix}
-        s^{1/k} \\ s
-    \end{pmatrix}, \quad k < \Delta
+    T\propto\int \frac{d\mathcal{L}}{\sqrt{\dot{\lambda}^{\prime\mu} g_{\mu\nu} \dot{\lambda}^{\prime\nu}}} = \int ds \sqrt{\frac{\dot{\lambda}^{\mu} g_{\mu\nu} \dot{\lambda}^{\nu}}{\dot{\lambda}^{\prime\mu} g_{\mu\nu} \dot{\lambda}^{\prime\nu}}} = \int ds \sqrt{\frac{s^{(\iota + \upsilon)/2}}{s^a}}
 \end{equation}
-implying
-\begin{equation*}
-    \frac{h}{t^\Delta} \xrightarrow[s \to 0]{} \infty
-\end{equation*}
-In this case,
-\begin{align*}
-    g_{tt} \,\dot{t}^2 &\propto s^{p-2} &
-    g_{th} \,\dot{t}\,\dot{h} &\propto s^{p-2} &
-    g_{hh} \,\dot{h}^2 &\propto s^{p-2}
-\end{align*}
-Hence, convergence requires
-\begin{equation}
-    p > 0
+(where the not-primed $\lambda$ is assumed to be a "constant speed" protocol)
+
+The protocol duration will be finite if $a < 1+\frac{\iota+\upsilon}{2}$. Meaning there exists a finite time protocol that always stays within the linear response regime if
+\begin{equation} \label{eq:ExistenceOfLinearResponsePreservingPath}
+    \iota<2+\upsilon
 \end{equation}
-Both conditions ($b > 0$ and $p > 0$) hold for several universality classes, as shown in Table~\ref{tab:scaling-divergences}.
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{c||c|c}
-        & $b$ & $p$ \\
-        \hline \hline
-        Mean Field & $2$ & $\tfrac{4}{3}$ \\
-        2D Ising & $2$ & $\tfrac{16}{15}$ \\
-        3D Ising & $1.8899(3)$ & $1.2088(1)$ \\
-        2D 3-state Potts & $\tfrac{5}{3}$ & $\tfrac{15}{14}$ \\
-        2D 4-state Potts & $\tfrac{4}{3}$ & $\tfrac{16}{15}$ \\
-        % 3D XY Model & $ 2.0153(3) $ & $ 1.20923(6) $
-    \end{tabular}
-    \caption{Scaling parameters for representative universality classes.}
-    \label{tab:scaling-divergences}
-\end{table}
-
-%\subsubsection{Dynamical Scaling Hypothesis}
-In both Ruppeiner and Sivak formalisms, dissipation depends on the system’s response time—appearing as $\bar{\epsilon}$ in the former and directly in the metric for the latter.  
-Using the dynamical scaling hypothesis, we can study how the relaxation time $\tau$ diverges.
-
-From Eq.(\ref{eq:TimeResponsScaling}) and the static scaling relation, we obtain
-that the divergence of $\tau$ follows
+Translating to the critical exponents in the scaling hypothesis:
 \begin{equation}
-    \tau \propto
-    \begin{cases}
-        t^{-bz/d}, & \frac{h}{t^\Delta} \to \text{const.} \\[4pt]
-        h^{-pz/d}, & \frac{h}{t^\Delta} \to \infty
+    \iota=\begin{cases}
+        b\frac{z}{d}  & \frac{h}{t^\Delta} \to \text{const.} \\[4pt]
+        p\frac{z}{d} & \frac{h}{t^\Delta} \to \infty
     \end{cases}
 \end{equation}
-Together, the derivatives of the free energy and the response time imply the following scaling in the  \hyperref[par:scalingCase_1]{Case 1}
-\begin{align}
-    g_{tt}\,\dot{t}^2 &\propto s^{b(1-z/d)-2} \\
-    g_{th}\,\dot{t}\,\dot{h} &\propto s^{b(1-z/d)-2+(k-\Delta)} \\
-    g_{hh}\,\dot{h}^2 &\propto s^{b(1-z/d)-2+2(k-\Delta)}
-\end{align}
-Thus, the convergence condition becomes
 \begin{equation}
-    b\!\left(1 - \frac{z}{d}\right) > 0
+    \upsilon=\begin{cases}
+        2 - b  & \frac{h}{t^\Delta} \to \text{const.} \\[4pt]
+        2 - p & \frac{h}{t^\Delta} \to \infty
+    \end{cases}
 \end{equation}
-Similarly, in \hyperref[par:scalingCase_2]{Case 2}
+And it is apparent that inequality \eqref{eq:ExistenceOfLinearResponsePreservingPath} holds for the 3D Ising model.
+----------------
+If $\iota<1$, there will exist protocols with $\iota<a<1$, such that
 \begin{equation}
-    g_{ij}\dot{x}^i\dot{x}^j \propto s^{p(1-z/d)-2}
+    T\propto\intop \frac{ds}{s^a} <\infty
 \end{equation}
-so convergence requires
+While 
 \begin{equation}
-    p\!\left(1 - \frac{z}{d}\right) > 0
+    \iota=\begin{cases}
+        b\frac{z}{d}  & \frac{h}{t^\Delta} \to \text{const.} \\[4pt]
+        p\frac{z}{d} & \frac{h}{t^\Delta} \to \infty
+    \end{cases}
 \end{equation}
+is generally larger than 1, there do exist models, such as the quantum 2D Transverse Field Ising model \cite{Sachdev_2011,PhysRevB.59.11471}, where $\iota<1$.
 
-As summarized in Table~\ref{tab:dynamical-divergences}, the thermodynamic lengths diverge for the 2D Ising and 2D Potts models but remain finite for the 3D Ising model.
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{c|c||c|c|c}
-        \multicolumn{2}{c||}{} & $d$ & $z$ & $z/d$ \\
-        \hline \hline
-        \multirow{2}{*}{2D Ising} & Class A & $2$ & $2.165(10)$ & $1.083(5)$ \\
-                                  & Class B & $2$ & $2.235(10)$ & $1.117(5)$ \\
-        \hline
-        \multicolumn{2}{c||}{3D Ising} & $3$ & $2.032(4)$ & $0.677(1)$ \\
-        \hline
-        \multicolumn{2}{c||}{2D 3-state Potts} & $2$ & $2.198(2)$ & $1.099(1)$ \\
-        \hline
-        \multicolumn{2}{c||}{2D 4-state Potts} & $2$ & $2.290(3)$ & $1.095(2)$ \\
-    \end{tabular}
-    \caption{Dynamical scaling parameters for representative universality classes \cite{odor_universality_2004}.}
-    \label{tab:dynamical-divergences}
-\end{table}
+------------------------------------
+Viewing the metric as before as a multiplication of the response time and equilibrium covariances \ref{Eq:Metric}, if the rate of divergence of the metric follows the relation $\left(g_{ij}\right)\propto s^{-\iota-\upsilon}$ with $\tau\propto s^\iota$ and $\partial_{i,j}\ln Z\propto s^\upsilon$, we expect the rate of change in a constant speed protocol to be 
+\begin{equation}
+    \sqrt{\sum_i \left(\lambda^i\right)^2}  \propto s^{\nicefrac{(\iota + \upsilon)}{2}}
+\end{equation}
+And linear response will always be applicable for a protocol that starts within the linear response regime, if $\iota>\upsilon$. While for the classical models
+
 \end{comment}
 
-%\subsection{Antiferromagnetic Mean-Field Model - Ruppiner metric}
-%\input{AntiFerro-MeanField-Ruppiner/Intro}
-%\input{AntiFerro-MeanField-Ruppiner/disorderedPhase}
-% \input{AntiFerro-MeanField-Ruppiner/AntiFerroPhase}
- 
 \paragraph{An example:}
-%\omer{I wrote this assuming we will only publish this, and not the Ruppiner metric}
 
 \input{AntiFerro-MeanField-Sivak/intro_PRL}
 \input{AntiFerro-MeanField-Sivak/disorderdPhase_PRL}
