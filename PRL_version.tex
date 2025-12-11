@@ -78,9 +78,9 @@
 \date{\today}
 
 \begin{abstract}
-A useful approach to quantify excess dissipation in slowly driven thermodynamic processes is through the use of a Riemannian metric on the space of control parameters, where optimal driving protocols follow geodesics.
+A common approach to quantify excess dissipation in slowly driven thermodynamic processes is through the use of a Riemannian metric on the space of control parameters, where optimal driving protocols follow geodesics.
 Near phase transitions, this geometric picture breaks down as the metric diverges and geodesics may cease to exist.
-Using the scaling and dynamical scaling hypotheses, we analyze this framework across several universality classes and show that the thermodynamic length can remain finite.
+Using Widom scaling, we analyze this framework for several universality classes and show that in some cases the thermodynamic length across the phase transition remains finite.
 We then demonstrate a numerical approach for computing minimal paths in such systems. We show that, in some regimes, the shortest path crosses the phase transition -- even when alternative paths confined to a single phase exist.
 \end{abstract}
 
@@ -98,7 +98,7 @@ Here we briefly define the key metrics and scaling tools used in our study. The 
     \beta \mathcal{T}_{\mu\nu} \frac{\partial^2 \ln Z}{\partial \lambda^\mu \partial \lambda^\nu}
 \end{equation}
 where $\mathcal{T}_{\mu\nu}$ is the time integrated temporal response matrix, $Z$ the partition function, and $X_\mu$ the conjugate variable to $\lambda^\mu$ -- the natural variables of the free energy, e.g., $\{X_1,X_2\} = \{S, M\}$ for $F(T, h)$ \footnote{We assume that the Hamiltonian of the system is linear with $\lambda_i$.}.
-The dissipated availability, which expresses the excess dissipation in performing the trajectory $\boldsymbol{\lambda(t)}$ in parameter space, is given by
+In the linear response regime, the dissipated availability which expresses the excess dissipation in performing the trajectory $\boldsymbol{\lambda(t)}$ in parameter space, is given by
 \begin{equation} \label{Eq:DissipationRelation}
     \mathcal{A} = \int_{\boldsymbol{\lambda}(t)} g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu\, dt.
 \end{equation}
@@ -113,7 +113,7 @@ through the inequality
  (here $T$ is the protocol duration, and $\lambda(s)$ parametrize the trajectory in parameter space). This bound is saturated for protocols with $g_{\mu\nu}\, \dot{\lambda}^\mu \dot{\lambda}^\nu=const.$ at all time \cite{salamonThermodynamicLengthDissipated1983}.
 
 %\subsection{Scaling Hypothesis} \label{subsec:ScalingHypothesisFramework}
-Near second order phase transitions, second derivatives of the free energy ---and hence the metric defined in Eq.(\ref{Eq:Metric})--- diverge. The asymptotic form of these divergences is determined by critical exponents, that are common to all models that belong to the same universality class. These critical exponents can be analyzed using Widom's scaling \cite{stanley1987introduction}, which for Ising type models relates the free energy $\varphi$ near the critical point $(T_c, H_c)$ to reduced variables, often chosen to be $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$. The Widom scaling then states that
+Near second order phase transitions, second derivatives of the free energy, as well as response times ---and hence the metric defined in Eq.(\ref{Eq:Metric})--- diverge. The asymptotic form of these divergences is determined by critical exponents, that are common to all models that belong to the same universality class. These critical exponents can be analyzed using Widom's scaling \cite{stanley1987introduction}, which for Ising type models relates the free energy $\varphi$ near the critical point $(T_c, H_c)$ to reduced variables, often chosen to be $t = (T - T_c)/T_c$ and $h = (H - H_c)/H_c$. The Widom scaling then states that
 \begin{equation} \label{eq:ScalingHyp}
     \varphi \propto t^b f\!\left(\frac{h}{t^\Delta}\right)
 \end{equation}
@@ -128,12 +128,12 @@ Combining these yields
 \begin{equation}\label{eq:TimeResponsScaling}
     \tau \propto \varphi^{-z/d} \propto t^{-bz/d}\, f^{-z/d}\!\left(\frac{h}{t^\Delta}\right)
 \end{equation}
-linking dynamical and thermodynamic critical behavior.
+linking dynamical and thermodynamic critical behavior. Note that since we use the correlation length in this analysis, it cannot be used for mean field models.
 
 %\subsection{Divergence of Lengths}
-With the Widom and dynamical scaling, it is thus possible to find the divergence of the metric near the phase transition at various equivalence classes. Diverging metric, however, does not necessarily imply a divergent thermodynamic length.
+With the Widom and dynamical scaling, it is thus possible to find the divergence of the metric near the phase transition of various equivalence classes. Diverging metric, however, does not necessarily imply a divergent thermodynamic length.
 Since it is always possible to saturate the equality in  Eq.(\ref{Eq:A_bound}),  finite thermodynamic length guarantees the existence of a finite-dissipation protocol. In addition,  $\mathcal{L} \to \infty$ implies $\mathcal{A} \to \infty$ for all finite time protocols.
-Consequently, the convergence of thermodynamic length determines whether finite-dissipation protocols exist. 
+Consequently, the convergence of thermodynamic length determines whether finite-dissipation protocols exist under the formalism of thermodynamic geometry. 
 If $\dot{\mathcal{L}}(s) = \sqrt{g_{\mu\nu}\dot{\lambda}^\mu\!\left(s\right)\dot{\lambda}^\nu\!\left(s\right)} \propto s^{-a}$ near criticality (as $s \rightarrow 0$), the total length diverges only for $a > 1$. Note, however, that finite distance across a phase transition does not necessarily inform  us about the metric itself, or the intrinsic geometry of the manifold. The metric might diverge for flat space \cite{PhysRev.119.1743,Szekeres:1960gm}, and the manifold might have divergent curvature despite having finite lengths and a non-divergent metric. 
 
 
@@ -169,7 +169,7 @@ Together, the derivatives of the free energy and the response time imply the fol
     g_{th}\,\dot{t}\,\dot{h} &\propto s^{b(1-z/d)-2+(k-\Delta)} \\
     g_{hh}\,\dot{h}^2 &\propto s^{b(1-z/d)-2+2(k-\Delta)}
 \end{align}
-In the above equations, the approach of the protocol to the critical point is asymptotically parametrized by $(t,h)\sim(s,s^k)$. This parametrization assures $h/t^\Delta\to const.$ in the limit $s\to 0$. Regardless of the exact value of $k>\Delta$, the convergence condition becomes
+In the above equations, the approach of the protocol to the critical point is asymptotically parametrized by $(t,h)\sim(s,s^k)$. This parametrization, subject to $k\ge\Delta$, assures $h/t^\Delta\to const.$ in the limit $s\to 0$. Regardless of the exact value of $k$, the convergence condition becomes
 \begin{equation}
     b\!\left(1 - \frac{z}{d}\right) > 0
 \end{equation}
@@ -238,10 +238,10 @@ From Eq.~\eqref{Eq:tauPropto}, the two relevant cases are:
 \end{align}
 Although the examples discussed above do not necessarily satisfy $\kappa < 1$, models with this property do exist.
 One notable case is the quantum 2D transverse-field Ising model, which belongs to the same universality class as the 3D classical Ising model \cite{ZHANG2021114632,10.1143/PTP.56.1454}, and hence has finite length across the phase transition \footnote{See \cite{scandi2019thermodynamic} for discussion on thermodynamic geometry in quantum systems}.
-Using the corresponding critical exponents from the 3D Ising model and the dynamic critical exponent $z = 1$ \cite{Continentino_2017, Sachdev_2011}, we find:
+Using the corresponding critical exponents from the 3D Ising model and the dynamic critical exponent $z = 1$ \cite{Continentino_2017, Sachdev_2011}, we find \cite{MatthiasVojta_2003}:
 \begin{align}
-    \frac{h}{t^\Delta} & \to \text{const.} \, : & \kappa & = \frac{bz}{d+1} = 0.630 < 1 \\
-     \frac{h}{t^\Delta} & \to \infty \, : & \kappa &= \frac{pz}{d+1} = 0.402 < 1
+    \frac{h}{t^\Delta} & \to \text{const.} \, : & \kappa & = \frac{bz}{d+z} = 0.630 < 1 \\
+     \frac{h}{t^\Delta} & \to \infty \, : & \kappa &= \frac{pz}{d+z} = 0.402 < 1
 \end{align}
 Thus, the quantum 2D transverse-field Ising model provides an example of a system where the phase transition can be crossed at a finite time, with a finite dissipated availability.
 
@@ -315,7 +315,7 @@ And linear response will always be applicable for a protocol that starts within 
 \paragraph{Conclusions} To conclude, we showed that although the dissipation metric diverges at a second order phase transition, for some universality classes crossing the phase transition can be achieved at a finite thermodynamic length. Surprisingly, we find that the optimal trajectory between two points that are in the same phase might even cross to the other phase and back to the initial phase. Many related problems, however, remain open: How can first order phase transitions be incorporate to such a framework? Are there models where the critical exponents vary continuously along the phase transition line (e.g. the 2D Ashkin-Teller model \cite{aoun2024phase}) such that crossing the phase transition cost infinite dissipation for some parts of the phase transition line, but finite for others? Lastly, many heat engines and refrigerators work intentionally near the phase transition \cite{campisi2016power}. Using the suggested framework to optimize their protocol can be an interesting application.   
 
 %\input{2D_Ising_Calculation}
-\paragraph{Acknowledgments} O.R. acknowledges financial support from ISF Grant No. 232/23 and from the Minerva foundation with funding from the Federal German Ministry for Education and Research. We thank David Sivak for many useful discussions and for his hospitality.
+\paragraph{Acknowledgments} O.R. acknowledges financial support from ISF Grant No. 232/23 and from the Minerva foundation with funding from the Federal German Ministry for Education and Research. We thank David Sivak for many useful discussions and for his hospitality, and Grant Rotskoff for pointing out that the protocol might be too slow to cross the phase transition.
 
 \bibliography{ThermodynamicGeometry}
 \newpage

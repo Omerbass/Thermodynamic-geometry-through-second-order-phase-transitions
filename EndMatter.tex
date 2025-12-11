@@ -14,10 +14,10 @@ For each $m\in[-1,1]$, the corresponding critical parameters $(\beta_c,\alpha_c)
 \end{align}
 \end{comment}
 
-\subsubsection{Calculation of the Metric}
+%\subsubsection{Calculation of the Metric}
 The computation is done as follows: First, we calculate the equilibrium covariances, namely we evaluate 
-    $\langle \delta m_i(0)\,\delta m_j(0)\rangle$ ($i,j\in\{A,B\}$).
-    From these, we calculate the time integrated correlations by incorporate linearized relaxation. As these calculations are easier in $m_i$ variables, we then convert to the $\boldsymbol{\lambda}=(\beta,\beta h) \equiv (\beta, \alpha)$ representation, in which the metric is provided.
+$\langle \delta m_i(0)\,\delta m_j(0)\rangle$ ($i,j\in\{A,B\}$).
+From these, we calculate the time integrated correlations by incorporate linearized relaxation. As these calculations are easier in $m_i$ variables, we then convert to the $\boldsymbol{\lambda}=(\beta,\beta h) \equiv (\beta, \alpha)$ representation, in which the metric is provided. We set $\alpha\equiv \beta h$ for brevity.
 
 Let $\zeta_i\equiv 1-m_i^2$ for $i\in\{A,B\}$. 
 The inverse covariance is the Hessian of the function $\psi$ with respect to the coordinates $(m_A,m_B)$. Using the expression for $\psi$, it is given by
@@ -43,6 +43,7 @@ The relaxation dynamics we use \cite{klichMpembaIndexAnomalous2019}, corresponds
     \dot m_B &= \Gamma\!\left[\tanh\!\left(\alpha - \beta K\, m_A\right) - m_B\right]
 \end{align}
 with microscopic attempt rate $\Gamma$. 
+
 Linearizing about equilibrium gives
 \begin{align}
     \delta \dot m_A &= \Gamma\left(-\,\delta m_A \;-\; \beta K\,\zeta_A\,\delta m_B\right)\\
@@ -133,7 +134,7 @@ In the disordered phase, the magnetizations of the two sublattices are identical
     m &= \frac{m_A+m_B}{2} = m_A = m_B
 \end{align}
 
-For each $m\in[-1,1]$, the corresponding critical parameters $(\beta_c,\alpha_c)$ on the phase boundary satisfy (here and in what follows we use $\alpha=\beta h$ for simplicity) 
+For each $m\in[-1,1]$, the corresponding critical parameters $(\beta_c,\alpha_c)$ on the phase boundary satisfy 
 \begin{align}
     m &= \pm\sqrt{1-\frac{1}{\beta_c K}} \label{m(beta)}\\
     \alpha_c &= \pm\Big(\beta_c K\, m + \arctanh m\Big) \label{alpha(beta,m)}
@@ -201,7 +202,7 @@ Hence the displacement along the zero mode scales as
 \delta\boldsymbol{\lambda}\sim (\beta+\beta_c).
 \)
 
-\paragraph{Conclusion: minimum at $\beta=0$.}
+\paragraph{Minimum at $\beta=0$.}
 Combining the prefactor and displacement scalings,
 \[
 \sqrt{\delta\lambda^\mu\, g_{\mu\nu}\, \delta\lambda^\nu}

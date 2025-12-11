@@ -12,9 +12,8 @@ where $\beta=1/T$, $K=-J$ with $J<0$ (antiferromagnetic coupling), and we define
 \begin{equation}
     \vartheta(x) \;=\; \frac{1}{2}\Big[(1+x)\log(1+x)+(1-x)\log(1-x)\Big].
 \end{equation}
-We also set $\alpha\equiv \beta h$ for brevity.
 
-As shown in the end matter, assuming Glauber rates for a single transition with a microscopic timescale $\Gamma$, the dissipation metric is given by 
+Since there is no notion of correlation length in this model, we use the response time directly to evaluate the relaxation rates. As shown in the end matter, assuming Glauber rates for a single transition with a microscopic timescale $\Gamma$, the dissipation metric is given by 
 \begin{widetext}
 \begin{equation}
 \resizebox{\columnwidth}{!}{$
@@ -36,8 +35,8 @@ $}
 \end{widetext}
 where $\zeta_i = 1-m_i^2$, and where $m_A$ and $m_B$ are the minimizer of $\psi$, satisfying the mean-field equations
 \begin{align}
-    m_A &= \tanh\!\left(\alpha - \beta K\, m_B\right) \label{eq:SCEmAB-A}\\
-    m_B &= \tanh\!\left(\alpha - \beta K\, m_A\right) \label{eq:SCEmAB-B}
+    m_A &= \tanh\!\left(\beta h - \beta K\, m_B\right) \label{eq:SCEmAB-A}\\
+    m_B &= \tanh\!\left(\beta h - \beta K\, m_A\right) \label{eq:SCEmAB-B}
 \end{align}
 Let us discuss the implications of this metric on the two sides of the phase transition: the disordered and ordered phases. 
 
